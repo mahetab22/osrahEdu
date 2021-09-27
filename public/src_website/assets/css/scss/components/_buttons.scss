@@ -1,0 +1,66 @@
+/*********** Start buttons ************/
+
+.main-btn {
+    padding: 7px 40px;
+    color: #fff;
+    transition: .3s;
+    display: inline-block;
+    border-radius: 50px;
+    &.main {
+        background-color: $mainColor;
+        &:hover {
+            background-color: $secColor;
+            color: #fff;
+        }
+    }
+    &.trans {
+        background-color: #fff;
+        color: $mainColor;
+        border: 1px solid $mainColor;
+        &:hover {
+            background-color: $mainColor;
+            color: #fff;
+        }
+    }
+    &.white {
+        background-color: #fff;
+        color: $mainColor;
+        &:hover {
+            background-color: $secColor;
+            color: #fff;
+        }
+    }
+}
+
+.sp_link {
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    span {
+        padding-inline-start: 17px;
+        position: relative;
+        z-index: 2;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        background-color: $mainColor;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        right: 0;
+        top: 50%;
+        z-index: 1;
+        transform: translateY(-50%);
+        transition: .3s;
+    }
+    &:hover {
+        color: #fff;
+        &:after {
+            transform: translate(-10px, -50%);
+        }
+    }
+}
+
+
+/*********** End buttons ************/

@@ -1,0 +1,60 @@
+@font-face {
+	font-family: 'bahijLight';
+	src: url('../fonts/Bahij_TheSansArabic-Light.ttf');
+	src: url('../fonts/Bahij_TheSansArabic-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'bahijBold';
+	src: url('../fonts/Bahij_TheSansArabic-Bold.ttf');
+	src: url('../fonts/Bahij_TheSansArabic-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'bahijPlain';
+	src: url('../fonts/Bahij_TheSansArabic-Plain.ttf');
+	src: url('../fonts/Bahij_TheSansArabic-Plain.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'bahijSemiBold';
+	src: url('../fonts/Bahij_TheSansArabic-SemiBold.ttf');
+	src: url('../fonts/Bahij_TheSansArabic-SemiBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Pac';
+	src: url('../fonts/Pacifico.ttf');
+	src: url('../fonts/Pacifico.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Cur';
+	src: url('../fonts/Cursive.ttf');
+	src: url('../fonts/Cursive.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ah';
+	src: url('../fonts/ah.ttf');
+	src: url('../fonts/ah.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ahBold';
+	src: url('../fonts/ahBold.ttf');
+	src: url('../fonts/ahBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+

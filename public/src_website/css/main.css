@@ -1,0 +1,72 @@
+.form-control {
+    color: #232333;
+    border-radius: 8px;
+    box-shadow: none;
+    height: 32px;
+    line-height: 32px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: #babacc;
+}
+.form-control:focus {
+    border-color: #0e71eb;
+    box-shadow: none;
+}
+.meeting-label {
+    color: #747487;
+    padding-top: 7px;
+    padding-bottom: 0px;
+    font-weight: bold;
+}
+.form-group {
+    margin-bottom: 24px;
+}
+
+label#label_option_password {
+    display: inline-block;
+}
+
+div#password_container {
+    display: inline-block;
+    margin: 0 15px;
+    max-width: 130px;
+}
+
+.passcode label.checkbox {
+    
+display: inline-block;
+    
+margin-left: 20px;
+}
+label.radio.line-same {
+    display: inline-block;
+}
+
+span#withPmiSpan p {
+    display: inline-block;
+}
+
+
+label.radio.line-same:last-of-type {
+    margin-left: 30px;
+}
+
+label#option_video_host_on_txt {
+    display: inline-block;
+}
+label#option_video_participant_on_txt {
+    display: inline-block;
+}
+
+label#option_video_participant_off_txt {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+legend {
+    padding-bottom: 20px;
+}
+label#option_video_host_off_txt {
+    display: inline-block;
+    margin-left: 30px;
+}

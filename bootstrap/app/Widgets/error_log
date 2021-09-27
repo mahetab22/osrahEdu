@@ -1,0 +1,1 @@
+[22-May-2021 18:00:48 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/nhleduco/public_html/bootstrap/app/Widgets/Courses.php on line 4

@@ -1,0 +1,440 @@
+.fadeInRight {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+}
+.fadeInLeft {
+    -webkit-animation-name: fadeInRight;
+    animation-name: fadeInRight;
+}
+
+.logo img {
+    float: left;
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+.logo .text-logo {
+    float: left;
+}
+
+.header-top .btn-style, .header-top .lang {
+    float: right;
+}
+
+.header-top .lang i {
+    margin-right: 5px;
+    margin-left: 0;
+}
+
+.navbar-right ul li {
+    float: right;
+}
+
+.navbar-right ul li:first-child a {
+    padding-left: 7px;
+    padding-right: 0;
+}
+
+.navbar-right ul li a {
+    border-right: 0;
+    border-left: 1px #3a5f77 solid;
+    font-size: 14px;
+    padding: 0 6px;
+}
+
+.navbar-right ul li a i {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+.navbar-inverse .navbar-nav li:first-child a {
+    padding-right: 15px;
+    padding-left: 0;
+}
+
+.navbar-inverse .navbar-nav li:first-child a::after {
+    right: auto;
+    left: 0;
+}
+
+.search-wrapper form i {
+    left: 0;
+    right: auto;
+}
+
+.search-wrapper form .search-box {
+    padding: 0 140px 0 70px;
+}
+
+.search-wrapper form .close-icon {
+    left: auto;
+    right: 120px;
+}
+
+.search-wrapper form .btn-style {
+    top: 0;
+    right: 0;
+    left: auto;
+}
+
+.block-section::before {
+    left: auto;
+}
+
+.readMore::after {
+    content: "\f061";
+}
+
+.login-now .btn-style.white {
+    float: right;
+}
+
+.links li {
+    float: left;
+}
+
+.footer-bottom .company-n {
+    float: right;
+}
+
+.form-news form button {
+    left: auto;
+    right: 0;
+}
+
+.navbar-right {
+	float: right !important;
+}
+
+.img-cur {box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.16862745098039217);}
+
+.all-deta ul li {
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+.all-deta ul li::before {
+    right: auto;
+    left: 0;
+}
+
+.details-t ul li {
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+.details-t ul li::before {
+    right: auto;
+    left: 0;
+}
+.list-t .item-cu .time-s {
+    float: right;
+}
+
+.text-about ul li {
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+.text-about ul li::before {
+    right: auto;
+    left: 0;
+}
+
+.title-s ul li::after {
+    left: auto;
+    right: -6px;
+    transform: scale(-1);
+}
+
+.form-contact .form-group label.input-group-btn {
+    right: 0;
+    left: auto;
+}
+
+.form-contact .form-group label {
+    right: auto;
+    left: 0;
+}
+
+.form-group ul {
+    float: right;
+}
+
+.form-contact .form-group label.chexB {
+    float: left;
+    padding-right: 0;
+    padding-left: 35px;
+}
+
+.checkmark {
+    left: 0;
+    right: auto;
+}
+
+.trems-inner .nav-tabs li a::before {
+    margin-left: -10px;
+    margin-right: 10px;
+    transform: scale(-1);
+}
+
+.trems-inner .nav-tabs .active a::before, .trems-inner .nav-tabs li a:hover::before, .trems-inner .nav-tabs li a:focus::before, .trems-inner .nav-tabs li.active a::before, .trems-inner .nav-tabs li.active a:hover::before, .trems-inner .nav-tabs li.active a:focus::before {
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+.panel-default .panel-heading .panel-title a::after {
+    left: auto;
+    right: 0;
+}
+
+.excheck {
+    padding-right: 0;
+    padding-left: 32px;
+}
+
+.checkmarkEx {
+    right: auto;
+    left: 0;
+}
+
+.ryad-logo {
+    left: auto;
+    right: -25px;
+}
+
+.about-slider .text-about {
+    direction: ltr;
+}
+
+.title-inner h3 i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.about-more .text-about.list-style ul li i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.about-more .text-about.list-style ul li {
+	float: left;
+}
+
+.navbar-inverse .navbar-nav li a {
+    font-size: 15px;
+    padding: 20px 10px;
+}
+
+
+.wrapper {
+    float: left;
+    direction: ltr;
+}
+
+.list {
+    left: 0;
+    direction: ltr;
+}
+
+.scroller {
+    float: right;
+}
+
+.scroller-right {
+}
+
+.sidebar-lesson .back-btn a i {
+    transform: scale(-1);
+}
+
+.bar-complete span.complete-5::before, .bar-complete span.complete-10::before, .bar-complete span.complete-15::before, .bar-complete span.complete-20::before, .bar-complete span.complete-25::before, .bar-complete span.complete-30::before, .bar-complete span.complete-35::before, .bar-complete span.complete-40::before, .bar-complete span.complete-45::before, .bar-complete span.complete-50::before, .bar-complete span.complete-55::before, .bar-complete span.complete-60::before, .bar-complete span.complete-65::before, .bar-complete span.complete-70::before, .bar-complete span.complete-75::before, .bar-complete span.complete-80::before, .bar-complete span.complete-85::before, .bar-complete span.complete-90::before, .bar-complete span.complete-95::before, .bar-complete span.complete-100::before {
+    right: auto;
+    left: 0;
+}
+
+.bar-complete span::after {
+    left: auto;
+    right: -13px;
+}
+
+.download-attch a {
+    float: right;
+}
+
+.header-lesson .btn-style {
+    left: auto;
+    right: 0;
+}
+
+.body-lesson .details-s ul li {
+    float: left;
+}
+
+.img-tch {
+    float: left;
+}
+
+.body-lesson .details-s {
+    float: left;
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+.body-profile .body-tab-pro .label-title, .body-profile .body-tab-pro .label-details {
+    float: left;
+}
+
+.body-profile .body-tab-pro .label-details ul li {
+    padding-right: 0;
+    padding-left: 15px;
+}
+
+.body-profile .body-tab-pro .label-details ul li::before {
+    right: auto;
+    left: 0;
+}
+
+.allcourse ul li a span {
+    float: right;
+}
+
+.allcourse ul li a i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.extra-fields-customer, #addVehicle, .nextPage {
+    float: left;
+}
+
+.replay-text .block .answer-n button {
+    left: auto;
+    right: 0;
+}
+
+.box-chat .containerr {
+    float: right;
+}
+
+.box-chat .containerr.darkerr {
+    text-align: left;
+    float: left;
+}
+
+.containerr img.rightr {
+    float: left;
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+.box-chat .containerr .time-leftr {
+    float: right;
+}
+.nav.navbar-nav.Other {
+    float: left;
+}
+
+.nav.navbar-nav.Other.not-ul {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+.nav.navbar-nav.Other.not-ul .sub-menu {
+    right: 0;
+    left: auto;
+}
+.req-inner .form-contact .form-group label.excheck {
+    padding-right: 15px;
+    padding-left: 32px;
+}
+
+.iti--allow-dropdown .iti__flag-container, .iti__selected-flag {
+    right: 0;
+    left: auto;
+}
+
+.form-pay .form-group i {
+    right: auto;
+    left: 0;
+}
+
+.success {
+    left: auto;
+    right: 0;
+}
+
+
+
+
+
+
+@media (max-width: 991px){
+.navbar-toggle {
+    right: auto !important;
+    left: 0;
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+
+nav .col-md-3.col-xs-8 {
+    float: right !important;
+}
+	
+	
+	
+	
+	
+	
+	
+}
+@media (max-width: 660px){
+.block-section::before {
+    height: 104% !important;
+}
+	
+.logo img {
+    max-width: 45px !important;
+}
+
+.logo .text-logo {
+    padding-top: 5px;
+}	
+	
+	
+	
+	
+	
+}
+@media (max-width: 480px){
+.header-top .lang {
+    margin-right: 10px !important;
+    margin-left: 0 !important;
+}
+
+}
+@media (max-width: 390px){
+.navbar-right ul li a {
+    padding: 0 4px;
+    font-size: 12px;
+}
+.navbar-right ul li:first-child a {
+    padding-left: 5px;
+    padding-right: 0;
+}
+	.navbar-right ul li a i {
+		margin-left: 0 !important;
+		margin-right: 5px !important;
+	}
+  .logo .text-logo {
+    padding-top: 12px;
+}
+}
+
+@media (max-width: 340px){
+.logo .text-logo h2 {
+    font-size: 15px;
+}
+}
+
+

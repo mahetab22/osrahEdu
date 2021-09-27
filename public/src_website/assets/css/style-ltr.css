@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/*--------------------------------------------------------------
+# Start Global Page
+--------------------------------------------------------------*/
+
+body {
+    direction: ltr;
+}
+
+.nav {
+    background: linear-gradient( 226deg, #0b2a41 40%, #0a5fa3 77%, #0a90ff 100%);
+}
+
+.nav .sidebar {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.news_section .content .back .title,
+.news_section .content .back {
+    clip-path: polygon(0% 0, 75% 0, 100% 100%, 0% 100%);
+}
+
+.main-heading h4:after {
+    left: 0px;
+    right: auto;
+}
+
+.footer {
+    background: linear-gradient( 231deg, #0b2a41 40%, #0b518a 100%);
+}
+
+
+/*--------------------------------------------------------------
+# End Global Page
+--------------------------------------------------------------*/

@@ -1,0 +1,187 @@
+/*--------------------------------------------------------------
+# Start nav-menu
+--------------------------------------------------------------*/
+
+.nav_top {
+    padding: 20px 0;
+    .logo {
+        display: block;
+        img {
+            width: 120px;
+        }
+    }
+    .btns {
+        .main-btn {
+            padding: 7px 22px;
+            font-size: 14px;
+            margin-inline-end: 10px;
+            background: linear-gradient(270deg, rgba(0, 84, 165, 1) 0%, rgba(0, 153, 255, 1) 100%);
+            &:hover {
+                background: linear-gradient(90deg, rgba(0, 84, 165, 1) 0%, rgba(0, 153, 255, 1) 100%);
+            }
+        }
+    }
+    .vission {
+        img {
+            width: 100px;
+        }
+    }
+}
+
+.nav_bar {
+    background-color: #FAFAFA;
+    padding: 15px 0;
+    .list {
+        li {
+            display: inline-block;
+            font-family: $semiBold;
+            &:not(:last-of-type) {
+                margin-inline-end: 20px;
+            }
+            a {
+                color: #4D4D4D;
+                &:hover,
+                &.active {
+                    color: $secColor;
+                }
+            }
+        }
+    }
+    .icons {
+        .cart_icon {
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        span {
+            cursor: pointer;
+            &:hover {
+                color: $mainColor;
+            }
+        }
+    }
+    #nav-icon1 {
+        width: 45px;
+        position: relative;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: .5s ease-in-out;
+        -moz-transition: .5s ease-in-out;
+        -o-transition: .5s ease-in-out;
+        transition: .5s ease-in-out;
+        cursor: pointer;
+        span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: $mainColor;
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .25s ease-in-out;
+            -moz-transition: .25s ease-in-out;
+            -o-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+        }
+    }
+    #nav-icon1 span:nth-child(1) {
+        top: 0px;
+    }
+    #nav-icon1 span:nth-child(2) {
+        top: 14px;
+    }
+    #nav-icon1 span:nth-child(3) {
+        top: 28px;
+    }
+    #nav-icon1.open span:nth-child(1) {
+        top: 18px;
+        -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    #nav-icon1.open span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+    }
+    #nav-icon1.open span:nth-child(3) {
+        top: 18px;
+        -webkit-transform: rotate(-135deg);
+        -moz-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+}
+
+.sidebar {
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 250px;
+    background: #353535;
+    z-index: 9999999999;
+    transform: translateX(-100%);
+    transition: all 0.3s;
+    background-position: 36%;
+    opacity: 1;
+    &.opened {
+        transform: translateX(0%);
+        transition: all .3s;
+    }
+    .side-nav {
+        max-height: 100%;
+        height: calc(100% - 90px);
+        position: relative;
+        z-index: 1;
+        margin-top: 20px;
+        ul li {
+            display: block;
+            position: relative;
+            transition: .3s;
+            a {
+                padding: 11px 25px;
+                position: relative;
+                display: flex;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: #a4a4a4;
+                transition: 0.3s;
+                align-items: center;
+                .icon {
+                    min-width: 45px;
+                    height: 45px;
+                    display: inline-flex;
+                    border: 1px solid;
+                    border-radius: 50%;
+                    align-items: center;
+                    justify-content: center;
+                    margin-inline-end: 10px;
+                }
+                &:hover {
+                    background: $mainColor;
+                    color: #fff;
+                    border: none !important;
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+
+.row_nav {
+    justify-content: space-between;
+}
+
+
+/*--------------------------------------------------------------
+# End nav-menu
+--------------------------------------------------------------*/

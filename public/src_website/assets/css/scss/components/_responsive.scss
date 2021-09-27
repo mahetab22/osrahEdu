@@ -1,0 +1,119 @@
+@media(max-width:1199.98px) {
+    .nav_bar .list li {
+        font-size: 15px;
+    }
+}
+
+@media(max-width:991.98px) {
+    .courses_section .list_control li:not(:last-of-type) {
+        padding-inline-end: 30px;
+    }
+    .news_section .content .info {
+        margin-bottom: 40px;
+    }
+    .services_section .box_info {
+        margin-bottom: 40px;
+    }
+    .about_section .info {
+        height: auto;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .counter_section {
+        padding: 65px 0 35px;
+        .box {
+            margin-bottom: 30px;
+        }
+    }
+    .contact_us_section .info {
+        height: auto;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .footer .newsletter_section .text {
+        margin-bottom: 30px;
+    }
+    .footer .footer_bootom {
+        .info_site {
+            margin-bottom: 30px;
+        }
+        .sochial {
+            text-align: start;
+        }
+    }
+    .library_section .slick-slide {
+        opacity: 1;
+    }
+}
+
+@media(max-width:767.98px) {
+    .courses_section .list_control li:not(:last-of-type) {
+        padding-inline-end: 15px;
+    }
+    .services_section .serv_box {
+        margin-bottom: 30px;
+    }
+    .main-heading h2 {
+        font-size: 26px;
+        line-height: normal;
+    }
+    .library_section .slick-slide {
+        opacity: 0.28;
+    }
+}
+
+@media(max-width:575.98px) {
+    .nav_top {
+        .logo {
+            text-align: center;
+        }
+    }
+    .nav_bar .icons .btns .main-btn {
+        padding: 7px 19px;
+        font-size: 13px;
+        margin-inline-end: 0px;
+    }
+    .header .info {
+        h2 {
+            font-size: 30px;
+            width: auto;
+            line-height: normal;
+            margin-top: 13px;
+        }
+        p {
+            width: 100%;
+        }
+        span.line {
+            margin: 15px 0 20px;
+            &.two {
+                margin: 35px 0 20px;
+            }
+        }
+    }
+    .courses_section .list_control li:not(:last-of-type) {
+        padding-inline-end: 0;
+    }
+    .news_section .content .info h2 {
+        font-size: 24px;
+        line-height: normal;
+    }
+    .news_section .content .info p {
+        font-size: 14px
+    }
+    .footer .footer_bootom .site_map {
+        display: block;
+        margin-top: 30px;
+    }
+    .library_section .item_carousel {
+        padding: 15px 5px;
+    }
+    .library_section .box_lib {
+        padding: 18px 10px;
+    }
+    .library_section .box_lib .info .details .item {
+        font-size: 12px;
+    }
+    .library_section .box_lib .info .name {
+        font-size: 17px;
+    }
+}

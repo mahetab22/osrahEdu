@@ -1,0 +1,235 @@
+/*--------------------------------------------------------------
+# Start Global Page
+--------------------------------------------------------------*/
+
+@font-face {
+    font-family: Bahij_Bold;
+    src: url(../fonts/Bahij_Bold.ttf);
+}
+
+@font-face {
+    font-family: Bahij_Light;
+    src: url(../fonts/Bahij_Light.ttf);
+}
+
+@font-face {
+    font-family: Bahij_SemiBold;
+    src: url(../fonts/Bahij_SemiBold.ttf);
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #d7d7d7;
+}
+
+body::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: $mainColor;
+}
+
+body {
+    font-family: Bahij_Light, sans-serif;
+    position: relative;
+    background-color: $bg_ColorBody;
+    color: $pColor;
+    direction: rtl;
+    text-align: start;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    outline: none !important;
+}
+
+label {
+    margin-inline-start: 2px;
+}
+
+a {
+    transition: .3s;
+    color: #212121;
+    &:hover {
+        text-decoration: none;
+        color: $secColor;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@for $i from 1 through 10 {
+    .mt-#{$i}0 {
+        margin-top: #{$i}0px;
+    }
+    .mb-#{$i}0 {
+        margin-bottom: #{$i}0px;
+    }
+}
+
+section {
+    overflow: hidden;
+    position: relative;
+}
+
+.owl-carousel {
+    direction: ltr;
+}
+
+.main-color {
+    color: $mainColor;
+}
+
+.sec-color {
+    color: $secColor;
+}
+
+.bg_main-color {
+    background-color: $mainColor;
+}
+
+.overlay_gen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999999999;
+    display: none;
+}
+
+.pagination_custom {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+        display: inline-flex;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #D9D8D8;
+        color: $mainColor;
+        margin: 0 2px;
+    }
+    a.arrow {
+        background-color: #D9D8D8;
+    }
+    a.active,
+    a:hover {
+        background-color: $mainColor;
+        color: #fff;
+    }
+}
+
+.flex_end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.play-btn {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient($mainColor 50%, $mainColor 52%);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.play-btn::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid $mainColor;
+    opacity: 1;
+    border-radius: 50%;
+    top: -50%;
+    left: -50%;
+    animation: pulsate-btn 2s infinite;
+}
+
+.play-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-40%) translateY(-50%);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #fff;
+    z-index: 100;
+    transition: 0.6s;
+}
+
+.play-btn:hover::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-40%) translateY(-50%);
+    width: 0;
+    height: 0;
+    border: none;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #fff;
+    z-index: 101;
+    animation: none;
+    border-radius: 0;
+}
+
+.play-btn:hover::after {
+    border-left: 15px solid $mainColor;
+    transform: scale(20);
+}
+
+@keyframes pulsate-btn {
+    0% {
+        transform: scale(0.3, 0.3);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+.text-ellipsis {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+
+.item_carousel {
+    padding: 0 15px;
+}
+
+.item_carousel_p {
+    padding: 15px;
+}
+
+.slick-slider {
+    direction: ltr;
+}
+
+
+/*--------------------------------------------------------------
+# End Global Page
+--------------------------------------------------------------*/

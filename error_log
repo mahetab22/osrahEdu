@@ -1,0 +1,17 @@
+[10-Aug-2020 18:23:47 UTC] PHP Fatal error:  Uncaught ReflectionException: Class translator does not exist in /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+Stack trace:
+#0 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(803): ReflectionClass->__construct('translator')
+#1 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(681): Illuminate\Container\Container->build('translator')
+#2 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(785): Illuminate\Container\Container->resolve('translator', Array, true)
+#3 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(629): Illuminate\Foundation\Application->resolve('translator', Array)
+#4 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(770): Illuminate\Container\Container->make('translator', Array)
+#5 /home/nhleduco/public_html/vendor/laravel/framework/src/Il in /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 805
+[10-Aug-2020 18:23:47 UTC] PHP Fatal error:  Uncaught ReflectionException: Class translator does not exist in /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+Stack trace:
+#0 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(803): ReflectionClass->__construct('translator')
+#1 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(681): Illuminate\Container\Container->build('translator')
+#2 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(785): Illuminate\Container\Container->resolve('translator', Array, true)
+#3 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(629): Illuminate\Foundation\Application->resolve('translator', Array)
+#4 /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(770): Illuminate\Container\Container->make('translator', Array)
+#5 /home/nhleduco/public_html/vendor/laravel/framework/src/Il in /home/nhleduco/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 805
+[29-Jun-2021 10:27:59 UTC] PHP Fatal error:  Cannot declare class App\Actions\studcourse, because the name is already in use in /home/nhleduco/public_html/nhl_marketer/app/Actions/payForMarketer.php on line 0

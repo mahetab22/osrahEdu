@@ -1,0 +1,829 @@
+@media  (max-width: 1200px) {
+.navbar-inverse .navbar-nav li a {
+    padding: 15px 6px;
+    font-size: 14px;
+}
+
+.navbar-right ul li a {
+    font-size: 13px;
+    padding: 0 7px;
+}
+
+.navbar-right {
+    padding: 16px 0;
+}
+
+.block-section::before {
+    right: -5.8px;
+    width: 104%;
+}
+
+.block-section .details-block h3 {
+    font-size: 20px;
+}
+
+.block-section .details-block p {
+    font-size: 15px;
+    height: 65px;
+}
+
+}
+@media (max-width: 1024px) {
+
+}
+@media (max-width: 991px) {
+nav .col-md-3.col-xs-8 {
+    float: left;
+}
+.navbar-inverse .navbar-nav li a {
+    color: #fff;
+}
+#myNavbar {
+    position: absolute;
+    margin-top: 50px;
+    right: 0;
+    left: 0;
+    background: #132836;
+    z-index: 999;
+}
+
+#myNavbar .nav.navbar-nav {
+    background: transparent;
+    margin: 0;
+    padding: 20px 0;
+}
+
+nav .col-md-9.col-xs-12 {
+    position: inherit;
+}
+
+#myNavbar .nav.navbar-nav li {
+    float: none;
+    text-align: center;
+}
+
+.navbar-inverse .navbar-nav li a::after {
+    display: none;
+}
+.navbar-toggle {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    background: linear-gradient(to right, #428bbb, #e63d7b);
+    color: #fff;
+    font-size: 22px;
+    line-height: 53px;
+	position: absolute;
+	right: 12%;
+}
+.block-section::before {
+    right: -7px;
+}
+
+.login-now {
+    padding: 60px 0;
+}
+	
+.login-now {
+    padding: 60px 0;
+}
+
+.footer-top {
+    padding: 0 0 50px;
+}
+
+.footer-top h3 {
+    margin: 30px 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-bottom .company-n {
+    float: none;
+    margin-top: 12px;
+}
+
+.img-cur {
+    margin-top: 40px;
+}
+
+.body-inner {
+    padding: 50px 0;
+}
+
+.title-s {
+    padding: 50px 0;
+}
+.img-t .img {
+    margin-top: 0;
+}	
+
+.form-contact.login-in {
+    margin-top: 30px;
+}
+
+.ryad-logo {
+    left: auto;
+    right: auto;
+}
+
+.img-tch {
+    float: none;
+}
+
+.img-tch .img-u {
+    margin: auto;
+}
+
+.body-lesson .details-s {
+    float: none;
+    width: 100%;
+}
+
+.body-lesson .details-s ul li {
+    width: 100%;
+}
+                                
+.sub-menu {
+    position: relative;
+    display: none;
+}
+
+.navbar-nav li.dropdown.menu-item-has-children:hover .sub-menu {
+    display: block;
+}
+.wrapper {
+    width: 100%;
+}
+
+.scroller {
+    width: 35px;
+    height: 35px;
+    line-height: 40px;
+    margin-top: 15px;
+}
+
+.scroller.opicty {
+    display: none !important;
+}
+
+.style-nav .nav-tabs {
+    position: relative;
+    left: auto !important;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.box-chat {
+    width: 100%;
+    margin: 0;
+}
+
+.navbar-inverse  .navbar-right  li a {
+    color: #000;
+}
+
+.nav.navbar-nav.Other {
+    width: auto;
+}
+.nav.navbar-nav.Other {
+    margin: 0;
+}
+ .nav.navbar-nav.Other .sub-menu {
+    position: absolute;
+    opacity: 1;
+    visibility: visible;
+}
+
+.exam-block.editexam .form-group.row span.col-md-1.col-xs-2.true .exam-block.editexam .form-group.row span.col-md-1.col-xs-2.false {}
+
+.exam-block.editexam .form-group.row span.col-md-1.col-xs-2.false, .exam-block.editexam .form-group.row span.col-md-1.col-xs-2.true,.exam-block.editexam .form-group.row a.on-default.btn.btn-default {
+    width: auto;
+    float: none;
+    display: inline-block;
+}
+
+.exam-block.editexam .form-group.row span.col-md-8.col-xs-8 {
+    width: 100%;
+}
+
+.exam-block.editexam .form-group.row a.on-default.btn.btn-default {
+    margin-top: 30px;
+}
+                                
+
+}
+
+@media (max-width: 880px){
+.navbar-toggle {
+    right: 65px;
+}
+	
+}
+
+@media (max-width: 767px){
+.navbar-toggle {
+    right: 15px;
+}
+	
+.block-section::before {
+    width: 102%;
+}
+	
+.login-now {
+    text-align: center;
+}
+
+.login-now .btn-style.white {
+    float: none;
+    margin: 40px auto 0;
+}
+  
+ .box-chat .containerr {
+    width: 100%;
+}
+
+
+	
+}
+@media (max-width: 660px) { 
+.container {
+    width: 100%;
+}
+.header-top .btn-style {
+    font-size: 15px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 3px;
+}
+	
+.header-top .btn-style i {
+	display: inline-block;
+}
+.header-top .btn-style span {
+	display: none;
+}
+	
+.logo img {
+    max-width: 65px;
+    width: 100%;
+}
+
+.logo .text-logo h2 {
+    font-size: 18px;
+}
+
+.logo .text-logo h4, .logo .text-logo h4 p {
+    font-size: 8px;
+    line-height: normal;
+}
+
+.margin-16 {
+    margin-top: 14px;
+}
+
+.search-n {
+    padding: 50px 0;
+}
+
+.slider-home .img {
+    height: 400px;
+}
+
+.text-search h1 {
+    font-size: 40px;
+}
+
+.text-search h4 {
+    font-size: 15px;
+    margin: 30px 0 20px;
+}
+
+.search-wrapper form .search-box {
+    height: 60px;
+}
+
+.search-wrapper form .btn-style {
+    height: 60px;
+}
+
+.search-wrapper form i {
+    margin: 21px 26px;
+}
+
+.block-section {
+    height: auto;
+    padding-bottom: 70px;
+}
+
+.block-section .details-block p {
+    height: auto;
+}
+
+.block-section::before {
+    width: 103%;
+    height: 105%;
+    right: -7px;
+    top: -7px;
+}
+
+.login-now {
+    padding: 44px 0;
+}
+
+.login-now h1 {
+    font-size: 25px;
+}
+
+.login-now h4 {
+    font-size: 15px;
+}
+
+.login-now .btn-style.white {
+    font-size: 15px;
+    padding: 0 50px;
+    margin-top: 30px;
+}
+
+.footer-top p {
+    font-size: 14px;
+}
+
+.footer-top h3 {
+    font-size: 16px;
+}
+
+.links li a {
+    font-size: 14px;
+}
+
+.footer-bottom p, .footer-bottom .company-n span {
+    font-size: 13px;
+}
+
+.footer-bottom {
+    padding: 15px;
+}
+
+.sections-all {
+    padding: 50px 0;
+}
+
+.sections-all .btn-style {
+    margin-top: 30px;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+ .header-top .margin-16 {
+    margin-top: 18px;
+}
+
+.text-lansser.account ul li, .text-lansser.account ul li:nth-child(odd) {
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    border: none;
+    border-bottom: 1px #ccc solid;
+}
+
+.text-lansser.account ul {
+    display: block;
+}
+
+}
+@media (max-width: 520px) { 
+
+
+}
+@media (max-width: 520px) { 
+.header-lesson .btn-style {
+    border-radius: 13px;
+    top: auto;
+    bottom: 0;
+    padding: 0 5px;
+    background: #ccc !important;
+    color: #000;
+    margin: 0;
+    margin-top: 14px;
+    position: relative;
+    text-align: center;
+}
+
+.header-lesson {
+    border-radius: 10px;
+}
+
+.header-lesson .nav-tabs {
+    padding-left: 85px;
+    white-space: normal;
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.video-lesson {
+    height: 250px;
+}
+  
+ nav .col-md-3.col-xs-8 {
+    width: 84%;
+}
+
+
+.header-lesson .nav-tabs li {
+    display: block;
+    text-align: center;
+}
+
+}
+
+@media (max-width: 480px){
+.header-top .col-xs-6:first-child {
+    width: 60%;
+}
+
+.header-top .col-xs-6:last-child {
+    width: 40%;
+}
+
+.header-top .lang {
+    font-size: 13px;
+    margin: 17px 10px;
+    margin-right: 0;
+}
+.margin-16 {
+    margin-top: 10px;
+}
+
+.title-s h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.title-s ul li, .title-s ul li a {
+    font-size: 13px;
+}
+
+.title-s {
+    padding: 40px 0;
+}
+
+.all-deta h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.all-deta p {
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+.all-deta ul li {
+    font-size: 14px;
+}
+
+.img-cur {
+    height: 300px;
+}
+
+.img-t .img {
+    margin-top: 0;
+}
+
+.img-t .img {width: 170px;height: 170px;}
+
+.details-t .name-t h5 {
+    font-size: 14px;
+}
+
+.name-t span {
+    font-size: 13px;
+}
+
+.details-t p {
+    font-size: 14px;
+}
+
+.details-t h5 {
+    padding: 10px 0;
+}
+
+.details-t ul li {
+    font-size: 14px;
+}
+
+.img-about {
+    height: 300px;
+}
+
+.about-more {
+    padding-bottom: 50px;
+}
+
+.form-contact h3, .qut h4 {
+    font-size: 18px;
+}
+
+.form-control, .input-group .form-control {
+    height: 50px;
+}
+
+textarea.form-control {
+    height: 150px;
+}
+
+.form-contact .form-group label.input-group-btn {
+    height: 50px;
+    width: 50px;
+    font-size: 18px;
+}
+
+.form-contact .form-group label.input-group-btn .btn.btn-primary {
+    line-height: 50px;
+    font-size: 18px;
+}
+
+.qut {
+    margin-top: 50px;
+}
+
+.qut ul {
+    margin: 10px 0;
+}
+
+.qut ul li a {
+    font-size: 14px;
+    line-height: 3.5;
+}
+
+.panel-default .panel-heading .panel-title a {
+    font-size: 15px;
+}
+
+.panel-default .panel-heading .panel-title a::after {
+    font-size: 12px;
+}
+
+.panel-default .panel-heading + .panel-collapse > .panel-body {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.about-slider .owl-pagination .owl-page span {
+    width: 45px;
+}
+
+#addVehicle {
+    padding: 10px 20px;
+    font-size: 12px;
+}
+
+.extra-fields-customer {
+    font-size: 12px;
+}
+
+.nextPage {
+    font-size: 12px;
+}
+
+}
+@media (max-width: 410px) {
+
+
+
+}
+@media (max-width: 400px) {
+.logo img {
+    /* max-width: 50px; */
+    margin-top: 9px;
+}
+	
+.logo img {
+    /* max-width: 50px; */
+    margin-top: 9px;
+}
+
+.logo .text-logo h2 {
+    font-size: 17px;
+}
+
+.logo .text-logo h4 {
+    font-size: 7px;
+}
+
+.header-top .lang i {display: none;}
+	
+.header-top .btn-style {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.header-top .lang {
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+nav .col-md-3.col-xs-8 {
+    padding-right: 0;
+}
+
+.navbar-right ul li a {
+    border: none;
+    padding: 0 5px;
+}
+
+.navbar-right ul li a i {
+    margin-left: 5px;
+}
+
+.text-search h1 {
+    font-size: 30px;
+}
+
+.text-search h4 {
+    font-size: 13px;
+}
+
+.search-wrapper form .search-box {
+    height: 50px;
+    padding: 0 44px;
+}
+
+.search-wrapper form .btn-style {
+    height: 50px;
+    width: 80px;
+    padding: 0;
+}
+
+.search-wrapper form i {
+    margin: 19px 20px;
+    font-size: 13px;
+}
+
+.span-search span {
+    font-size: 11px;
+}
+
+.slider-home .img {
+    height: 350px;
+}
+
+.title h3 {
+    font-size: 20px;
+}
+
+.block-section .details-block h3 {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.block-section .details-block p {
+    font-size: 12px;
+    line-height: 19px;
+}
+
+.block-section {
+    padding-bottom: 50px;
+}
+
+.block-section::before {
+    right: -6px;
+    width: 104%;
+}
+	
+.header-top .col-xs-6:first-child {
+    width: 65%;
+    padding-left: 0;
+}
+
+.header-top .col-xs-6:last-child {
+    width: 35%;
+    padding-right: 0;
+}
+
+.navbar-right ul li a {
+    font-size: 12px;
+}
+
+.navbar-inverse .navbar-nav li a {
+    font-size: 12px;
+}
+    
+.body-profile .body-tab-pro .label-title {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.body-profile .body-tab-pro .label-details {
+    width: 100%;
+}
+
+.avatar-upload .avatar-preview {
+    width: 150px;
+    height: 150px;
+}
+
+.avatar-upload {
+    margin-top: -70px;
+}
+
+.avatar-upload .avatar-edit {
+    right: 25px;
+}
+
+.vehicleFields .col-md-6.col-xs-12 {
+    padding: 0 !important;
+}
+
+.extra-fields-customer {
+    margin: 15px 0;
+}
+
+.profile-details-inner .form-contact .col-xs-12 {
+    padding: 0;
+}
+    
+.body-profile .body-tab-pro {padding: 0 18px;}
+
+.body-profile .nav-tabs {
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* overflow-x: auto; */
+    text-align: center;
+}
+
+.join-name .name h3 {font-size: 15px;}
+
+.join-name .name span {
+    font-size: 10px;
+    padding: 5px 10px;
+}
+
+.join-name .join-data {
+    font-size: 12px;
+}
+
+.join-name .socila-media-j {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+
+.join-name .socila-media-j a {
+    font-size: 14px;
+    margin: 0 5px;
+}
+
+.body-profile .nav-tabs li a {
+    font-size: 13px;
+    padding: 8px 14px;
+    margin: 0 !important;
+}
+
+.body-profile .nav-tabs {
+    padding: 0 0 15px !important;
+    margin-bottom: 10px;
+}
+    
+.btn-gray {
+    font-size: 13px;
+    padding: 8px 20px;
+    margin: 20px 0;
+}
+    
+.replay-text .block .qu-n h2 {
+    font-size: 13px;
+}
+
+.replay-text .block .answer-n input {
+    height: 35px;
+    font-size: 13px;
+}
+  
+ 
+.navbar-inverse .navbar-nav li .sub-menu li a {font-size: 12px;}
+.header-top .margin-16 {
+    margin-top: 32px;
+}
+}
+@media (max-width: 330px) {
+
+.block-section::before {
+    right: -6.5px;
+    width: 105%;
+}
+.header-top .btn-style {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+}
