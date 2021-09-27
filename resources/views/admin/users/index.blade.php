@@ -29,71 +29,68 @@
     <section class="content">
       <div class="row">
         <div class="col-12">
-
-
-          <div class="card">
-            <div class="card-header">
-            <a class="btn bg-gradient-primary text-white" href="{{url('/admin/users/create')}}">@lang('site.create new user')</a>
-            <button class="btn bg-gradient-primary text-white delete_all"> {{ __('site.Delete All Selected') }}</button>
-                <h3 class="card-title">@lang('site.users')</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th><input type="checkbox" id="master"></th>
-                    <th>ID</th>
-                    <th>@lang('site.image')</th>
-                    <th>@lang('site.name')</th>
-                    <th>@lang('site.email')</th>
-                    <th>@lang('site.phone')</th>
-                    <th>@lang('site.role')</th>
-                    <th>@lang('site.gender')</th>
-                    <th>@lang('site.active')</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-               @foreach($users as $i=>$user)
-                <tr data-row-id='{{ $user->id }}'>
-                    <td><input type="checkbox" name="users[]" class="sub_chk" data-id="{{$user->id}}"></td>
-                    <td>{{$i+1}}</td>
-                    <td><img src="{{url('/')}}/public/{{$user->avatar}}" width="100px"/></td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->phone}}</td>
-                    <td>{{$user->Role->display_name}}</td>
-                    <td>
-                        @if($user->gender== 'male')
-                            @lang('site.male')
-                        @else
-                            @lang('site.female')
-                        @endif
-                    </td>
-                    <td>
-                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                            <input type="checkbox" class="custom-control-input activeIn" data-id="{{$user->id}}" id="customSwitch{{$i}}" {{$user->s==1?'checked':''}}>
-                            <label class="custom-control-label" for="customSwitch{{$i}}"></label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a class="edit btn bg-gradient-primary" href="{{ url('/admin/users/'.$user->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
-                            </div>
-                            @if($user->role_id!=1 and $user->id!=1 and $user->id!=auth()->user()->id)
-                                <div class="col-md-6">
-                                    <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $user->id }}"><i class="fa fa-trash text-white"></i></a>
-                                </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn bg-gradient-primary text-white" href="{{url('/admin/users/create')}}">@lang('site.create new user')</a>
+                    <button class="btn bg-gradient-primary text-white delete_all"> {{ __('site.Delete All Selected') }}</button>
+                    <h3 class="card-title">@lang('site.users')</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="master"></th>
+                        <th>ID</th>
+                        <th>@lang('site.image')</th>
+                        <th>@lang('site.name')</th>
+                        <th>@lang('site.email')</th>
+                        <th>@lang('site.phone')</th>
+                        <th>@lang('site.role')</th>
+                        <th>@lang('site.gender')</th>
+                        <th>@lang('site.active')</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($users as $i=>$user)
+                    <tr data-row-id='{{ $user->id }}'>
+                        <td><input type="checkbox" name="users[]" class="sub_chk" data-id="{{$user->id}}"></td>
+                        <td>{{$i+1}}</td>
+                        <td><img src="{{url('/')}}/public/{{$user->avatar}}" width="100px"/></td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->phone}}</td>
+                        <td>{{$user->Role->display_name}}</td>
+                        <td>
+                            @if($user->gender== 'male')
+                                @lang('site.male')
+                            @else
+                                @lang('site.female')
                             @endif
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
-
-              </table>
+                        </td>
+                        <td>
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                <input type="checkbox" class="custom-control-input activeIn" data-id="{{$user->id}}" id="customSwitch{{$i}}" {{$user->s==1?'checked':''}}>
+                                <label class="custom-control-label" for="customSwitch{{$i}}"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="edit btn bg-gradient-primary" href="{{ url('/admin/users/'.$user->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
+                                </div>
+                                @if($user->role_id!=1 and $user->id!=1 and $user->id!=auth()->user()->id)
+                                    <div class="col-md-6">
+                                        <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $user->id }}"><i class="fa fa-trash text-white"></i></a>
+                                    </div>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
             <!-- /.card-body -->
           </div>
