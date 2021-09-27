@@ -1,0 +1,242 @@
+/*--------------------------------------------------------------
+# Start news page
+--------------------------------------------------------------*/
+
+.new_page {
+    padding: 80px 0;
+    .news_side {
+        border: 1px solid #0278B0;
+        border-radius: 10px;
+        padding: 35px 23px;
+        .box {
+            &:not(:last-of-type) {
+                padding-bottom: 20px;
+                border-bottom: 1px solid #D5D5D5;
+                margin-bottom: 20px;
+            }
+            .new_link {
+                display: flex;
+                align-items: center;
+                gap: 0 12px;
+                .image {
+                    max-width: 111px;
+                    img {
+                        width: 100%;
+                        height: 90px;
+                        border-radius: 5px;
+                        object-fit: cover;
+                    }
+                }
+                .info {
+                    flex: 1;
+                    color: #383839;
+                    h6 {
+                        margin-bottom: 13px;
+                        line-height: 27px;
+                        -webkit-line-clamp: 2;
+                    }
+                    .date {
+                        i {
+                            color: #0278B0;
+                            margin-inline-end: 10px;
+                        }
+                    }
+                }
+                &:hover {
+                    h6 {
+                        color: $secColor;
+                    }
+                }
+            }
+        }
+    }
+    .main_news {
+        overflow: hidden;
+        &.owl-carousel {
+            &.owl-theme .owl-dots {
+                margin-top: 0;
+                position: relative;
+                bottom: 36px;
+                .owl-dot {
+                    span {
+                        width: 14px;
+                        height: 14px;
+                        background: #fff;
+                    }
+                    &.active span,
+                    &:hover span {
+                        background: #008EF0;
+                        width: 14px;
+                    }
+                }
+            }
+            .owl-nav {
+                transform: translateY(-60px);
+                position: absolute;
+                margin: 0;
+                button {
+                    position: absolute;
+                    background: transparent !important;
+                    width: auto;
+                    height: auto;
+                    font-size: 40px;
+                    &:hover {
+                        color: $secColor !important;
+                    }
+                    &.owl-prev {
+                        left: -60px;
+                    }
+                    &.owl-next {
+                        right: -60px;
+                    }
+                }
+            }
+            &:hover {
+                .owl-nav {
+                    button {
+                        &.owl-prev {
+                            left: 20px;
+                        }
+                        &.owl-next {
+                            right: 20px;
+                        }
+                    }
+                }
+            }
+            .item {
+                direction: rtl;
+            }
+        }
+        .box_new {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            display: block;
+            &:after {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background: rgb(0, 153, 255);
+                background: linear-gradient(180deg, rgba(0, 153, 255, 0) 40%, rgba(2, 120, 176, 1) 83%);
+            }
+            img {
+                width: 100%;
+                height: 552px;
+                object-fit: cover;
+            }
+            .info {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                padding: 0 65px 55px;
+                color: #fff;
+                z-index: 1;
+                h5 {
+                    font-size: 22px;
+                    font-family: $Bold;
+                    margin-bottom: 20px;
+                }
+                p {
+                    line-height: 28px;
+                    -webkit-line-clamp: 3;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.other_news {
+    padding-bottom: 80px;
+    .news_heading {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 0 17px;
+        h5 {
+            color: #0278B0;
+            font-size: 20px;
+            font-family: $Bold;
+        }
+        span {
+            width: 100%;
+            height: 1px;
+            background-color: #DCD0D0;
+            display: block;
+            flex: 1;
+        }
+    }
+    .box {
+        display: block;
+        img {
+            border-radius: 5px;
+            height: 170px;
+            object-fit: cover;
+            width: 100%;
+        }
+        h6 {
+            -webkit-line-clamp: 2;
+            color: #383839;
+            font-size: 14px;
+            line-height: 26px;
+            padding: 16px 0 0;
+            margin: 0;
+            text-align: center;
+            transition: 0.3s;
+        }
+        &:hover {
+            h6 {
+                color: $secColor;
+            }
+        }
+    }
+}
+
+.single_new_page {
+    .news_side {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        .box:not(:last-of-type) {
+            margin-bottom: 14px;
+        }
+    }
+    .info_single_new {
+        .image img {
+            height: 472px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 10px;
+        }
+        .details {
+            margin: 32px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            h5 {
+                color: #383839;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .date {
+                i {
+                    margin-inline-end: 10px;
+                    color: $secColor;
+                }
+            }
+        }
+        .desc p {
+            line-height: 28px;
+        }
+    }
+}
+
+
+/*--------------------------------------------------------------
+# End news page
+--------------------------------------------------------------*/

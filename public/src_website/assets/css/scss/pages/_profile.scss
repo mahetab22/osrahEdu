@@ -1,0 +1,84 @@
+.profile_nav {
+    .profile_list {
+        ul {
+            display: flex;
+            margin-inline-end: 70px;
+        }
+        li {
+            &:not(:last-of-type) {
+                border-inline-end: 1px solid #DEDCDC;
+                padding-inline-end: 15px;
+                margin-inline-end: 15px;
+            }
+            .icon {
+                margin-inline-end: 8px;
+                svg {
+                    fill: #383839;
+                    width: 22px;
+                    height: auto;
+                    transition: 0.3s;
+                }
+            }
+            .name {
+                font-family: $semiBold;
+            }
+            a {
+                &.active,
+                &:hover {
+                    color: $mainColor;
+                    .icon {
+                        svg {
+                            fill: $mainColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .icons {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.my_courses_page {
+    padding: 100px 0 60px;
+    .box_course {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        border: 1px solid #06303A;
+        padding: 0;
+        overflow: hidden;
+        .progress-bar-container {
+            background-color: #E9E9E9;
+            border-radius: 0;
+            margin: 0;
+            .progress-bar {
+                height: 31px;
+            }
+        }
+        .info {
+            margin-top: 0;
+            padding: 28px 20px 30px;
+            .name {
+                color: #0278B0;
+                padding-inline-start: 0;
+                &:after {
+                    display: none;
+                }
+            }
+            .desc {
+                margin: 11px 0;
+                padding-inline-start: 0;
+                display: block;
+                font-family: $Bold;
+            }
+            .meta {
+                margin-top: 0;
+                .teacher .text {
+                    margin-inline-start: 7px;
+                }
+            }
+        }
+    }
+}

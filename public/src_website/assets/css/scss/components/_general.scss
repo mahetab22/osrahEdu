@@ -46,6 +46,10 @@ ul {
     margin: 0;
 }
 
+.transition {
+    transition: 0.3s;
+}
+
 button {
     outline: none !important;
 }
@@ -219,6 +223,7 @@ section {
 
 .item_carousel {
     padding: 0 15px;
+    direction: rtl;
 }
 
 .item_carousel_p {
@@ -227,6 +232,177 @@ section {
 
 .slick-slider {
     direction: ltr;
+}
+
+.custom_checkbox {
+    display: block;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    .checkmark {
+        border: 1px solid rgb(176, 176, 176);
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: 25px;
+        width: 25px;
+        background-color: transparent;
+        border-radius: 5px;
+        transform: translateY(-50%);
+    }
+    .text {
+        margin-bottom: 0;
+        margin-inline-start: 35px;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        span {
+            font-size: 16px;
+        }
+        p {
+            color: rgb(113, 113, 113);
+            font-size: 14px;
+        }
+    }
+}
+
+.custom_scrollbar::-webkit-scrollbar-track {
+    background-color: #d7d7d7;
+}
+
+.custom_scrollbar::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+.custom_scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: $mainColor;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.custom_checkbox:hover input~.checkmark {
+    border-color: #212121;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.custom_checkbox input:checked~.checkmark {
+    background-color: $mainColor;
+    border-color: transparent;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.custom_checkbox input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.custom_checkbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 7px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate( 45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate( 45deg);
+}
+
+.custom_radio {
+    display: block;
+    position: relative;
+    padding-inline-start: 23px;
+    margin-inline-start: 0;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .text {
+        font-size: 17px;
+    }
+    .checkmark {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 2px solid $mainColor;
+    }
+    &:hover input~.checkmark {
+        background-color: $secColor;
+    }
+    input:checked~.checkmark {
+        background-color: $mainColor;
+    }
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    input:checked~.checkmark:after {
+        display: block;
+    }
+    .checkmark:after {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: $mainColor;
+    }
+}
+
+.input_custom_m {
+    position: relative;
+    cursor: pointer;
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
 }
 
 

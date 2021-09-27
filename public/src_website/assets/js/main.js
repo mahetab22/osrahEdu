@@ -79,23 +79,19 @@ $(document).ready(function() {
     });
 
 
-    // /* ===============================  library section  =============================== */
-    // $(".library_section .owl-carousel").owlCarousel({
-    //     autoplay: true,
-    //     nav: false,
-    //     dots: true,
-    //     navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
-    //     loop: true,
-    //     rtl: true,
-    //     center: true,
-    //     responsive: {
-    //         0: { items: 1 },
-    //         576: { items: 2 },
-    //         992: { items: 3 },
-    //         1200: { items: 4 }
 
-    //     }
-    // });
+
+    /* ===============================  main news section  =============================== */
+    $(".main_news.owl-carousel").owlCarousel({
+        autoplay: true,
+        nav: true,
+        dots: true,
+        navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+        loop: true,
+        items: 1
+    });
+
+    /* ===============================  library section  =============================== */
 
     $('.library_section .slick-slider').slick({
         centerMode: true,
@@ -113,6 +109,44 @@ $(document).ready(function() {
             },
             {
                 breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+
+
+    /* ===============================  library section  =============================== */
+
+    $('.other_news .slick-slider').slick({
+        centerMode: true,
+        slidesToShow: 4,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [{
+                breakpoint: 992,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 576,
                 settings: {
                     arrows: false,
                     centerMode: true,
@@ -180,13 +214,15 @@ $(document).ready(function() {
     $('.dropdown-toggle').dropdown()
 
     /* =============================== Settings of content tabs =============================== */
-    $('.profile_page .profile_info .list li').on('click', function() {
+    $('.muo_tab').on('click', function(e) {
+
+        e.preventDefault();
 
         $(this).addClass('active').siblings().removeClass('active');
 
         var id = $(this).attr('data-content')
 
-        $('.profile_page .box_content[id="' + id + '"]').addClass('active').siblings().removeClass('active')
+        $('.box_content[id="' + id + '"]').addClass('active').siblings().removeClass('active')
 
     })
 
@@ -196,13 +232,21 @@ $(document).ready(function() {
     $('.nice-select').niceSelect();
 
 
-    var bb = true;
 
-    if (bb) {
-        $('.library_section .owl-carousel .owl-item').removeClass('opacity_1')
-        $('.library_section .owl-carousel .owl-item.center').next().addClass('opacity_1')
-        $('.library_section .owl-carousel .owl-item.center').prev().addClass('opacity_1')
-    }
+    /* ===============================  advices page  =============================== */
+    $('.advices_page .advices_content .box .head').on('click', function() {
+        $(this).find('.chevron i').toggleClass('fa-plus fa-minus')
+        $(this).parent().find('.content').slideToggle();
+        $(this).parent().siblings().find('.content').slideUp();
+    })
+
+
+    $('.lessons-card-show .head_item').on('click', function() {
+        $(this).find('i').toggleClass('rotate');
+        $(this).parent().find('.slide_content').slideToggle();
+        $(this).parent().toggleClass('active').siblings().removeClass('active').find('.slide_content').slideUp();
+    })
+
 
 
 });

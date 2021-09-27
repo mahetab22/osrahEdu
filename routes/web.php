@@ -168,6 +168,10 @@ Route::get('/testnotiphy', 'VisionController@testnotiphy')->name('/testnotiphy')
 // })->name('testnotiphy');
 //     - - ------------    aboutController   ----------- - -
 	Route::get('/', 'indexController@index')->name('/');
+    Route::get('/news', 'indexController@news')->name('news');
+    Route::get('/single/{id}/news', 'indexController@single_news')->name('single_news');
+    Route::get('/books', 'indexController@books')->name('books');
+    Route::get('/single/{id}/books', 'indexController@single_books')->name('single_books');
 	Route::get('/osrah', function(){
 	    return view('osrah');
 	})->name('/');

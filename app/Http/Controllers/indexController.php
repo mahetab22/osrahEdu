@@ -11,6 +11,10 @@ Use Alert;
 Use Visitor;
 use App\MarketeInfo;
 use Session;
+use App\News;
+use App\Library;
+use App\SaidAboutUs;
+use DB;
 class indexController extends Controller
 {
     public function index()
@@ -19,8 +23,8 @@ class indexController extends Controller
     $slide_img = $controller->slide_img;
     $departments=Department::orderBy('id','asc')->get();
     $services=Service::where('id','!=',1)->whereNull('parent_id')->orderBy('id','asc')->get(); 
-   // $services=Service::where('id','!=',1)->where('parent_id',1)->orderBy('id','asc')->get(); 
-    $topcourses = Course::orderBy('num_of_search','asc')->paginate(5);
+   $books=Library::get();
+    $topcourses = Course::orderBy('num_of_search','asc')->paginate(20);
      if (!Session::has('codeMarketer')){
    session()->forget('codeMarketer');
      }
@@ -38,10 +42,31 @@ class indexController extends Controller
         }
     
     }
-    return view('index',compact('services','departments','topcourses','slide_img'));
+    $news=News::get();
+    $said=SaidAboutUs::get();
+    $info = DB::table('infos')->first();
+    return view('index',compact('services','departments','topcourses','slide_img','news','books','said','info'));
 
     }
-
+    public function news(){
+      $news=News::orderBy('created_at','desc')->get();
+      return view('news',compact('news'));
+    }
+    public function single_news($id){
+      $new=News::find($id);
+      $news=News::orderBy('created_at','desc')->get();
+      return view('single_news',compact('new','news'));
+    }
+    public function books(){
+      $books=Library::get();
+      return view('books',compact('books'));
+    }
+    public function single_books($id){
+      $book=Library::find($id);
+      $book->show=$book->show+1;
+      $book->save();
+      return view('single_book',compact('book'));
+    }
   public function getservice(service $service) 
   {
 

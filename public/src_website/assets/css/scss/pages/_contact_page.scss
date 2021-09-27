@@ -1,0 +1,108 @@
+.contact_page {
+    padding: 120px 0 80px;
+    .modal_form {
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 4px 6px 29px rgba($color: #ECECEC, $alpha: 0.7);
+        border-radius: 0 13px 13px 0;
+        padding: 70px;
+        position: relative;
+        z-index: 2;
+        label {
+            color: #111;
+        }
+        .form-control {
+            border: 1px solid rgba($color: #0B2A41, $alpha: 0.33);
+            height: 50px;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: 0.3s;
+            &::placeholder {
+                color: #B4B4B4;
+            }
+            &:hover,
+            &:focus {
+                box-shadow: 0px 3px 12px rgba($color: #C7E5FB, $alpha: 0.6);
+                border-color: transparent;
+            }
+        }
+    }
+    .card_contact {
+        background: #0B2A41;
+        color: #fff;
+        padding: 40px 30px;
+        border-radius: 15px 0 0 15px;
+        position: relative;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+        background-image: url(../img/contact_card.png);
+        background-size: cover;
+        min-height: 664px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        &:after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($color: #037BB4, $alpha: 0.4);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+        >div {
+            position: relative;
+            z-index: 1;
+        }
+        h5.head {
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 26px;
+        }
+        .item {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        .sochial_media {
+            display: flex;
+            gap: 0 40px;
+            margin-top: 20px;
+            a {
+                color: #fff;
+            }
+            .youtube {
+                &:hover {
+                    color: #FF0000;
+                }
+            }
+            .facebook {
+                &:hover {
+                    color: #3A5599;
+                }
+            }
+            .twitter {
+                &:hover {
+                    color: #29A4D9;
+                }
+            }
+            .linked {
+                &:hover {
+                    color: #0270AD;
+                }
+            }
+            .insta {
+                &:hover {
+                    color: #B42F7B;
+                }
+            }
+        }
+    }
+}
+
+.location_section {
+    height: 500px;
+    margin-bottom: 60px;
+}

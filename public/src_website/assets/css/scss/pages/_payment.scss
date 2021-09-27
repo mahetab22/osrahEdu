@@ -1,0 +1,111 @@
+.payment_page {
+    padding: 50px 0;
+    .tabs-li ul {
+        display: flex;
+        justify-content: center;
+        li {
+            text-align: center;
+            margin: 0 20px;
+            padding: 20px 40px 10px;
+            border: 1px solid #F1F1F1;
+            border-radius: 7px 7px 0 0;
+            background-color: #F1F1F1;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            top: 1px;
+            &.active {
+                border-bottom: 1px solid #fff;
+                background-color: #fff;
+            }
+            img {
+                width: auto;
+                margin: 0 5px;
+            }
+        }
+    }
+    .payment-body {
+        .box_content {
+            padding: 66px 124px;
+            box-shadow: 0px 3px 26px rgba($color: #B8B3B3, $alpha: 0.16);
+            border-radius: 10px;
+            border: 1px solid #E1E1E1;
+            display: none;
+            opacity: 0;
+            transition: .3s;
+            @include start_FadeInUp;
+            &.active {
+                display: block;
+                @include animation_FadeInUp;
+            }
+        }
+        .info {
+            .details_bank {
+                margin-bottom: 50px;
+                .item {
+                    margin-bottom: 15px;
+                    span {
+                        display: inline-block;
+                    }
+                    .name {
+                        color: #111;
+                        font-family: $semiBold;
+                    }
+                    .value {
+                        color: #4D4D4D;
+                    }
+                }
+                .price {
+                    border-top: 1px solid #F1F1F1;
+                    padding-top: 16px;
+                    .value {
+                        color: #0278B0;
+                        font-family: $Bold;
+                    }
+                }
+            }
+        }
+        #bank-method {
+            .form_payment {
+                padding-inline-start: 70px;
+                border-inline-start: 1px solid #F1F1F1;
+            }
+        }
+        #visa-method {
+            .info {
+                padding-inline-start: 70px;
+                border-inline-start: 1px solid #F1F1F1;
+                height: 100%;
+            }
+        }
+        .form_payment {
+            label {
+                color: #111;
+                margin-bottom: 12px;
+            }
+            .form-control {
+                border: 1px solid #828282;
+                color: #4D4D4D;
+                height: 45px;
+                border-radius: 5px;
+                &:hover,
+                &:focus {
+                    box-shadow: 0px 3px 2px rgba($color: #45B2FE, $alpha: 0.1);
+                }
+                &::placeholder {
+                    color: #aaa;
+                }
+            }
+            .main-btn {
+                border: 0;
+                padding: 15px 40px;
+            }
+        }
+        .image {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
