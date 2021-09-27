@@ -23,8 +23,21 @@ class SiteController extends Controller
 
         $info = Info::first();
         if($request->key_word == 'basic'){
-            $info->logo =$request->logo;
-            $info->favicon =$request->favicon;
+
+            if ($request->hasFile('logo')) {
+                $image = $request->file('logo');
+                $imageName = time() . rand(10, 10000) . '.' . $image->extension();
+                $image->move(public_path().'/storage/site-info', $imageName);
+                $info->logo = 'public/storage/site-info/'. $imageName;
+            }
+
+            if ($request->hasFile('favicon')) {
+                $image = $request->file('favicon');
+                $imageName = time() . rand(10, 10000) . '.' . $image->extension();
+                $image->move(public_path().'/storage/site-info', $imageName);
+                $info->favicon = 'public/storage/site-info/'. $imageName;
+            }
+
             $info->name_ar =$request->name_ar;
             $info->name_en =$request->name_en ?? $request->name_ar;
             $info->name2_ar =$request->name2_ar;

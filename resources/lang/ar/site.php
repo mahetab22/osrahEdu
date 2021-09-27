@@ -180,6 +180,7 @@ return [
     'levels'=>'الوحدات',
     'level'=>'الوحدة',
     'Ali exam course' => 'امتحان علي الكورس',
+    'exam course'=>'الدورة',
     'Download the attachments' => 'تحميل المرفقات',
     'Discussions' => 'نقاشات',
     'Add a question' => ' إضافة سؤال',

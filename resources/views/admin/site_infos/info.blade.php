@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
-<link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.css">
-
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.css">
 @endsection
 @section('content')
 
@@ -16,7 +16,6 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    {{--  <li class="breadcrumb-item"><a href="{{ url('admin/faqs') }}">@lang('site.site info')</a></li>  --}}
                     <li class="breadcrumb-item active">@Lang('site.site info')</li>
                     </ol>
                 </div>
@@ -123,7 +122,7 @@
                             <div class="form-group row">
                                 <label for="inputName2Ar" class="col-sm-2 control-label">@lang('site.info second arabic name')</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('name2_ar') {{  'is-invalid'  }} @enderror" id="inputName2Ar" name="name_ar" value="{{ $info->name2_ar }}" placeholder="@lang('site.info second arabic name')">
+                                    <input type="text" class="form-control @error('name2_ar') {{  'is-invalid'  }} @enderror" id="inputName2Ar" name="name2_ar" value="{{ $info->name2_ar }}" placeholder="@lang('site.info second arabic name')">
                                     @error('name2_ar')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
@@ -374,11 +373,21 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
-<script src="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.min.js"></script>
-<script src="{{url('/')}}/public/admin/plugins/popper/popper.js"></script>
-<script src="{{url('/')}}/public/admin/plugins/popper/popper.js.map"></script>
-{{--  <script src="https://unpkg.com/@popperjs/core@2"></script>  --}}
 
+<!-- jQuery -->
+<script src="{{url('/')}}/public/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="{{url('/')}}/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{url('/')}}/public/admin/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{url('/')}}/public/admin/dist/js/demo.js"></script>
+<!-- Summernote -->
+<script src="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Popper -->
+<script src="{{url('/')}}/public/admin/plugins/popper/popper.js"></script>
+<!-- Popper MAp -->
+<script src="{{url('/')}}/public/admin/plugins/popper/popper.js.map"></script>
 <script>
     $(function () {
       // Summernote
