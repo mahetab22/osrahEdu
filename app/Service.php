@@ -16,4 +16,11 @@ class Service extends Model
     {
         return $this->hasMany('App\SupervisorInfo','service_id');
     }
+    public function getTitleAttribute()
+    {
+            if ( app()->getLocale() =='ar')
+                return $this->title_ar;
+            else
+                return $this->title_en;
+    }
 }

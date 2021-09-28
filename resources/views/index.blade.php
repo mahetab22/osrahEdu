@@ -41,6 +41,14 @@
                     <div class="box_course">
                         <div class="image">
                             <img src="{{url('/')}}/{{$course->logo}}" alt="img">
+                            <div class="status">
+                                @if($course->sponsor)
+                                <span>{{$course->sponsor}} <i class="fal fa-clock"></i></span>
+                                @endif
+                                @if($course->department)
+                                <span>{{$course->department->title}}<i class="fal fa-user"></i></span>
+                                @endif
+                            </div>
                         </div>
                         <div class="info">
                             <h6 class="name">{{$course->title}}</h6>
@@ -199,42 +207,45 @@
                 <div class="col-lg-2 col-md-4 col-6">
                     <div class="box">
                         <div class="icon"><img src="{{url('/')}}/public/src_website/assets/img/icons/earth-globe.svg" alt="img"></div>
-                        <div class="counter" data-TargetNum="40" data-Speed="3000">{{\App\Course::count()}}</div>
+                        <div class="counter" data-TargetNum="{{\App\Course::count()}}" data-Speed="3000">{{\App\Course::count()}}</div>
                         <div class="name">الدورات</div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6">
                     <div class="box">
                         <div class="icon"><img src="{{url('/')}}/public/src_website/assets/img/icons/experience.svg" alt="img"></div>
-                        <div class="counter" data-TargetNum="4" data-Speed="3000">{{\App\Service::count()}}</div>
+                        <div class="counter" data-TargetNum="{{\App\Service::count()}}" data-Speed="3000">{{\App\Service::count()}}</div>
                         <div class="name">البرامج التدريبية</div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6">
                     <div class="box">
                         <div class="icon"><img src="{{url('/')}}/public/src_website/assets/img/icons/goal.svg" alt="img"></div>
-                        <div class="counter" data-TargetNum="500" data-Speed="3000">{{\App\User::where('role_id',3)->count()}}</div>
+                        <div class="counter" data-TargetNum="{{\App\User::where('role_id',3)->count()}}" data-Speed="3000">{{\App\User::where('role_id',3)->count()}}</div>
                         <div class="name">المدربين</div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6">
                     <div class="box">
                         <div class="icon"><img src="{{url('/')}}/public/src_website/assets/img/icons/earth-globe.svg" alt="img"></div>
-                        <div class="counter" data-TargetNum="40" data-Speed="3000">{{\App\User::where('role_id',4)->count()}}</div>
+                        <div class="counter" data-TargetNum="{{\App\User::where('role_id',4)->count()}}" data-Speed="3000">{{\App\User::where('role_id',4)->count()}}</div>
                         <div class="name">المتدربين</div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6">
+                <?php $year=date("Y");
+                            $start_year=DB::table('infos')->first()->start_year;
+                            $y=$year-$start_year;?>
                     <div class="box">
                         <div class="icon"><img src="{{url('/')}}/public/src_website/assets/img/icons/experience.svg" alt="img"></div>
-                        <div class="counter" data-TargetNum="4" data-Speed="3000">0</div>
+                        <div class="counter" data-TargetNum="{{$y}}" data-Speed="3000">{{$y}}</div>
                         <div class="name">سنوات خبرة</div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6">
                     <div class="box">
                         <div class="icon"><img src="{{url('/')}}/public/src_website/assets/img/icons/goal.svg" alt="img"></div>
-                        <div class="counter" data-TargetNum="500" data-Speed="3000">0</div>
+                        <div class="counter" data-TargetNum="{{\App\Partnnner::count()}}" data-Speed="3000">{{\App\Partnnner::count()}}</div>
                         <div class="name">شريك نجاح</div>
                     </div>
                 </div>

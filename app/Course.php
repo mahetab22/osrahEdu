@@ -37,6 +37,12 @@ class Course extends Model
         return $this->belongsTo('App\Service');
     }
 
+    
+    public function department()
+    {
+        return $this->belongsTo('App\Department','department_id');
+    }
+
     public function streaming()
 	{
 	    return $this->hasOne('App\Streaming','course_id')->Where('status','1')->orderBy('id','desc');
