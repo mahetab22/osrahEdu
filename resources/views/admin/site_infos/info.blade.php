@@ -238,7 +238,7 @@
                                 <label for="inputAboutUsEn" class="col-sm-2 control-label">@lang('site.info english aboutus')</label>
                                 <div class="col-sm-10">
                                     <textarea class="textarea" id="inputAboutUsEn" name="aboutus_en" placeholder="{{ __('site.info english aboutus') }}"
-                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->aboutus_en !!}</textarea>
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->aboutus_en ?? $info->aboutus_ar !!}</textarea>
                                     @error('aboutus_en')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
@@ -260,8 +260,52 @@
                                 <label for="inputOurVisionAr" class="col-sm-2 control-label">@lang('site.info english our_vision')</label>
                                 <div class="col-sm-10">
                                     <textarea class="textarea" id="inputOurVisionAr" name="our_vision_en" placeholder="{{ __('site.info english our_vision') }}"
-                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->our_vision_en !!}</textarea>
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->our_vision_en ?? $info->our_vision_ar !!}</textarea>
                                     @error('our_vision_en')
+                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{----- Text Editor -----}}
+                            <div class="form-group row">
+                                <label for="inputOurMessageAr" class="col-sm-2 control-label">@lang('site.info arabic ourmessage')</label>
+                                <div class="col-sm-10">
+                                    <textarea class="textarea" id="inputOurMessageAr" name="ourmessage_ar" placeholder="{{ __('site.info arabic ourmessage') }}"
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->ourmessage_ar !!}</textarea>
+                                    @error('ourmessage_ar')
+                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{----- Text Editor -----}}
+                            <div class="form-group row">
+                                <label for="inputOurMessageEn" class="col-sm-2 control-label">@lang('site.info english ourmessage')</label>
+                                <div class="col-sm-10">
+                                    <textarea class="textarea" id="inputOurMessageEn" name="ourmessage_en" placeholder="{{ __('site.info english ourmessage') }}"
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->ourmessage_en ?? $info->ourmessage_ar !!}</textarea>
+                                    @error('ourmessage_en')
+                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{----- Text Editor -----}}
+                            <div class="form-group row">
+                                <label for="inputAssemblyClassificationAr" class="col-sm-2 control-label">@lang('site.info arabic assembly classification')</label>
+                                <div class="col-sm-10">
+                                    <textarea class="textarea" id="inputAssemblyClassificationAr" name="assembly_classification_ar" placeholder="{{ __('site.info arabic assembly classification') }}"
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->assembly_classification_ar !!}</textarea>
+                                    @error('assembly_classification_ar')
+                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{----- Text Editor -----}}
+                            <div class="form-group row">
+                                <label for="inputAssemblyClassificationEn" class="col-sm-2 control-label">@lang('site.info english assembly classification')</label>
+                                <div class="col-sm-10">
+                                    <textarea class="textarea" id="inputAssemblyClassificationEn" name="assembly_classification_en" placeholder="{{ __('site.info english assembly classification') }}"
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->assembly_classification_en ?? $info->assembly_classification_ar !!}</textarea>
+                                    @error('assembly_classification_en')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
                                 </div>
@@ -304,7 +348,7 @@
                                 <label for="inputGoal1En" class="col-sm-2 control-label">@lang('site.info english goal1')</label>
                                 <div class="col-sm-10">
                                     <textarea class="textarea" id="inputGoal1En" name="goal1_en" placeholder="{{ __('site.info english goal1') }}"
-                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->goal1_en !!}</textarea>
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->goal1_en ?? $info->goal1_ar !!}</textarea>
                                     @error('goal1_en')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
@@ -315,7 +359,7 @@
                                 <label for="inputGoal2En" class="col-sm-2 control-label">@lang('site.info english goal2')</label>
                                 <div class="col-sm-10">
                                     <textarea class="textarea" id="inputGoal2En" name="goal2_en" placeholder="{{ __('site.info english goal2') }}"
-                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->goal2_en !!}</textarea>
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->goal2_en ?? $info->goal2_ar !!}</textarea>
                                     @error('goal2_en')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
@@ -326,7 +370,7 @@
                                 <label for="inputGoal3En" class="col-sm-2 control-label">@lang('site.info english goal3')</label>
                                 <div class="col-sm-10">
                                     <textarea class="textarea" id="inputGoal3En" name="goal3_en" placeholder="{{ __('site.info english goal3') }}"
-                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->goal3_en !!}</textarea>
+                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;">{!! $info->goal3_en ?? $info->goal3_ar !!}</textarea>
                                     @error('goal3_en')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
@@ -348,6 +392,16 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control @error('script2') {{  'is-invalid'  }} @enderror" id="inputScript2" name="script2" value="{{ $info->script2 }}" placeholder="@lang('site.info script2')">
                                     @error('script2')
+                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{----- Text -----}}
+                            <div class="form-group row">
+                                <label for="inputYear1" class="col-sm-2 control-label">@lang('site.info year experts')</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control @error('year') {{  'is-invalid'  }} @enderror" id="inputYear1" name="year" min="1980" value="{{ $info->year }}" placeholder="@lang('site.info year experts')">
+                                    @error('year')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
                                 </div>

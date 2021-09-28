@@ -576,6 +576,11 @@ return [
     'info english goal3'=>'ُEnglish Goal 3',
     'info script1'=>'First script',
     'info script2'=>'Second script',
+    'info arabic ourmessage'=>'Arabic our message',
+    'info english ourmessage'=>'English our message',
+    'info arabic assembly classification'=>'Arabic assembly classification',
+    'info english assembly classification'=>'English assembly classification',
+    'info year experts'=>'Since year',
     // ----------- Site Info Validation -----------
     'info logo required'=>'Logo field is required',
     'info logo image'=>'Logo file must be image',

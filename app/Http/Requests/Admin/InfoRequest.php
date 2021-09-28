@@ -53,6 +53,10 @@ class InfoRequest extends FormRequest
                     'aboutus_ar'=>'required',
                     'aboutus_en'=>'nullable',
                     'our_vision_ar'=>'required',
+                    'ourmessage_ar'=>'required',
+                    'ourmessage_en'=>'nullable',
+                    'assembly_classification_ar'=>'required',
+                    'assembly_classification_en'=>'nullable',
                     'our_vision_en'=>'nullable',
                     'goal1_ar'=>'required',
                     'goal2_ar'=>'required',
@@ -62,6 +66,7 @@ class InfoRequest extends FormRequest
                     'goal3_en'=>'nullable',
                     'script1'=>'required',
                     'script2'=>'required',
+                    'year'=>'nullable|digits:4|integer|min:1900|max:'.(date('Y')+1),
                 ];
             }
 
@@ -116,6 +121,14 @@ class InfoRequest extends FormRequest
             'goal3_en'=>__('site.info english goal3 required'),
             'script1'=>__('site.info script1 required'),
             'script2'=>__('site.info script2 required'),
+
+            'ourmessage_ar.required'=>__('site.info arabic ourmessage'),
+            // 'ourmessage_en.required'=>__('site.info english ourmessage'),
+            'assembly_classification_ar.required'=>__('site.info arabic assembly classification'),
+            // 'assembly_classification_en.required'=>__('site.info english assembly classification'),
+            'year.min'=>__('site.info minimum year experts'),
+            'year.digits'=>__('site.info year experts digits'),
+            'year.max'=>__('site.info maximum year experts'),
         ];
     }
 

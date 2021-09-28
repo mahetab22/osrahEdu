@@ -58,6 +58,10 @@ class SiteController extends Controller
             $info->aboutus_en = $request->aboutus_en ?? $request->aboutus_ar;
             $info->our_vision_ar = $request->our_vision_ar;
             $info->our_vision_en = $request->our_vision_en ?? $request->our_vision_ar;
+            $info->ourmessage_ar = $request->ourmessage_ar;
+            $info->ourmessage_en = $request->ourmessage_en;
+            $info->assembly_classification_ar = $request->assembly_classification_ar;
+            $info->assembly_classification_en = $request->assembly_classification_en;
             $info->goal1_ar = $request->goal1_ar;
             $info->goal2_ar = $request->goal2_ar;
             $info->goal3_ar = $request->goal3_ar;
@@ -66,6 +70,7 @@ class SiteController extends Controller
             $info->goal3_en = $request->goal3_en ?? $request->goal3_ar;
             $info->script1 = $request->script1;
             $info->script2 = $request->script2;
+            $info->year = $request->year;
         }
         $info->save();
 

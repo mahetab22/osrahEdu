@@ -76,7 +76,7 @@
                                 <div class="form-group row">
                                     <label for="inputSupervisor" class="col-sm-2 control-label">@lang('site.supervisor')</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control @error('supervisor_id') {{  'is-invalid'  }} @enderror" id="inputSupervisor" name="supervisor_id" required>
+                                        <select class="form-control @error('supervisor_id') {{  'is-invalid'  }} @enderror" id="inputSupervisor" name="supervisor_id[]" multiple required>
                                             <option value="" disabled selected>-- @lang('site.choose supervisor') --</option>
                                             @foreach ( $supervisors as $supervisor)
                                                 <option value="{{ $supervisor->id }}">{{ $supervisor->name }}</option>

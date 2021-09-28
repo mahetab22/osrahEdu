@@ -97,6 +97,8 @@ Route::group(['prefix' => 'admin',
         //------------------------ FAQ -------------------
         Route::resource('/partners','PartnerController');
         Route::post('/partners/delete_all','PartnerController@delete_all');
+        //------------------------ Breadcrumbs -------------------
+        Route::resource('/breadcrumbs','BreadcrumbController');
     });
 
 
