@@ -172,9 +172,7 @@ Route::get('/testnotiphy', 'VisionController@testnotiphy')->name('/testnotiphy')
     Route::get('/single/{id}/news', 'indexController@single_news')->name('single_news');
     Route::get('/books', 'indexController@books')->name('books');
     Route::get('/single/{id}/books', 'indexController@single_books')->name('single_books');
-	Route::get('/osrah', function(){
-	    return view('osrah');
-	})->name('/');
+
 	Route::get('/home', 'indexController@index')->name('home');
     Route::get('/conditions', 'indexController@conditions')->name('conditions');
 // ------------------------marketer--------------------------

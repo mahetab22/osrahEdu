@@ -115,6 +115,8 @@ return [
     'goal1_us' => $info->goal1_ar,
     'goal2_us' => $info->goal2_ar,
     'goal3_us' => $info->goal3_ar,
+    'assembly_classification'=>$info->assembly_classification_ar,
+    'ourmessage'=>$info->ourmessage_ar,
     'Browse_sections' => 'تصفح الأقسام',
     'Go_now' => 'انتقل الآن',
     'contact_details' => 'تفاصيل الاتصال',

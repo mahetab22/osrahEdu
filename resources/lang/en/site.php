@@ -65,6 +65,8 @@ return [
     'goal1_us' => $info->goal1_en,
     'goal2_us' => $info->goal2_en,
     'goal3_us' => $info->goal3_en,
+    'assembly_classification'=>$info->assembly_classification_en,
+    'ourmessage'=>$info->ourmessage_en,
     'contact_details' => 'contact details',
     'Address_the_problem' => 'Title the problem',
     'Suggestions_and_Complaints' => 'Suggestions and Complaints',

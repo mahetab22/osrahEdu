@@ -57,19 +57,22 @@ public function Register(Request $request)
     //echo dd($request);
     $today = Carbon::today();
     //echo dd(base_path('/users/').$today->isoFormat('MMMMD'));
-      $rules =[
+    $validator = Validator::make($request->all(), [
         'name'     => ['required','string','max:255'],
         'role_id'     => ['required'],
         'email'     => ['required','email','unique:users'],
         'phone'     => ['required','min:10','numeric','unique:users'],
         'password' => ['required','string','min:6'],
         'password_confirmation' => ['required','same:password','string','min:4'],
-      ];
+      ]);
 
-      $validate = Validator::make($request->all(), $rules);
-      if ($validate->fails()) {
-        return back()->with('toast_error', $validate->messages()->all()[0])->withInput();
-      }else{
+      
+      if ($validator->fails()) {
+        return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+      }
+      else{
 
           $data = new User;
           $data->name = $request['name'];
@@ -119,7 +122,7 @@ $message->to($to_email, $to_name)
 $message->from("team@nhledu.com","Test Mail");
 });*/
 
-            Mail::to($data['email'])->send(new WelcomeMail($data));
+            // Mail::to($data['email'])->send(new WelcomeMail($data));
 
             return redirect()->route('/')->with(['success' => 'Sign Up successfully !']);
        // return redirect()->back()->with(['success' => 'تم اضافة الحساب بنجاح  !']);
@@ -127,32 +130,6 @@ $message->from("team@nhledu.com","Test Mail");
   } 
 
 
-//     public function SignIn(Request $request)
-//     {         
-// //echo dd($request);
-//       $rules =[
-//         'email'     => ['required','email'],
-//         'password' => ['required','string','min:6'],
-//       ];
-
-//       $validate = Validator::make($request->all(), $rules);
-//       if ($validate->fails()) {
-//         return back()->with('toast_error', $validate->messages()->all()[0])->withInput();
-//         //return redirect()->back()->with(['fail' => $validate->messages()]);
-//       }else{
-//         ///echo dd(Auth::attempt(['email' => $request['email'], 'password' => $request['password']]));
-//         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']]))
-//         {
-//             $user = auth()->user();
-//             $user->remember_token = str_random(60);
-//             $user->save();
-//             return redirect()->route('/')->with(['success' => 'Sign in successfully !']);
-//         }else {
-//             return redirect()->route('/')->with(['fail' => 'There was an error']);
-//         }
-
-// }
-//     }
 
     public function changepassword(Request $request)
     {         
@@ -183,28 +160,6 @@ $message->from("team@nhledu.com","Test Mail");
     public function getmycourse(course $course)
     {
 
-      // if(Auth::user()->role_id == 3){
-      // foreach (Auth::user()->supervisorcourses as $supervisorcourse) {
-      //   if ($supervisorcourse->course->id == $course->id) {
-      //           return view('profile.supervcourse',compact('course'));  
-      //   }
-      // }
-      // }else{
-      //      $countlessons=0;
-      //     foreach($course->levels as $levels){
-      //       $countlessons=$countlessons+count($levels->lessons);
-      //     }
-      //    // echo dd(count(Auth::user()->stulessons));
-      //     $countlessons=(count(Auth::user()->stulessons)/$countlessons)*100;
-      //    // echo dd($countlessons);
-
-      //   foreach (Auth::user()->stusubscriptioncourses as $stusubscriptioncourse) {
-
-      //     if ($stusubscriptioncourse->course->id == $course->id) {
-      //     }
-      //     }
-
-      // }
                   return view('profile.afterauthcourse',compact('course')); 
 
     }

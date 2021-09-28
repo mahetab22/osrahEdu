@@ -17,6 +17,8 @@ use App\Notifications\InvoicePaid;
 use App\Notifications\commentNotify;
 use Notification;
 use App\User;
+use App\Info;
+use App\ContactType;
 class contactController extends Controller
 {
 
@@ -25,7 +27,9 @@ class contactController extends Controller
       $controller = New Controller();
       $slide_img = $controller->slide_img;
     	$questions  = CommonQuestion::orderBy('num_of_view','DESC')->paginate(15);
-        return view('contact',compact('questions','slide_img'));
+      $info=Info::first();
+      $types=ContactType::get();
+        return view('contact',compact('questions','slide_img','info','types'));
     }
 
     public function getcontactsnotification($notification)
@@ -75,37 +79,27 @@ public function Registercontacts(Request $request)
   
 public function addcontacts(Request $request)
   {
-      $rules =[
+    $validator = Validator::make($request->all(), [
         'name'     => ['required','string','max:255'],
         'email'     => ['required','email','unique:users'],
-        'title_problem'     => ['required','string','max:255'],
-        'Suggestions_and_Complaints'     => ['required'],
-      ];
+        'topic'     => ['required','string','max:255'],
+        'message'=>['required'],
+      ]);
 
-      $validate = Validator::make($request->all(), $rules);
-      if ($validate->fails()) {
-        return back()->with('toast_error', $validate->messages()->all()[0])->withInput();
+      
+      if ($validator->fails()) {
+        return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
       }else{
 
               $info = new Contact;
               $info->name = $request['name'];
-              $info->phone = $request['phone'];
               $info->email = $request['email'];
-              $info->title = $request['title_problem'];
-              $info->Suggestions_and_Complaints = $request['Suggestions_and_Complaints'];
-              $info->course_link = $request['course_link'];
-              $info->details = $request['details'];
-               if($request->hasFile('file')){
-    				$today = Carbon::today();
-                     $license_img=$request['file'];
-                  if($license_img)
-                  {
-
-                    $img_name ='user_img'.rand(0,999). '.' . $license_img->getClientOriginalExtension();
-                    $license_img->move(base_path('/public/storage/contacts/'.$today->isoFormat('MMMMY').'/'), $img_name);
-                    $info->file = 'contacts/'.$today->isoFormat('MMMMY').'/'.$img_name;
-                  }
-                    }
+              $info->title = $request['topic'];
+              $info->details	 = $request['message'];
+              $info->type_id  = $request['type'];
+             
               $info->save();
 
        return redirect()->back()->with(['success' => 'تم  تسجيل شكوتك   وسيتم التواصل معك شكرا !! !']);

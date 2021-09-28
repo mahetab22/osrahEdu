@@ -56,7 +56,7 @@
 </head>
 
 <body>
-
+@include('layouts._validation')
     <!--======================== start nav top =============================-->
     <div class="nav_top">
         <div class="container">
@@ -68,11 +68,35 @@
                                 <img src="{{url('/')}}/{{$info->logo}}" alt="img">
                             </a>
                         </div>
+                       
                         <div class="col-sm-6 flex_end vission d-sm-flex d-none">
+                        @if(!auth::check())
                             <div class="btns">
-                                <a href="#" class="main-btn main">@lang('site.login')</a>
-                                <a href="#" class="main-btn main">@lang('site.register')</a>
+                                <a href="{{url('/')}}/login" class="main-btn main">@lang('site.login')</a>
+                                <a href="{{ route('registerStudent') }}" class="main-btn main"> @lang("site.Join_student")</a>
+                                <a href="{{ route('registerSupervisor') }}" class="main-btn main">@lang("site.Join_teacher")</a>
+                          
                             </div>
+                        @else
+                        <div class="btns">
+                                   @if(auth::user()->role_id==1)
+                                   <a href="{{url('/')}}/admin" class="main-btn main">@lang('site.main')</a>
+                                   @elseif(Auth::user()->role_id == 4 )
+    							          
+    							            <a href="{{ route('profile') }}"class="main-btn main"><i class="fa fa-briefcase"></i>@lang("site.profile")</a>
+    							         
+                                 @elseif(Auth::user()->role_id == 3)
+                                            
+							                 <a href="{{ route('supervprofile') }}" class="main-btn main"><i class="fa fa-briefcase"></i>@lang("site.profile")</a>
+							                
+                                   @endif
+                                   <a href="{{ route('Logout') }}" onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();" class="main-btn main"> <i class="fas fa-sign-out-alt"></i>@lang("site.logout")</a>
+                                        <form id="logout-form" action="{{ route('Logout-form') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                         </div>
+                        @endif
                             <img src="{{url('/')}}/public/src_website/assets/img/vission.png" alt="img">
                         </div>
                     </div>
@@ -311,6 +335,8 @@
     <script src="{{url('/')}}/public/src_website/assets/vendor/slick/slick.min.js"></script>
 
 
+    <script src="{{url('/')}}/public/src_website/assets/vendor/intelTellinput/intlTelInput.js"></script>
+    <script src="{{url('/')}}/public/src_website/assets/vendor/intelTellinput/intlTelInput-jquery.min.js"></script>
     <!-- main.js -->
     <script src="{{url('/')}}/public/src_website/assets/js/main.js"></script>
 @yield('script')
