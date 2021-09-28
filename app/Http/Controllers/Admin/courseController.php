@@ -22,6 +22,7 @@ use App\Lesson;
 use App\Level;
 use App\Supervisor_Course;
 use App\SupervisorInfo;
+use App\Widgets\Supervisor;
 
 class courseController extends Controller
 {
@@ -61,7 +62,7 @@ class courseController extends Controller
     public function store(CourseRequest $request)
     {
         //
-
+        // dd($request);
         $course = new Course ;
         $course->title_ar = $request->title_ar;
         $course->title_en = $request->title_en;
@@ -96,12 +97,13 @@ class courseController extends Controller
         }
         $course->save();
         try{
-            if($request->supervisor_id)
-            $supervisor = new Supervisor_Course;
-            $supervisor->user_id = auth()->user()->id;
-            $supervisor->supervisor_id = $request->supervisor_id;
-            $supervisor->course_id = $course->id;
-            $supervisor->save();
+            foreach($request->supervisor_id as $visor){
+                $supervisor = new Supervisor_Course;
+                $supervisor->user_id = auth()->user()->id;
+                $supervisor->supervisor_id = $visor;
+                $supervisor->course_id = $course->id;
+                $supervisor->save();
+            }
         } catch(Exception $e) {
             return redirect()->back()->with([
                 'alert'=>[
@@ -160,7 +162,7 @@ class courseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CourseRequest $request, $id)
     {
         //
 
