@@ -101,11 +101,6 @@ if (!empty($_SERVER['HTTP_CLIENT_IP']))
     echo $ip_address;
 });
 
-
-
-// Route::get('/certificate', function () {
-//     return view('certificate');
-// });
 Route::get('/testblade', function () {
     return view('profile.testblade');
 
@@ -122,10 +117,6 @@ Route::post('add-link','courseController@add_link')->name('addLink');
     Route::post('/smycourse/lesson', 'ajaxController@slesson')->name('/smycourse/lesson');
     Route::post('/smycourse/exam', 'ajaxController@sexam')->name('/smycourse/exam');
     //     - - ------------    start ajax   ----------- - -
-
-// Route::get('admin', function () {
-//    return redirect('/admin');
-// })->name('admin');
 Route::get('/Artisan', function () {
     Artisan::call('storage:link');
 //Artisan::call('config:cache');
@@ -134,20 +125,7 @@ echo 'success';
 });
 
 
-// Route::group(['prefix' => 'admin',
-// 'middleware' => [ 'admin' ,'auth']
-// ], function () {
-//     Route::get('/','Admin\adminController@index');
-//     // ---------------------user------------------------
-//     Route::get('/users','Admin\userController@index');
-//     Route::post('/user/active','Admin\userController@userActive')->name('userActive');
-//     Route::delete('/user/delete/{id}','Admin\userController@destroy');
-//     Route::get('/user/create','Admin\userController@create');
-//     // ------------------course-------------------------
-//     Route::get('/courses','Admin\courseController@index');
 
-//     // Voyager::routes();
-// });
 
 
 Route::group(
@@ -159,13 +137,6 @@ Route::group(
 Auth::routes();
 
 Route::get('/testnotiphy', 'VisionController@testnotiphy')->name('/testnotiphy');
-
-// Route::get('/testnotiphy', function () {
-// 	$user = Auth::user();
-// 	$user->notify(new \App\Notifications\InvoicePaid());
-// 	echo 'success';
-//   // return redirect('/admin');
-// })->name('testnotiphy');
 //     - - ------------    aboutController   ----------- - -
 	Route::get('/', 'indexController@index')->name('/');
     Route::get('/news', 'indexController@news')->name('news');
@@ -190,6 +161,7 @@ Route::get('pay/Marketer/{id}','indexController@payMarketer')->name('payMarketer
 //     - - ------------  start courseController    ----------- - -
 
 	Route::get('/courses', 'courseController@course')->name('courses');
+    Route::get('/ajax/courses','courseController@course_ajax');
 	//Route::get('/courseSingle', 'courseController@courseSingle')->name('courseSingle');
     Route::get('/courseSingle', 'courseController@coursedSingle')->name('coursedSingle');
 	Route::get('/coursedSingle', 'courseController@coursedSingle')->name('coursedSingle');

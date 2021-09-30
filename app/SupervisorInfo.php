@@ -20,4 +20,7 @@ class SupervisorInfo extends Model
     {
         return $this->belongsTo('App\Service');
     }
+    public function courses(){
+        return $this->hasMany('App\Supervisor_Course','supervisor_id');
+    }
 }

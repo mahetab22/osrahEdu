@@ -294,7 +294,10 @@
 
 
 
-
+    <form method="get" action="{{ route('search') }}">
+                                <input type="search" name="search" required class="search-box" placeholder="@lang("site.search")" />
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
 
     <!--======================== start search popup =============================-->
     <div class="search-popup search-popup__default">
@@ -302,10 +305,10 @@
         <div class="search-popup__content">
             <div class="aws-container" data-url="/themes/agrikon/?wc-ajax=aws_action" data-siteurl="https://ninetheme.com/themes/agrikon" data-lang="" data-show-loader="true" data-show-more="true" data-show-page="true" data-show-clear="true" data-mobile-screen="false"
                 data-use-analytics="false" data-min-chars="1" data-buttons-order="1" data-is-mobile="false" data-page-id="4016" data-tax="">
-                <form class="aws-search-form aws-show-clear" action="#" method="post" role="search">
+                <form class="aws-search-form aws-show-clear" method="get" action="{{ route('search') }}" role="search">
                     <div class="aws-wrapper">
-                        <label style="position:absolute !important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" class="aws-search-label" for="6054afa526acc">Search</label>
-                        <input type="search" name="s" id="6054afa526acc" value="" class="aws-search-field" placeholder="Search" autocomplete="off">
+                        <label style="position:absolute !important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" class="aws-search-label" for="6054afa526acc">@lang('site.search')</label>
+                        <input type="search" required name="search" id="6054afa526acc" value="" class="aws-search-field"placeholder="@lang('site.search')" autocomplete="off">
                     </div>
                 </form>
             </div>

@@ -1,43 +1,4 @@
-@extends('layouts.app')
-@section('content')
-
-    <!--==================== Start courses header =======================-->
-    <section class="course_header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="info">
-                        <div>
-                            <h3>تصفح كل الدورات</h3>
-                            <p>@lang('site.hint2_us') </p>
-                           
-                            <div class="search_input">
-                            <form method="get" action="{{ route('search') }}">
-                                <input type="search" class="form-control"name="search" required  placeholder="قم بوضع كلمات البحث هنا">
-                                 <button class="icon btn"><i class="fal fa-search"></i></button>
-                            </form>
-                            </div>
-                            <div class="tags">
-                                @foreach($services as $serv)
-                                <a href="{{url('/')}}/courses?service={{$serv->id}}" class="tag">{{$serv->title}}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="image">
-                        <img src="{{url('/')}}/public/src_website/assets/img/course_img.png" alt="img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--==================== End courses header =======================-->
-
-    <!--==================== Start our courses =======================-->
-    <section class="our_courses_page" id="courses_section">
-        <div class="container">
+<div class="container">
             <div class="filter_courses">
                 <div class="col-lg-2 col-md-6">
                     <div class="text">
@@ -52,7 +13,7 @@
                                 <select class="nice-select" name="service">
                                     <option value="">كل الأقسام </option>
                                 @foreach($services as $serv)
-                                    <option value="{{$serv->id}}" {{isset($service)?$serv->id==$service->id?'selected':'':''}}>{{$serv->title}}</option>
+                                    <option value="{{$serv->id}}" {{$service != null?$serv->id==$service?'selected':'':''}}>{{$serv->title}}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -63,19 +24,20 @@
                                 <select class="nice-select" name="supervisor">
 
                                     <option value="">مقدم الدورة</option>
-                                    @foreach($supervisors as $super)
-                                    <option value="{{$super->id}}">{{$super->name}}</option>
+                                    @foreach($supervisors as $sup)
+                                    <option value="{{$sup->id}}"{{$super != null?$super==$sup->id?'selected':'':''}}>{{$sup->name}}</option>
                                    @endforeach
                                 </select>
                             </div>
                         </div>
+                   
                         <div class="mini_box">
                             <div class="form-group">
                                 <span class="icon"><i class="fal fa-book-open"></i></span>
                                 <select class="nice-select" name="online">
-                                    <option value="">توقيت الدورة</option>
-                                    <option value="1">أونلاين</option>
-                                    <option value="0">تعليم ذاتى</option>
+                                    <option value="" {{$online==null?'selected':''}}>توقيت الدورة</option>
+                                    <option value="1"{{$online==1 && $online!=null?'selected':''}}>أونلاين</option>
+                                    <option value="0"{{$online==0 && $online!=null?'selected':''}}>تعليم ذاتى</option>
                                 </select>
                             </div>
                         </div>
@@ -85,11 +47,12 @@
                                 <select class="nice-select" name="dep">
                                     <option value="">نوع الدورة</option>
                                     @foreach($departments as $deps)
-                                    <option value="{{$deps->id}}">{{$deps->title}}</option>
+                                    <option value="{{$deps->id}}" {{$dep !=null ?$dep==$deps->id?'selected':'':''}}>{{$deps->title}}</option>
                                    @endforeach
                                 </select>
                             </div>
                         </div>
+                      
                       
                     </div>
                 </div>
@@ -97,8 +60,8 @@
                     <div class="filter_date">
                         <span class="icon"><i class="far fa-sort-amount-down-alt"></i></span>
                         <select class="nice-select" name="order">
-                            <option value="2">ترتيب بالأحدث</option>
-                            <option value="3">ترتيب بالأقدم</option>
+                            <option value="2" {{$or==2?'selected':''}}>ترتيب بالأحدث</option>
+                            <option value="3" {{$or==3?'selected':''}}>ترتيب بالأقدم</option>
                         </select>
                     </div>
                 </div>
@@ -150,57 +113,3 @@
                 @endforeach
             </div>
         </div>
-    </section>
-    <!--==================== End our courses =======================-->
-
-
-@endsection
-
-@section('script')
-<script>
-$(document).on('change','select[name="service"]',function(){
-    search();
-});
-
-$(document).on('change','select[name="supervisor"]',function(){  
-    search();
-});
-$(document).on('change','select[name="online"]',function(){
-    search();
-});
-$(document).on('change','select[name="order"]',function(){
-    search();
-});
-$(document).on('change','select[name="dep"]',function(){
-    search();
-});
-function search(){
-    var online=$('select[name="online"]').val();
-    console.log(online);
-    var supervisor=$('select[name="supervisor"]').val();
-    var order=$('select[name="order"]').val();
-    var service=$('select[name="service"]').val();
-    var dep=$('select[name="dep"]').val();
-    $.ajax({
-            type: 'get',
-            url: "{{ url(app()->getLocale() . '/ajax/courses') }}",
-            data: {
-                online: online,
-                super:supervisor,
-                order:order,
-                service:service,
-                dep:dep,
-            },
-            success: function(data) {
-            $("#courses_section").empty();
-                document.getElementById('courses_section').innerHTML = data;
-                console.log(data);
-            },
-            error: function(data) {
-                console.log("error");
-                console.log(data);
-            }
-        });
-}
-</script>
-@endsection

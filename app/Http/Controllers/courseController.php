@@ -32,9 +32,47 @@ class courseController extends Controller
         $controller = New Controller();
         $slide_img = $controller->slide_img;
         $services= Service::with('course')->whereHas('course')->orderBy('id','asc')->get();
-        return view('courses',compact('services','slide_img'));
+        if(request()->has('service')){
+          $service=Service::Find(request('service'));
+        }else{
+          $service=null;
+        }
+        $courses=Course::where('activate',1)->orderBy('created_at','desc')->get();
+        $supervisors=User::where('role_id',3)->where('s',1)->get();
+        $departments=Department::get();
+        return view('courses',compact('services','slide_img','courses','service','supervisors','departments'));
     }
-
+   public function course_ajax(){
+     if(request('order')==2){
+       $order="desc";
+     }else{
+       $order="asc";
+     }
+     if(request()->has('super') and request('super') != null){
+           $super=SupervisorInfo::where('user_id',request('super'))->first();
+           $courses=Course::whereIn('id',$super->courses->pluck('course_id')->toArray())->where('activate',1)->where('activate',1)->get();
+     }else{  
+              $courses=Course::where('activate',1)->orderBy('created_at',$order)->get();
+     }
+     if(request()->has('online') and request('online')!=null){;
+       $courses=$courses->where('online',request('online'));
+     }
+     if(request()->has('service') and request('service')!=null){
+      $courses=$courses->where('service_id',request('service'));
+    }
+    if(request()->has('dep') and request('dep')!=null){
+      $courses=$courses->where('department_id',request('dep'));
+    }
+    $online=request('online');
+    $service=request('service');
+    $or=request('order');
+    $supervisors=User::where('role_id',3)->where('s',1)->get();
+    $services=Service::with('course')->whereHas('course')->get();
+    $super=request('super');
+    $dep=request('dep');
+    $departments=Department::get();
+    return view('courses_ajax',compact('super','online','or','service','services','supervisors','courses','departments','dep'));
+   }
 
     public function add_link(Request $request){
         $input=$request->all();
