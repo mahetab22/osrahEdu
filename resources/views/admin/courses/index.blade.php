@@ -66,7 +66,9 @@
                           </div>
                         </td>
                         <td>
+                        <div class="container">
                             <div class="row">
+                                
                                 <div class="col-md-2">
                                     <a class="edit btn bg-gradient-primary" href="{{ url('/admin/courses/'.$course->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
                                 </div>
@@ -79,7 +81,14 @@
                                 <div class="col-md-4">
                                     <a class=" btn bg-gradient-primary mr-1 ml-1 text-white" href="{{url('admin/course/'.$course->id.'/students')}}" >@lang('site.students')</a>
                                 </div>
+                                <div class="col-md-4">
+                                    <a class=" btn bg-gradient-info mr-1 ml-1 text-white mt-1" href="{{url('admin/activities/'.$course->id)}}" >@lang('site.activities')</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a class=" btn bg-gradient-primary mr-1 ml-1 text-white mt-1" href="{{url('admin/apps/'.$course->id)}}" >@lang('site.applications')</a>
+                                </div>
                             </div>
+                           </div>
                         </td>
                     </tr>
                 @endforeach

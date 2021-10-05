@@ -66,7 +66,7 @@ class Course extends Model
 
     public function supervisorcourses()
 	{
-	    return $this->hasOne('App\Supervisor_Course','course_id');
+	    return $this->hasMany('App\Supervisor_Course','course_id');
 	}
 
     public function certificate()
@@ -122,5 +122,27 @@ class Course extends Model
     public function subscriptioncourses()
     {
         return $this->hasMany('App\StuSubscriptionCourse', 'course_id');
+    }
+
+    public function activties(){
+        return $this->hasMany('App\Activity','course_id');
+    }
+    public function apps(){
+        return $this->hasMany('App\ApplicationsForCourse','course_id');
+    }
+
+    public function getActivityAppCountAttribute(){
+       return count($this->apps)+count($this->activties);
+    }
+
+    public function survey(){
+        return $this->hasMany('App\Survey','course_id');
+    }
+    public function getRateAttribute(){
+        $r=0;
+        foreach($this->survey as $sr){
+            $r+=$sr->course;
+        }
+        return round($r/$this->survey->count());
     }
 }

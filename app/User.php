@@ -89,5 +89,12 @@ class User extends \TCG\Voyager\Models\User
    }
    public function getIsAdminAttribute(){
     return $this->role_id == 1;
-}
+     }
+
+     public function apps(){
+         return $this->hasMany('App\StudentApp','student_id');
+     }
+     public function activities(){
+        return $this->hasMany('App\StudentActivity','student_id');
+    }
 }

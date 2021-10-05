@@ -16,5 +16,8 @@ protected $table = 'stusubscriptioncourse';
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function Attending(){
+        return $this->hasMany('App\AttendingCourse', 'student_course');
+    }
 
 }

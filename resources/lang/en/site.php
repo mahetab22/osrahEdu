@@ -655,4 +655,19 @@ return [
     // ----------- Partners Alert -----------
     'partner added successfully'=>'Partner added successfully',
     'partner updated successfully'=>'Partner updated successfully',
+
+    //----------------count attending course----------
+    'count attending'=>'count attending course',
+    'reports'=>'reports',
+    'Attend All Selected'=>'Attend All Selected Student',
+    'no students checked'=>'no students checked',
+    'alert_attend'=>'attend',
+    'whatsapp'=>'whatsapp',
+    'telegram'=>'telegram',   
+    'activities'=>'activities',
+    'activity'=>'activity',
+    'applications'=>'applications', 
+    'app'=>'app',
+    'student'=>'student',
+    'notes'=>'notes',
     ];

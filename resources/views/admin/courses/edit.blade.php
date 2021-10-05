@@ -1,5 +1,14 @@
 @extends('admin.layouts.app')
 @section('style')
+<!-- Select2 -->
+<link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <style>
+    body{
+        background-color:black;
+    }
+  </style>
+
 @endsection
 @section('content')
 
@@ -80,10 +89,10 @@
                                 <div class="form-group row">
                                     <label for="inputSupervisor" class="col-sm-2 control-label">@lang('site.supervisor')</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control @error('supervisor_id') {{  'is-invalid'  }} @enderror" id="inputSupervisor" name="supervisor_id" required>
-                                            <option value="" disabled selected>-- @lang('site.choose supervisor') --</option>
+                                        <?php $sups=$course->supervisorcourses->pluck('supervisor_id')->toArray();?>
+                                        <select class="form-control @error('supervisor_id') {{  'is-invalid'  }} @enderror select2 "data-placeholder="-- @lang('site.choose supervisor') --" multiple="multiple" id="inputSupervisor" name="supervisor_id[]" required>
                                             @foreach ( $supervisors as $supervisor)
-                                                <option value="{{ $supervisor->id }}" {{ $course->supervisorcourse->supervisor_id == $supervisor->id ? 'selected' : ''  }}>{{ $supervisor->name }}</option>
+                                                <option value="{{ $supervisor->user->id }}"{{in_array($supervisor->id,$sups)?'selected':''}} >{{ $supervisor->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('supervisor_id')
@@ -377,6 +386,26 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row ">
+                                <div class="col-sm-6 row">
+                                    <label for="inputLink_url1" class="col-sm-4 control-label">@lang('site.whatsapp')</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control @error('whatsapp') {{  'is-invalid'  }} @enderror" id="inputLink_url1" name="whatsapp" value="{{ $course->whatsapp }}" placeholder="@lang('site.whatsapp')">
+                                        @error('whatsapp')
+                                            <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 row">
+                                    <label for="inputLink_url1" class="col-sm-4 control-label">@lang('site.telegram')</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control @error('telegram') {{  'is-invalid'  }} @enderror" id="inputLink_url1" name="telegram" value="{{ $course->telegram }}" placeholder="@lang('site.telegram')">
+                                        @error('telegram')
+                                            <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                             </div>
 
                         </div>
                     </div>
@@ -400,8 +429,10 @@
 <!-- /.content-wrapper -->
 
 @endsection
+
 @section('script')
-<script src="{{ URL::TO('/') }}/public/src_website/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Select2 -->
+<script src="{{url('/')}}/public/admin/plugins/select2/js/select2.full.min.js"></script>
 
 @if ($course->online == 0)
 <script>
@@ -412,8 +443,14 @@
     $('.online').hide();
 </script>
 @endif
-<script>
 
+<script>
+ $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2({
+      theme: 'bootstrap4'
+    })
+ });
         $('#inputType1').on('change',function(){
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;

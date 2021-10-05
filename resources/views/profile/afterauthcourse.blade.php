@@ -1,680 +1,227 @@
 @extends('layouts.app')
-@section('stylelinks')
+@section('style')
   <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.2.0/moyasar.css">
 @endsection
 @section('content')
-        
-        <!-- Start Courses-inner -->
-        <section class="lesson-inner">
-            <div class="col-md-3 col-xs-12 padding">
-                <div class="sidebar-lesson">
-                    <div class="back-btn">
-                        <a href="{{ route('/') }}">@lang("site.Return to the course")<i class="fa fa-angle-left"></i></a>
-                    </div>
-                    <div class="name-lesson">
-                       @if(app()->getLocale() == 'ar')
-                        <h1>{{ $course->title_ar }}</h1>
-                        <h5>{{ $course->service->title_ar }}</h5>
-                        @else
-                        <h1>{{ $course->title_en }}</h1>
-                        <h5>{{ $course->service->title_en }}</h5>
-                        @endif
-                    </div>
-                    <div class="bar-complete">
-                      <h3>@lang("site.welcome our dear guest")</h3> 
-
-
-                    </div>
-                    <hr />
-                    <div class="all-levels">
-                        <div class="panel-group" id="accordion">
-                        
-                            @foreach($course->levels as $levels)
-                               @if(app()->getLocale() == 'ar')
-                            <div class="panel panel-default">
-
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" href="#col{{$levels->id}}">{{ $levels->title_ar }} @if(0)<span>*</span>@endif</a>
-                                    </h4>
-                                </div>
-                                <div id="col{{$levels->id}}" class="panel-collapse collapse ">
-                                    <div class="panel-body">
-                                        <div class="allcourse">
-                                        <!--  
-                                            <ul>
-                                              @foreach($levels->lessons as $lesson)
-                                                <li> <a  data-toggle="collapse" data-parent="#accordion" class="get_ajax_data" data-get_id="{{ $lesson->id }}" ><i class="far fa-play-circle"></i> {{ $lesson->title_ar }} <span>{{ $lesson->duration }} دقيقة</span></a>
-                                                   
-                                                </li>
-                                                @if($lesson->exam)
-                                                <li>
-                                                   <a  data-toggle="collapse" data-parent="#accordion" class="get_ajax_exam" data-get_id="{{ $lesson->exam->id }}" >@lang("site.Lesson test") @if($levels->exam)<span>*</span>@endif</a>
-                                                </li>
-                                                @endif
-                                              @endforeach
-                                            </ul>
-                                            -->
-                                        </div>
+  <!--==================== Start library =======================-->
+  <section class="single_course_Page before_login">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="lessons-card-show">
+                        <div class="head_card">
+                            <h6>
+                                <i class="far fa-stream"></i>
+                                <span>تفاصيل الدورة</span>
+                            </h6>
+                        </div>
+                        <div class="details_course_box">
+                            <img src="{{url('/')}}/{{$course->logo}}" alt="img">
+                            <h5 class="name">{{$course->title}}</h5>
+                            <div class="some_details">
+                                <div class="date">
+                                    <span class="icon"><i class="far fa-calendar-alt"></i></span>
+                                    <div class="text">
+                                        <p>تبدأ الدورة في {{$course->from_date}}</p>
+                                        <p>{{$course->duration}}</p>
                                     </div>
                                 </div>
-                            </div> 
-                            @else
-                            <div class="panel panel-default">
-
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" href="#col{{$levels->id}}">{{ $levels->title_en }} @if(0)<span>*</span>@endif</a>
-                                    </h4>
+                                <div class="price">
+                                    @if($course->price>0)
+                                    <span>{{$course->price}} ريال</span>
+                                    @else
+                                    <span>مجانى</span>
+                                    @endif
                                 </div>
-                                <div id="col{{$levels->id}}" class="panel-collapse collapse ">
-                                    <div class="panel-body">
-                                        <div class="allcourse">
-                                        <!-- 
-                                            <ul>
-                                              @foreach($levels->lessons as $lesson)
-                                                <li> <a  data-toggle="collapse" data-parent="#accordion" class="get_ajax_data" data-get_id="{{ $lesson->id }}" ><i class="far fa-play-circle"></i> {{ $lesson->title_ar }} <span>{{ $lesson->duration }} دقيقة</span></a>
-                                                   
-                                                </li>
-
-                                                @if($lesson->exam)
-                                                <li>
-                                                   <a  data-toggle="collapse" data-parent="#accordion" class="get_ajax_exam" data-get_id="{{ $lesson->exam->id }}" >@lang("site.Lesson test") @if($levels->exam)<span>*</span>@endif</a>
-                                                </li>
-                                                @endif
-                                              @endforeach
-                                            </ul>
-                                            -->
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                            @if($course->online==0)
+                            <div class="map">
+                                <span class="icon"><i class="fal fa-map-marked-alt"></i></span>
+                                <a href="{{$course->link_url}}">{{$course->link_name}}</a>
                             </div>
                             @endif
-                            @if($levels->exam)
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                         <a  data-toggle="collapse" data-parent="#accordion" class="get_ajax_exam" data-get_id="{{ $levels->exam->id }}"  >@lang("site.Level test") @if($levels->exam)<span>*</span>@endif</a>
-                                    </h4>
-                                </div>
-                            </div>
-                            @endif 
-                            @endforeach
-                            @if($course->exam)
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                         <a  data-toggle="collapse" data-parent="#accordion" class="get_ajax_exam" data-get_id="{{ $course->exam->id }}"  >@lang("site.Ali exam course") @if($course->exam)<span>*</span>@endif</a>
-                                    </h4>
-                                </div>
-                            </div>
-                            @endif  
-
-                        </div> 
-
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="col-md-9 col-xs-12">
-                <div class="content-lesson">
-
-                      <!-- lesson -->
-                       <div id="lesson">
-                                    <?php
-                                        echo($course->link);
-                                    ?>
-                           <!--<div class="new-page">
-                                <div class="video-lesson">
-                                    <iframe width="560" height="315" src="{{ $course->link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                            </div>
-
-                            <div class="download-attch">
-                                <h3><i class="fa fa-paperclip"></i>@lang("site.Download the attachments") </h3>
-                                <a href="{{ url('/') }}/public/storage/{{ $course->file }}" download>@lang("site.Press here")</a>
-                            </div>-->
-
-                       </div>
-                      <!-- lesson -->
-
-                    <div class="all-details-lesson">
-                        <div class="header-lesson">
-                            <ul class="nav nav-tabs">
                             @if(!empty($course->stop_subscription) and $course->stop_subscription == 1)
-                                @if($course->price > 0)
-                                <li><a data-toggle="tab" href="#subscribe">الدفع بالبطاقة</a></li>
-                                <li><a data-toggle="tab" href="#subscribe_by_bank">@lang("site.Register_for_the_course_by_bank")</a></li>
-                                @else
-                                <li><a data-toggle="tab" href="#subscribe">التسجيل بالدورة</a></li>
-                                @endif
-                             @endif
-                                <li class="active"><a data-toggle="tab" href="#details">@lang("site.about_th_course")</a></li>
-                                <li><a data-toggle="tab" href="#tch">@lang("site.About_th_supervisor")</a></li>
-                            </ul>
-                        </div>
-                        <div class="body-lesson">
-                            <div class="tab-content">
-                                <div id="details" class="tab-pane fade in active">
-                                    <div class="text-lansser">
-
-                               @if(app()->getLocale() == 'ar')
-                                            <h3>{{ $course->title_ar }}</h3>
-                                            <p>
-                                                {{ $course->description_ar }}
-                                            </p>
-
-                                            <ul>
-                                                <li>
-                                                     {{ $course->feature1 }}
-                                                </li>
-                                                <li>
-                                                     {{ $course->feature2 }}
-                                                </li>
-                                                <li>
-                                                     {{ $course->feature3 }}
-                                                </li>
-                                            </ul>
-
-
-                                 @else
-                                            <h3>{{ $course->title_en }}</h3>
-                                            <p>
-                                                {{ $course->description_en }}
-                                            </p>
-                               
-
-                                            <ul>
-                                                <li>
-                                                     {{ $course->feature1_en }}
-                                                </li>
-                                                <li>
-                                                     {{ $course->feature2_en }}
-                                                </li>
-                                                <li>
-                                                     {{ $course->feature3_en }}
-                                                </li>
-                                            </ul>
-                                   @endif
-                                   @if($course->stop_subscription == 0)
-                                   <p>
-                                                الاشتراك غير متاح الأن
-                                  </p>
-                                   @endif
-                                    </div>
-                                </div>
-                               @if(!empty($course->supervisorcourse->supervisor))
-                                <div id="tch" class="tab-pane fade">
-                                    <div class="cv-content">
-                                        <div class="img-tch">
-                                            <div class="img-u">
-                                                <img src="{{ url('/') }}/public/storage/{{ $course->supervisorcourse->supervisor->avatar }}" alt="" />
-                                            </div>
-                                            <div class="social-media">
-                                                <a href="{{ $course->supervisorcourse->supervisor->fb }}"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="{{ $course->supervisorcourse->supervisor->tw }}"><i class="fab fa-twitter"></i></a>
-                                                <a href="{{ $course->supervisorcourse->supervisor->inst }}"><i class="fab fa-google-plus-g"></i></a>
-                                                <a href="{{ $course->supervisorcourse->supervisor->google }}"><i class="fab fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="details-s">
-                                            <ul>
-                                                <li>
-                                                    <strong>@lang("site.name") : </strong>
-                                                    <span>{{ $course->supervisorcourse->supervisor->supervisorinfo->name }}</span>
-                                                </li>
-                                                <li>
-                                                    <strong>@lang("site.Educational"):</strong>
-                                                    <span>{{ $course->supervisorcourse->supervisor->supervisorinfo->Educational }}</span>
-                                                </li>
-                                              <!--   <li>
-                                                    <strong>@lang("site.gender") : </strong>
-                                                    <span>{{ $course->supervisorcourse->supervisor->gender }}</span>
-                                                </li> -->
-                                                <li>
-                                                    <strong>@lang("site.Specialization") :</strong>
-                                                    <span>{{ $course->supervisorcourse->supervisor->supervisorinfo->service->title_ar }}</span>
-                                                </li>
-                                               <!-- <li>
-                                                    <strong>@lang("site.Age") :</strong>
-                                                    <span>{{ $course->supervisorcourse->supervisor->Age }} سنة</span>
-                                                </li>-->
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                               @else
-                                <div id="tch" class="tab-pane fade">
-                                    <div class="cv-content">
-                                       <div class="details-s">
-                                        بيانات المدرب غير كاملة ونعمل علي أكتمالها في الوقت الحالي
-                                       </div>
-                                     </div>
-                                </div>
-                               @endif
-                               
-                               <div id="subscribe_by_bank" class="tab-pane fade form-contact">
-
-                                    <div class="cv-content">
-                                     @auth  
-                                    <form action="{{ route('uploadimg') }}" method="POST" role="form"  enctype="multipart/form-data">
-                                    @csrf
-                                    <input name="course_id" value="{{ $course->id }}" hidden>
-
-                                   <div class="text-lansser account">
-                                       <ul>
-                                           <li>البنك</li>
-                                           <li><img src="{{ asset('public/src_website/images/ahly.png') }}" /></li>
-                                           <li>اسم صاحب الحساب</li>
-                                           <li>  شركة نهل للخدمات التسويقية التعليمية </li>
-                                           <li>رقم الحساب</li>
-                                           <li>سيتوفر الرقم قريبا</li>
-                                          <!-- <li>24300000621000</li>-->
-                                           <li>IBAN-رقم الحساب المصرفي الدولي</li>
-                                           <li>سيتوفر الرقم قريبا</li>
-                                          <!-- <li>SA4910000024300000621000</li> -->
-                                       </ul>
-                                            <!--<h3>حساب بنك الأهلي -NCB</h3>-->
-                                            <!--<p>-->
-                                            <!--    شركة نهل للخدمات التسويقيةالتعليمية-->
-                                            <!--</p>-->
-
-                                            <!--<ul>-->
-                                            <!--    <li>-->
-                                            <!--         الرقم الشخصي : 78205702-->
-                                            <!--    </li>-->
-                                            <!--    <li>-->
-                                            <!--         <span>IBAN-رقم الحساب المصرفي الدولي</span> : SA4910000024300000621000-->
-                                            <!--    </li>-->
-                                            <!--</ul>-->
-                                        </div>
-
-                                   <div class="text-lansser account">
-                                        <ul>
-                                           <li>البنك</li>
-                                           <li><img src="{{ asset('public/src_website/images/rajhi.png') }}" /></li>
-                                           <li>اسم صاحب الحساب</li>
-                                           <li>شركة نهل للخدمات التسويقية التعليمية</li>
-                                           <li>رقم الحساب</li>
-                                           <li>216608010979193</li>
-                                           <li>IBAN-رقم الحساب المصرفي الدولي</li>
-                                           <li>SA9480000216608010979193</li>
-                                       </ul>
-                                            <!--<h3>مصرف الراجحي</h3>-->
-                                            <!--<p>-->
-                                            <!--    شركة نهل للخدمات التسويقيةالتعليمية-->
-                                            <!--</p>-->
-
-                                            <!--<ul>-->
-                                            <!--    <li>-->
-                                            <!--         الرقم الشخصي : 20801699-->
-                                            <!--    </li>-->
-                                            <!--    <li>-->
-                                            <!--         <span>IBAN-رقم الحساب المصرفي الدولي</span> : SA9480000216608010979193-->
-                                            <!--    </li>-->
-                                            <!--</ul>-->
-                                        </div>
-
-                                     <div class="form-group">
-                                        <label>أرفق صورة الإيصال</label>
-
-
-                                        <div class="input-group">
-                                            <label class="input-group-btn">
-                                                <span class="btn btn-primary">
-                                                    <i class="fa fa-upload"></i> <input type="file" name="img" style="display: none;" multiple>
-                                                </span>
-                                            </label>
-                                            <input type="text" class="form-control" placeholder="@lang("site.image")" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="ارسال المرفق" class="form-control btn-style" />
-                                    </div>
-                                    <!--
-                                    <a href="{{ url('/') }}/subscribe/{{ $course->id }}" class="btn btn-style">@lang("site.Register_for_the_course")</a>
-                                     -->
-                                     </form>
-                                    @else
-                                    <a href="{{ route('registerorlogin') }}" class="btn btn-style">@lang("site.Register_for_the_course")</a>
-                                    @endif
-                                    </div>
-                                </div>
-                                
-                                <div id="subscribe" class="tab-pane fade form-contact">
-{{--                                     <div class="cv-content">
-                                     @auth  
-                                    <a href="{{ url('/') }}/subscribe/{{ $course->id }}" class="btn btn-style">@lang("site.Register_for_the_course")</a>
-                                    @else
-                                    <a href="{{ route('registerorlogin') }}" class="btn btn-style">@lang("site.Register_for_the_course")</a>
-                                    @endif
-                                    </div> --}}
-                                    
-
-                                     @auth  
-@if($course->price > 0)
-                                    <div class="col-md-12">
-                                        <div class="title wow fadeInUp" style="visibility: visible;">
-                                            <h3>@lang("site.To register for the course, enter the following data")</h3>
-                                        </div>
-                                    </div>
-                                    <div class="visas-all"><img src="{{ asset('public/src_website/images/payments-cards.png') }}" /></div>
-                                <input  id="course_id" name="course_id" value="{{ $course->id }}" hidden>
-                                @if($course->studentDiscount!=0)
-                                <div class="form-group">
-                                    <label>كود الخصم</label>
-                                    <input type="text" id="code" name="code"  class="form-control" value="{{session('codeMarketer')??''}}"required/>
-                                    <a type="submit" class="btn link" >تأكيد كود الخصم</a>
-                                </div>
-                                @endif
-                                       <div class="form-group">
-                                            <label>قيمة الدورة التدريبية بالريال</label>
-                                             <input type="text" class="form-control" value="{{ $course->price }}" disabled=""/>
-
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label>القيمة الاجمالية بعد الخصم</label>
-                                             <input type="text" class="form-control lolAfter" value="{{ $course->price }}" disabled="" />
-                                        </div>
-                                <div class="mysr-form"></div>
-                                    <!--<form accept-charset="UTF-8" id="formmoyaser" action="https://api.moyasar.com/v1/payments.html" method="POST">-->
-                                    <!--     <input name="publishable_api_key" value="pk_test_8nqExJA62LTtaCySMbzuFYpdzgLMC7gBzZygX7QM" hidden="" />-->
-                                    <!--      <input name="course_id" value="{{ $course->id }}" hidden="" />-->
-                                    <!--      <input type="hidden" name="callback_url" value="{{ url('/') }}/subscribe/{{ $course->id }}" />-->
-                                    <!--      <input type="hidden" name="coupon" />-->
-                                    <!--      <input name="amount_format" value="885.71 SAR" hidden="" />-->
-                                    <!--      <input type="hidden" class="lol" name="amount" value="{{ $course->price*100 }}" />-->
-                                    <!--        <input type="hidden" name="methods[]" value="creditcard" />-->
-                                    <!--         <input type="hidden" name="methods[]" value="stcpay" />-->
-                                    <!--      <input type="hidden" name="applepay[country]" value="SA" />-->
-                                    <!--      <input type="hidden" name="applepay[label]" value="label" />-->
-                                    <!--      <input type="hidden" name="applepay[merchant_validation_url]" value="https://nhledu.com/nhl_marketer" />-->
-
-                                 
-                                    <!--    </div>-->
-                                        
-                                    <!--<div class="form-pay">-->
-                                    <!--    <div class="col-xs-12">-->
-                                    <!--        <div class="form-group">-->
-                                    <!--            <input type="number" placeholder="رقم البطاقة" name="source[number]" class="form-control"/>-->
-
-                                    <!--            <i class="far fa-credit-card"></i>-->
-                                    <!--        </div>-->
-                                    <!--    </div>-->
-                                    <!--    <div class="col-md-6 col-xs-12">-->
-                                    <!--        <div class="form-group">-->
-                                    <!--            <input type="text" placeholder="MM" name="source[month]" class="form-control" />-->
-                                    <!--            <i class="far fa-calendar-alt"></i>-->
-                                    <!--        </div>-->
-                                    <!--    </div>-->
-                                    <!--    <div class="col-md-6 col-xs-12">-->
-                                    <!--        <div class="form-group">-->
-                                    <!--            <input type="text" placeholder="YY" name="source[year]" class="form-control" />-->
-                                    <!--            <i class="far fa-calendar-alt"></i>-->
-                                    <!--        </div>-->
-                                    <!--    </div>-->
-                                    <!--    <div class="col-md-12 col-xs-12">-->
-                                    <!--        <div class="form-group">-->
-                                    <!--            <input type="number" placeholder="CVC" name="source[cvc]" class="from-control" />-->
-                                    <!--            <i class="fa fa-lock"></i>-->
-                                    <!--        </div>-->
-                                    <!--    </div>-->
-                                    <!--    <div class="col-xs-12">-->
-                                    <!--        <div class="form-group">-->
-                                    <!--            <input type="text" placeholder="الاسم" name="source[name]" class="form-control" />-->
-                                    <!--            <i class="fa fa-user"></i>-->
-                                    <!--        </div>-->
-                                    <!--    </div>-->
-                                    <!--</div>-->
-                                    <!--    <input id="in_ch" type="checkbox"/>-->
-                                    <!--     <span>يجب الموافقة علي الشروط والأحكام أولا . <a class="add-btn" data-toggle="modal" data-target="#view">مراجعة</a></span>-->
-                                    <!--    <input disabled="disabled" type="submit" class="btn btn-style"   id="check" value="ادفع هنا">-->
-                                    <!--</form>-->
-@else
-                                    <div class="col-md-12">
-                                        <div class="title wow fadeInUp" style="visibility: visible;">
-                                            <h3>@lang("site.There is no fee to pay Welcome")</h3>
-                                        </div>
-                                    </div>
-                                    <form action="{{ url('/') }}/subscribemag/{{ $course->id }}" method="get" role="form"  enctype="multipart/form-data">
-                                    
-                                  <input  id="in_ch" type="checkbox"/>
-                                   <span>يجب الموافقة علي الشروط والأحكام أولا . <a class="add-btn" data-toggle="modal" data-target="#view">مراجعة</a></span> 
-                                   <input disabled="disabled" type="submit" class="btn btn-style"   id="check" value="اضغط هنا للتسجيل بالدورة">
-                                   </form>
-@endif
-                                    @else
-                                    <a href="{{ route('registerorlogin') }}" class="btn btn-style">@lang("site.Register_for_the_course")</a>
-                                    @endauth
-
-                                    
-
-
-                                </div>
-
+                            <div class="text-center mt-20">
+                                <a href="{{url('/')}}/add/to/cart/{{$course->id}}" class="main-btn main">اشترك في الدورة</a>
                             </div>
+                            @endif
                         </div>
+                        @foreach($course->levels as $level)
+                        <div class="item_slide">
+                            <div class="head_item">
+                                <h6 class="m-0">{{$level->title}}</h6>
+                                <i class="transition fal fa-chevron-up"></i>
+                            </div>
+                            <div class="slide_content">
+                           @foreach($level->lessons as $lesson)
+                                <div class="content_item">
+                                    <div class="name_lesson">
+                                        <span class="icon">
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                                <g>
+                                                    <g>
+                                                        <path d="M507.156,121.024l-22.113-22.112c-3.129-3.13-7.29-4.853-11.715-4.853s-8.587,1.723-11.715,4.853l-0.912,0.913V84.974
+                                                            c0-18.566-15.105-33.671-33.671-33.671H33.671C15.105,51.304,0,66.408,0,84.974v342.052c0,18.566,15.105,33.671,33.671,33.671
+                                                            H427.03c18.566,0,33.671-15.105,33.671-33.671V190.911l46.455-46.455C513.615,137.997,513.615,127.485,507.156,121.024z
+                                                            M444.667,427.026c0,9.725-7.912,17.637-17.637,17.637H33.671c-9.725,0-17.637-7.912-17.637-17.637V84.974
+                                                            c0-9.725,7.912-17.637,17.637-17.637H427.03c9.725,0,17.637,7.912,17.637,17.637v30.885l-35.274,35.274v-40.505
+                                                            c0-3.557-2.344-6.689-5.758-7.692c-3.414-1-7.078,0.365-9.002,3.357l-31.737,49.369l-31.737-49.369
+                                                            c-1.923-2.992-5.589-4.357-9.002-3.357c-3.413,1.003-5.758,4.135-5.758,7.692v85.513c0,4.427,3.589,8.017,8.017,8.017
+                                                            s8.017-3.589,8.017-8.017v-58.217l23.72,36.899c1.475,2.294,4.016,3.681,6.744,3.681c2.728,0,5.269-1.387,6.744-3.681
+                                                            l23.72-36.899v29.242L244.133,316.394h-47.988c-4.427,0-8.017,3.589-8.017,8.017s3.589,8.017,8.017,8.017h36.439l-24.443,52.377
+                                                            h-80.407c-4.427,0-8.017,3.589-8.017,8.017s3.589,8.017,8.017,8.017h85.513c0.001,0,0.001,0,0.002,0
+                                                            c1.147,0,2.304-0.246,3.387-0.753l64.135-29.93c0.847-0.396,1.618-0.935,2.279-1.596l36.132-36.132h65.09
+                                                            c4.427,0,8.017-3.589,8.017-8.017s-3.589-8.017-8.017-8.017h-49.057l109.45-109.449V427.026z M248.323,336.618l21.128,21.128
+                                                            l-39.615,18.487L248.323,336.618z M281.658,347.278l-22.867-22.867l188.884-188.884l22.868,22.868L281.658,347.278z
+                                                            M495.819,133.118l-13.939,13.939l-22.868-22.868l13.939-13.939c0.208-0.207,0.547-0.207,0.756,0l22.112,22.111
+                                                            C496.026,132.571,496.026,132.91,495.819,133.118z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M110.632,188.124H67.341v-26.723h34.74c4.427,0,8.017-3.589,8.017-8.017s-3.589-8.017-8.017-8.017h-34.74v-26.723h43.291
+                                                            c4.427,0,8.017-3.589,8.017-8.017s-3.589-8.017-8.017-8.017H59.325c-4.427,0-8.017,3.589-8.017,8.017v85.513
+                                                            c0,4.427,3.589,8.017,8.017,8.017h51.308c4.427,0,8.017-3.589,8.017-8.017S115.06,188.124,110.632,188.124z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M210.956,191.133l-30.199-37.749l30.199-37.749c2.765-3.457,2.205-8.502-1.252-11.268
+                                                            c-3.457-2.766-8.503-2.205-11.268,1.252l-27.945,34.933l-27.946-34.931c-2.766-3.458-7.813-4.019-11.268-1.252
+                                                            c-3.457,2.765-4.018,7.811-1.252,11.268l30.199,37.749l-30.199,37.749c-2.765,3.456-2.204,8.5,1.253,11.266
+                                                            c1.478,1.182,3.246,1.757,5.003,1.757c2.352,0,4.682-1.03,6.265-3.009l27.946-34.931l27.946,34.931
+                                                            c1.583,1.98,3.913,3.009,6.265,3.009c1.756,0,3.525-0.575,5.003-1.757C213.161,199.636,213.722,194.591,210.956,191.133z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M306.623,194.57l-15.041-75.202c-1.941-9.709-10.537-16.756-20.44-16.756h-13.174c-9.901,0-18.498,7.047-20.439,16.756
+                                                            l-15.041,75.202c-0.868,4.341,1.948,8.564,6.289,9.433c4.341,0.867,8.564-1.948,9.433-6.289l3.842-19.209h45.004l3.842,19.209
+                                                            c0.762,3.811,4.11,6.447,7.853,6.447c0.521,0,1.05-0.051,1.581-0.157C304.675,203.134,307.491,198.911,306.623,194.57z
+                                                            M245.261,162.47l7.992-39.959c0.447-2.24,2.431-3.866,4.715-3.866h13.174c2.285,0,4.269,1.626,4.717,3.866l7.992,39.959H245.261z
+                                                            "/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M76.427,230.881c-13.851,0-25.119,11.268-25.119,25.119c0,13.851,11.268,25.119,25.119,25.119
+                                                            s25.119-11.268,25.119-25.119C101.547,242.149,90.278,230.881,76.427,230.881z M76.427,265.086c-5.01,0-9.086-4.076-9.086-9.086
+                                                            c0-5.01,4.076-9.086,9.086-9.086c5.01,0,9.086,4.076,9.086,9.086C85.513,261.01,81.437,265.086,76.427,265.086z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M76.427,299.291c-13.851,0-25.119,11.268-25.119,25.119s11.268,25.119,25.119,25.119s25.119-11.268,25.119-25.119
+                                                            S90.278,299.291,76.427,299.291z M76.427,333.496c-5.01,0-9.086-4.076-9.086-9.086s4.076-9.086,9.086-9.086
+                                                            c5.01,0,9.086,4.076,9.086,9.086S81.437,333.496,76.427,333.496z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M76.427,367.701c-13.851,0-25.119,11.268-25.119,25.119c0,13.851,11.268,25.119,25.119,25.119
+                                                            s25.119-11.268,25.119-25.119C101.547,378.97,90.278,367.701,76.427,367.701z M76.427,401.906c-5.01,0-9.086-4.076-9.086-9.086
+                                                            c0-5.01,4.076-9.086,9.086-9.086c5.01,0,9.086,4.076,9.086,9.086C85.513,397.831,81.437,401.906,76.427,401.906z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M264.556,247.983H127.735c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h136.821
+                                                            c4.427,0,8.017-3.589,8.017-8.017C272.572,251.573,268.983,247.983,264.556,247.983z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M161.94,316.394h-34.205c-4.427,0-8.017,3.589-8.017,8.017s3.589,8.017,8.017,8.017h34.205
+                                                            c4.427,0,8.017-3.589,8.017-8.017S166.367,316.394,161.94,316.394z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                </svg>
+    
+                                        </span>
+                                        <h6 class="m-0 text-ellipsis">{{$lesson->title}}</h6>
+                                    </div>
+                                    <span class="lock"><i class="fal fa-lock-alt"></i></span>
+                                </div>
+                         
+                            @endforeach   
+                            </div>
+                              
+                        </div>
+                        @endforeach
+                        <a href="{{url('/')}}/courses" class="link_back">
+                            <span>العودة للدورات</span>
+                            <img src="{{url('/')}}/public/src_website/assets/img/icons/arrow.svg" alt="">
+                        </a>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- End Courses-inner -->
-        
-              <!-- Modal -->
-        <div id="view" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <div class="add-qu">
-                            <h3>الشروط والأحكام </h3>
-                            <h4><?php 
-                            $conditions = DB::table('conditions')->first();
-                             echo ($conditions->condition_ar); ?></h4>
+                <div class="col-lg-8">
+                    <div class="info_course">
+                        <div class="video_course">
+                            <img src="{{url('/')}}/{{$course->logo}}" alt="img">
+                            @if($course->link)
+                            <a class="venobox play-btn" data-autoplay="true" data-vbtype="video" href="{{$course->link}}"></a>
+                            @endif
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-        
-              <!-- check Exam code-->
-        <div id="check-exam-code" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <div class="add-qu form-contact">
-                            <h3>أدخل كود الخصم</h3>
-
-                                <input  id="course_id" name="course_id" value="{{ $course->id }}" hidden>
-                                <div class="form-group">
-                                    <label>كود الخصم</label>
-                                    <input type="text" id="code" name="code"  class="form-control" required/>
+                        <div class="name">
+                            <h5>{{$course->description}}</h5>
+                        </div>
+                        <div class="about_taecher">
+                            <h6 class="title">معلومات عن المحاضر</h6>
+                          
+                            @foreach($course->supervisorcourses as $super)
+                            <div class="box">
+                                <div class="image"><img src="{{url('/')}}/public/storage/{{$super->supervisor->avatar}}" alt="teacher"></div>
+                                <div class="details">
+                                    <h6 class="name_teacher">{{$super->supervisor->supervisorinfo->name}}</h6>
+                                    <p>{{$super->supervisor->supervisorinfo->Educational}}</p>
+                                    <p>{{$super->supervisor->supervisorinfo->service->title}}</p>
                                 </div>
-
-
-                                <div class="form-group">
-                                    <a type="submit" class="btn link" >@lang("site.go")</a>
-                                </div>
-
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <!--==================== End library =======================-->
+
+
+
+
 @endsection
 
 @section('script')
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-
-<!-- Moyasar Scripts -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
-<script src="https://cdn.moyasar.com/mpf/1.2.0/moyasar.js"></script>
-
-<script>
-moyaser();
-   
-   console.log(url);
-   function moyaser(){
-       var x=$(".lolAfter").val()*100;
-   var code=$('input[name="code"]').val();
-   var url="{{ url('/') }}/subscribe/{{ $course->id }}?coupon="+code;
-    Moyasar.init({
-        // Required
-        // Specify where to render the form
-        // Can be a valid CSS selector and a reference to a DOM element
-        element: '.mysr-form',
-        // Required
-        // Amount in the smallest currency unit
-        // For example:
-        // 10 SAR = 10 * 100 Halalas
-        // 10 KWD = 10 * 1000 Fils
-        // 10 JPY = 10 JPY (Japanese Yen does not have fractions)
-        amount: x,
-        // Required
-        // Currency of the payment transation
-        currency: 'SAR',
-        // Required
-        // A small description of the current payment process
-        description: "{{$course->title_ar}}",
-        // Required
-        publishable_api_key: 'pk_test_8nqExJA62LTtaCySMbzuFYpdzgLMC7gBzZygX7QM',
-        // Required
-        // This URL is used to redirect the user when payment process has completed
-        // Payment can be either a success or a failure, which you need to verify on you system (We will show this in a couple of lines)
-        callback_url: url,
-        // Optional
-        // Required payments methods
-        // Default: ['creditcard', 'applepay', 'stcpay']
-        methods: [
-            'creditcard',
-            'stcpay'
-        ],
-        applepay: {
-            country: 'SA',
-            label: 'nhl',
-            merchant_validation_url: 'https://nhledu.com/nhl_marketer',
-        }
-    });
-   }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-var checkbox = $('#in_ch');
-
-var button = $('#check');
-
- 
-
-checkbox.on('change', function(){
- if(checkbox.is(':checked')){  
- 
-    button.removeProp('disabled');
-
-}else{  
-button.prop('disabled', 'disabled');
-} 
-});
-</script>
-
-<script>
-
-//-----------------
-$(document).ready(function(){
-$('.get_ajax_data').click(function(e){
-
-
- var lesson_id= $(this).attr('data-get_id'); 
-//console.log(lesson_id); 
-       $('#lesson').html('<div class="new-page"><div class="oh-sorry"><img src="{{ asset('public/src_website/images/sad.png') }}" /><p class="first-p">@lang("site.To enter the lesson")</p><p class="sec-p">@lang("site.You must first subscribe")</p></div></div>');
-   });
-});
-//-----------------
-</script>
-
-<script>
-
-//-----------------
-$(document).ready(function(){
-$('.get_ajax_exam').click(function(e){
-
-
- var exam_id= $(this).attr('data-get_id'); 
-//console.log(lesson_id); 
-       $('#lesson').html('<div class="new-page"><div class="oh-sorry"><img src="{{ asset('public/src_website/images/sad.png') }}" /><p class="first-p">@lang("site.To enter the test")</p><p class="sec-p">@lang("site.You must first subscribe")</p></div></div>');
-   e.preventDefault();
-   /*Ajax Request Header setup*/
-   $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
-   
-
-   /* Submit form data using ajax*/
-
-   });
-});
-//-----------------
-</script>
-
-        <script>
-        $(document).ready(function () {
-
-            $(document).on('click', '.link', function(){
-              var code=$('#code').val();
-              var course_id=$('#course_id').val();
-                    console.log(code);
-                    var token = '{{ csrf_token() }}';
-                    $.ajax({
-                    type:'GET',
-                    url:"{{ url('checkcodediscount')}}",
-                    data: { "course_id": course_id,"code" : code,_token: token},
-                    success: function(data){
-                    console.log(data);
-                    $('.lolAfter').val(data);
-                    $('.lol').val(data*100);
-                    moyaser();
-                    },error(err){
-                        console.log(err);
-                    }
-                    });
-                    
-       /* var token = '{{ csrf_token() }}';
-        $.ajax({
-        type: "GET",
-        url: "{{ url('cccodediscount')}}",
-        data:{ "code" : code,_token: token},
-        success: function(data) {
-        }
-        });*/
-        
-            });
-
-        });
-        </script>
-        <script>
-            $('#formmoyaser').submit(function() {
-                var code=$('input[name="code"]').val();
-              $('input[name="callback_url"]').val("{{ url('/') }}/subscribe/{{ $course->id }}/?coupon="+code); 
-             });
-        </script>
 @endsection

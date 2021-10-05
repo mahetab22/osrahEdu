@@ -135,7 +135,12 @@ Route::group(
 ], function(){ //...
 
 Auth::routes();
-
+Route::get('get/course/exam/{id}','examCourseController@get_student_exam')->name('get_student_exam')->middleware('auth');
+Route::get('attending/course/{subscripe_id}','CourseSubscriptionController@attending_course');
+Route::post('student/add/activities','CourseSubscriptionController@student_upload_activity')->name('student_add_activity')->middleware('auth');
+Route::post('student/add/apps','CourseSubscriptionController@student_upload_app')->name('student_add_app')->middleware('auth');
+Route::get('survey/{course_id}','SurveyController@index');
+Route::post('add/survey/{course_id}','SurveyController@store')->name('add_survey')->middleware('auth');
 Route::get('/testnotiphy', 'VisionController@testnotiphy')->name('/testnotiphy');
 //     - - ------------    aboutController   ----------- - -
 	Route::get('/', 'indexController@index')->name('/');
@@ -179,7 +184,7 @@ Route::get('pay/Marketer/{id}','indexController@payMarketer')->name('payMarketer
 
 //     - - ------------   CourseSubscriptionController    ----------- - -
     Route::get('/editcourse/{course}/','CourseSubscriptionController@geteditcourse');
-	Route::get('/mycourse/{course}/','CourseSubscriptionController@getmycourse');
+	Route::get('/mycourse/{course}/','CourseSubscriptionController@getmycourse')->name('getmycourse');
 	Route::get('/subscribe/{course}', 'CourseSubscriptionController@subscribe');
     Route::get('/subscribemag/{course}', 'CourseSubscriptionController@subscribemag');
     //Route::post('/subscribe', 'CourseSubscriptionController@subscribee')->name('subscribe');

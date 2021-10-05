@@ -38,7 +38,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \RealRashid\SweetAlert\ToSweetAlert::class,
-            \App\Http\Middleware\HttpsProtocol::class
+            \App\Http\Middleware\HttpsProtocol::class,
+            
         ],
 
         'api' => [
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'HttpsProtocol' => \App\Http\Middleware\HttpsProtocol::class,
         'admin' => \App\Http\Middleware\Admin::class,
+       
     ];
 
     /**

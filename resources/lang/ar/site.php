@@ -691,5 +691,20 @@ return [
     // ----------- Partners Alert -----------
     'partner added successfully'=>'تم إضافة الشريك بنجاح',
     'partner updated successfully'=>'تم تعديل الشريك بنجاح',
+  
 
+    //-------------count attending course,--------------
+    'count attending'=>'عدد مرات الحضور',
+    'reports'=>'تقارير',
+    'Attend All Selected'=>'تحضير كل الطلاب',
+    'no students checked'=>'لم يتم اختيار اى طالب',
+    'alert_attend'=>'تحضير',
+    'whatsapp'=>'واتساب',
+    'telegram'=>'تليجرام',    
+    'activities'=>'الأنشطة',
+    'activity'=>'نشاط',
+    'applications'=>'التطبيقات',
+    'app'=>'التطبيق',
+    'student'=>'طالب',
+    'notes'=>'ملاحظات',
 ];

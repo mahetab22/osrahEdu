@@ -14,6 +14,7 @@ use App\MarketeInfo;
 use App\Models\Info;
 use Session;
 use DB;
+use App\Survey;
 class adminController extends Controller
 {
   public function index(){
@@ -30,5 +31,35 @@ class adminController extends Controller
     
     return view('admin.index',$ipnut);
   }
+  public function survey(){
+    $survey=Survey::get();
+    return view('admin.survey',compact('survey'));
+  }
+  public function delete_all_student_activity(Request $request){
+
+    try{
+        if (is_array($request->ids)){
+          Survey::destroy($request->ids);
+            
+        }else{
+            $Survey=Survey::find($request->ids);
+            $Survey->delete();
+        }
+        return response()->json(['err'=>'0','alert' =>[
+            'icon'=>'success',
+            'title'=>__('site.alert_success'),
+            'text'=>__('site.deleted_successfully')
+            ]]);
+
+    } catch(Exception $e) {
+
+        return response()->json(['err'=>'1','alert' =>[
+            'icon'=>'error',
+            'title'=>__('site.alert_failed'),
+            'text'=>__('site.deleted_failed')
+            ]]);
+    }
+}
+
 
 }

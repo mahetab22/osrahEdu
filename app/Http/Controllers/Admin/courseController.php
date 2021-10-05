@@ -15,6 +15,7 @@ use App\MarketeInfo;
 use App\Models\Info;
 use Session;
 use DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use App\Http\Request\CourseRequestl;
 use App\Http\Requests\Admin\CourseRequest;
@@ -22,7 +23,9 @@ use App\Lesson;
 use App\Level;
 use App\Supervisor_Course;
 use App\SupervisorInfo;
-
+use App\Stusubscriptioncourse;
+use App\AttendingCourse;
+use Auth;
 class courseController extends Controller
 {
   public function index()
@@ -147,7 +150,7 @@ class courseController extends Controller
         $input = [
             'course' => Course::find($id),
             'services'=>Service::all(),
-            'supervisors'=>SupervisorInfo::all(),
+            'supervisors'=>SupervisorInfo::get(),
         ];
 
         return view('admin.courses.edit',$input);
@@ -186,6 +189,8 @@ class courseController extends Controller
         $course->studentDiscount = $request->discount ?? 0;
         $course->link_url = $request->type == 0 ? $request->link_url : $request->google_map;// if course is online insert link url
         $course->link_name = $request->type == 0 ? $request->link_name : $request->address_name;// if course is online insert link url
+       $course->whatsapp=$request->whatsapp;
+       $course->telegram=$request->telegram;
         $course->save();
 
         if ($request->hasFile('logo')) {
@@ -202,10 +207,17 @@ class courseController extends Controller
         try{
 
             if($request->supervisor_id){
-                $supervisor = Supervisor_Course::where('course_id',$id)->first();
-                $supervisor->supervisor_id = $request->supervisor_id;
+                foreach($request->supervisor_id as $super){
+                $supervisor = Supervisor_Course::where('course_id',$id)->where('supervisor_id',$super)->first();
+              if(!$supervisor){
+                $supervisor = new Supervisor_Course;
+                $supervisor->course_id=$id;
+                $supervisor->supervisor_id = $super;
+                $supervisor->user_id =auth::user()->id;
                 $supervisor->save();
+              }
             }
+        }
 
         } catch(Exception $e) {
             return redirect()->back()->with([
@@ -315,6 +327,69 @@ class courseController extends Controller
         }
     }
 
+    public function delete_all_student(Request $request){
+
+        try{
+            if (is_array($request->ids)){
+                Stusubscriptioncourse::destroy($request->ids);
+              
+            }else{
+                $course=Stusubscriptioncourse::find($request->ids)->delete();
+            }
+            return response()->json(['err'=>'0','alert' =>[
+                'icon'=>'success',
+                'title'=>__('site.alert_success'),
+                'text'=>__('site.deleted_successfully')
+                ]]);
+
+        } catch(Exception $e) {
+
+            return response()->json(['err'=>'1','alert' =>[
+                'icon'=>'error',
+                'title'=>__('site.alert_failed'),
+                'text'=>__('site.deleted_failed')
+                ]]);
+        }
+    }
+
+    public function attend_students(Request $request){
+        try{
+            if (is_array($request->ids)){
+               $students= Stusubscriptioncourse::whereIn('id',$request->ids)->get();
+               foreach($students as $st){
+                $att=AttendingCourse::where('student_course',$st->id)->where('created_at','like',Carbon::now()->format('Y-m-d').'%')->first();
+                if(!$att){
+                $attend=new AttendingCourse;
+                $attend->student_course=$st->id;
+                $attend->save();
+                }
+               }
+            
+            }else{
+                $st=Stusubscriptioncourse::find($request->ids);
+                $att=AttendingCourse::where('student_course',$st->id)->where('created_at','like',Carbon::now()->format('Y-m-d').'%')->first();
+                if(!$att){
+                $attend=new AttendingCourse;
+                $attend->student_course=$st->id;
+                $attend->save();
+                }
+            }
+            return response()->json(['err'=>'0','alert' =>[
+                'icon'=>'success',
+                'title'=>__('site.alert_success'),
+                'text'=>__('site.deleted_successfully')
+                ]]);
+
+        } catch(Exception $e) {
+
+            return response()->json(['err'=>'1','alert' =>[
+                'icon'=>'error',
+                'title'=>__('site.alert_failed'),
+                'text'=>__('site.deleted_failed')
+                ]]);
+        }
+    }
+
     public function course_active(Request $request){
         $course=Course::find($request['id']);
         if($course->activate==0){
@@ -332,6 +407,11 @@ class courseController extends Controller
               ];
 
              return view('admin.courses.students',$input);
+      }
+
+      public function student_report($id){
+        $attends=AttendingCourse::where('student_course',$id)->get();
+        return view('admin.courses.reports',compact('attends'));
       }
 
 }

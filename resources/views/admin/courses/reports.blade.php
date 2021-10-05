@@ -45,24 +45,17 @@
                     <tr>
                         <th width="50px"><input type="checkbox" id="master"></th>
                         <th>#</th>
-                        <th>@lang('site.name')</th>
-                        <th>@lang('site.amount')</th>
-                        <th>@lang('site.subscripe date')</th>
-                        <th>@lang('site.count attending')</th>
+                        <th>@lang('site.created_at')</th>
                         <th></th>
 
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($course->subscriptioncourses as $i => $student)
+                @foreach($attends as $i => $student)
                   <tr data-row-id='{{ $student->id }}'>
                       <td><input type="checkbox" name="students[]" class="sub_chk" data-id="{{$student->id}}"></td>
                       <td>{{$i+1}}</td>
-                      <td>{{$student->user->name}}</td>
-                      <td>{{$student->amount}}</td>
                       <td>{{$student->created_at}}</td>
-                      <td>{{$student->Attending->count()}}</td>
-                      <td><a href="{{url('/')}}/admin/course/student/reports/{{$student->id}}" class="btn btn-primary">@lang('site.reports')</a></td>
                   </tr>
 
                 @endforeach
@@ -211,61 +204,7 @@ $('.delete_all').on('click', function(e) {
 
 });
 
-$('.attend_all').on('click', function(e) {
 
-var allVals = [];
-$(".sub_chk:checked").each(function() {
-    allVals.push($(this).attr('data-id'));
-});
-if(allVals.length <=0)
-{
-    Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: "{{ __('site.no students checked') }}",
-        showConfirmButton: false,
-        timer: 1500,
-    })
-}  else {
-        //var users_id = allVals.join(",");
-        Swal.fire({
-            title: "@lang('site.alert_confirm_message')",
-            text: "@lang('site.alert_irreversible_message')",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: "@lang('site.alert_attend')",
-            cancelButtonText: "@lang('site.alert_cancel')"
-            }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "{!! url('admin/course/student/attend_all' ) !!}",
-                    type: 'POST',
-                    data: { ids: allVals, _token:"{{ csrf_token() }}" },
-                    success: function (data) {
-                        console.log(data);
-
-                        Swal.fire({
-                            position: 'center',
-                            icon: data['alert']['icon'],
-                            title: data['alert']['title'],
-                            showConfirmButton: false,
-                            timer: 1500,
-                        })
-                        // window.reload();
-                    },
-                    error: function (data) {
-                        console.log(data.responseText);
-                    }
-                });
-            }
-        })
-}
-
-
-
-});
 </script>
 
 @endsection

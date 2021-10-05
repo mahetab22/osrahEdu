@@ -10,14 +10,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>@lang('site.lessons')</h1>
+            <h1>@lang('site.activities')</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/courses">@lang('site.courses')</a></li>
-              <li class="breadcrumb-item"><a href="{{url('/')}}/admin/levels/course/{{$level->course->id}}">@lang('site.levels')</a></li>
-              <li class="breadcrumb-item active">@lang('site.lessons')</li>
+              <li class="breadcrumb-item active">@lang('site.activities')</li>
             </ol>
           </div>
         </div>
@@ -32,9 +31,9 @@
 
           <div class="card">
             <div class="card-header">
-            <a class="btn bg-gradient-primary text-white" data-toggle="modal" data-target="#add-lesson" >@lang('site.create new')</a>
+            <a class="btn bg-gradient-primary text-white" data-toggle="modal" data-target="#add-activity" >@lang('site.create new')</a>
             <button class="btn bg-gradient-primary text-white delete_all"> {{ __('site.Delete All Selected') }}</button>
-                <h3 class="card-title">@lang('site.lessons')</h3>
+                <h3 class="card-title">@lang('site.activities')</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -43,100 +42,80 @@
                     <tr>
                         <th width="50px"><input type="checkbox" id="master"></th>
                         <th>#</th>
-                        <th>@lang('site.arabic title')</th>
-                        <th>@lang('site.english title')</th>
-                        <th>@lang('site.arabic description')</th>
-                        <th>@lang('site.english description')</th>
+                        <th>@lang('site.title')</th>
+                        <th>@lang('site.activity')</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($level->lessons as $i => $lesson)
-                  <tr data-row-id='{{ $lesson->id }}'>
-                      <td><input type="checkbox" name="lessons[]" class="sub_chk" data-id="{{$lesson->id}}"></td>
+                @foreach($course->activties as $i => $activity)
+                  <tr data-row-id='{{ $activity->id }}'>
+                      <td><input type="checkbox" name="activties[]" class="sub_chk" data-id="{{$activity->id}}"></td>
                       <td>{{$i+1}}</td>
-                      <td>{{$lesson->title_ar}}</td>
-                      <td>{{$lesson->title_en}}</td>
-                      <td>{{$lesson->description_ar}}</td>
-                      <td>{{$lesson->description_en}}</td>
+                      <td>{{$activity->title}}</td>
+                      <td><a href="{{url('/')}}/public/{{$activity->acivity}}" download><i class="fa fa-download"></i></a></td>
 
                       <td>
                           <div class="row">
-                              <div class="col-md-6">
-                                  <a class="edit btn bg-gradient-primary" data-toggle="modal" data-target="#update-lesson{{$i}}"><i class="fa fa-edit text-white"></i></a>
+                              <div class="col-md-4">
+                                  <a class="edit btn bg-gradient-primary" data-toggle="modal" data-target="#update-activity{{$i}}"><i class="fa fa-edit text-white"></i></a>
                               </div>
-                              <div class="col-md-6">
-                                  <a class="delete btn bg-gradient-danger " href="javascript:void(0)" data-delete-id="{{ $lesson->id }}"><i class="fa fa-trash text-white"></i></a>
+                              <div class="col-md-4">
+                                  <a class="delete btn bg-gradient-danger " href="javascript:void(0)" data-delete-id="{{ $activity->id }}"><i class="fa fa-trash text-white"></i></a>
+                              </div>
+                              <div class="col-md-4">
+                                  <a class="btn bg-gradient-info text-white" href="{{url('/')}}/admin/activities/{{$activity->id}}/student_activity" >أنشطه الطلاب</a>
                               </div>
                           </div>
                       </td>
                   </tr>
-                  <div id="update-lesson{{$i}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title">@lang('site.new')</h4>
-                            </div>
-                            <form method="post" action="{{url('/')}}/admin/lessons/update/{{$lesson->id}}">
-                            @csrf
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-1" class="control-label">@lang('site.arabic title')</label>
-                                            <input type="text" class="form-control" name="title_ar"id="field-1"value="{{$lesson->title_ar}}" placeholder="@lang('site.arabic title')">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-2" class="control-label">@lang('site.english title')</label>
-                                            <input type="text" class="form-control" name="title_en"id="field-2" value="{{$lesson->title_en}}" placeholder="@lang('site.english title')">
-                                        </div>
-                                    </div>
+                  <div id="update-activity{{$i}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title">@lang('site.new')</h4>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-3" class="control-label">@lang('site.arabic description')</label>
-                                            <textarea row="3" type="text" name="desc_ar"class="form-control" id="field-3" >{{$lesson->description_ar}}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-4" class="control-label">@lang('site.english description')</label>
-                                            <textarea row="3" type="text" name="desc_en"class="form-control" id="field-4" >{{$lesson->description_en}}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-5" class="control-label">@lang('site.link url')</label>
-                                            <input type="text" class="form-control" value="{{$lesson->link}}" name="link"id="field-5" placeholder="@lang('site.link ي ضurl')">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
+                                <form method="post" action="{{url('/')}}/admin/activities/update/{{$activity->id}}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="course_id" value="{{$course->id}}"/>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="field-1" class="control-label">@lang('site.title')</label>
+                                                <input type="text" class="form-control" name="title"id="field-1"value="{{$activity->title}}" placeholder="@lang('site.title')">
                                             </div>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="col-md-12">      
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
+                                                    <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
+                                                </div>
 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text" id="">@lang('site.choose file')</span>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="">@lang('site.choose file')</span>
+                                                </div>
                                             </div>
-                                        </div>
+                                    </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                                    <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.update')</button>
+                                </div>
+                                </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
-                                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
-                            </div>
-                            </form>
                         </div>
-                    </div>
-                    </div><!-- /.modal -->
+                 </div><!-- /.modal -->
+                    
                     @endforeach
+               
+               
+               
                 </tbody>
               </table>
             </div>
@@ -150,50 +129,25 @@
     </section>
     <!-- /.content -->
 </div>
-<div id="add-lesson" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="add-activity" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">@lang('site.new')</h4>
             </div>
-            <form method="post" action="{{url('/')}}/admin/lessons/create/{{$level->id}}">
+            <form method="post" action="{{url('/')}}/admin/activities/create" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="course_id" value="{{$course->id}}"/>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="field-1" class="control-label">@lang('site.arabic title')</label>
-                            <input type="text" class="form-control" name="title_ar"id="field-1" placeholder="@lang('site.arabic title')">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="field-2" class="control-label">@lang('site.english title')</label>
-                            <input type="text" class="form-control" name="title_en"id="field-2" placeholder="@lang('site.english title')">
+                            <label for="field-1" class="control-label">@lang('site.title')</label>
+                            <input type="text" class="form-control" name="title"id="field-1" placeholder="@lang('site.title')">
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="field-3" class="control-label">@lang('site.arabic description')</label>
-                            <textarea row="3" type="text" name="desc_ar"class="form-control" id="field-3" ></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="field-4" class="control-label">@lang('site.english description')</label>
-                            <textarea row="3" type="text" name="desc_en"class="form-control" id="field-4" ></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="field-5" class="control-label">@lang('site.link url')</label>
-                            <input type="text" class="form-control" name="link"id="field-5" placeholder="@lang('site.link url')">
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="custom-file">
@@ -263,7 +217,7 @@ $('.delete_all').on('click', function(e) {
         Swal.fire({
             position: 'center',
             icon: 'warning',
-            title: "{{ __('site.no lessons checked') }}",
+            title: "{{ __('site.no activties checked') }}",
             showConfirmButton: false,
             timer: 1500,
         })
@@ -281,7 +235,7 @@ $('.delete_all').on('click', function(e) {
                 }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{!! url('admin/lessons/delete_all' ) !!}",
+                        url: "{!! url('admin/activities/delete_all' ) !!}",
                         type: 'POST',
                         data: { ids: allVals, _token:"{{ csrf_token() }}" },
                         success: function (data) {
@@ -335,7 +289,7 @@ $('.delete_all').on('click', function(e) {
                 type:'POST',
                 dataType: 'json',
                 data:{ id:id, _method: 'DELETE', _token:"{{ csrf_token() }}" },
-                url: "{!! url('admin/lessons/delete/' ) !!}" + "/" + id,
+                url: "{!! url('admin/activities/delete/' ) !!}" + "/" + id,
                 success:function(data){
                     Swal.fire({
                         position: 'center',

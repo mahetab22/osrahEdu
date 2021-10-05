@@ -100,8 +100,8 @@
                             <div class="teacher">
                                 <div class="img"><img src="{{url('/')}}/public/src_website/assets/img/person.png" alt="img"></div>
                                 <div class="text">
-                                    <h5>{{$course->supervisorcourses->supervisor->supervisorinfo->name}}</h5>
-                                    <h6>{{$course->supervisorcourses->supervisor->supervisorinfo->Educational}}</h6>
+                                    <h5>{{$course->supervisorcourses->first()->supervisor->supervisorinfo->name}}</h5>
+                                    <h6>{{$course->supervisorcourses->first()->supervisor->supervisorinfo->Educational}}</h6>
                                 </div>
                             </div>
                             <div class="icon_video">
