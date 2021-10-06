@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Lang('site.update services')</h1>
+                    <h1>@Lang('site.create new exam')</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/services') }}">@lang('site.services')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.update services')</li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/exams') }}">@lang('site.exams')</a></li>
+                    <li class="breadcrumb-item active">@Lang('site.create new exam')</li>
                     </ol>
                 </div>
             </div>
@@ -23,97 +23,259 @@
         </section>
         <!-- Main content -->
         <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-            <!-- right column -->
-            <div class="col-md-12">
-                <!-- Horizontal Form -->
-                <div class="card card-info">
-
-                <!-- form start -->
-                    <form class="form-horizontal" method="POST" action="{{ url('admin/services/'.$service->id) }}" enctype="multipart/form-data">
-                        @csrf
-                        {{ method_field('PUT') }}
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="exampleInputFile" class="col-sm-2 control-label">@lang('site.logo')</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" name="logo" class="custom-file-input @error('logo') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">@lang('site.choose image')</label>
+        <!-- form start -->
+        <form class="form-horizontal" method="POST" action="{{ url('admin/exams/'.$exam->id) }}" enctype="multipart/form-data">
+            @csrf
+            {{ method_field('PUT') }}
+            <div class="container-fluid">
+                <div class="row">
+                <!-- right column -->
+                <div class="col-md-12">
+                    <!-- Horizontal Form -->
+                    <div class="card card-info">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="exampleInputFile" class="col-sm-2 control-label">@lang('site.logo')</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" name="logo" class="custom-file-input @error('logo') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">@lang('site.choose image')</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="">@lang('site.choose image')</span>
+                                            </div>
                                         </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="">@lang('site.choose image')</span>
-                                        </div>
+                                        @error('logo')
+                                            <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                        @enderror
                                     </div>
-                                    @error('logo')
-                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
-                                    @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 control-label">@lang('site.service arabic title')</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('title_ar') {{  'is-invalid'  }} @enderror" id="inputName1" name="title_ar" value="{{ $service->title_ar }}" placeholder="@lang('site.service arabic title')" required>
-                                    @error('title_ar')
-                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 control-label">@lang('site.service english title')</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('title_en') {{  'is-invalid'  }} @enderror" id="inputName1" name="title_en" value="{{ $service->title_en }}" placeholder="@lang('site.service english title')">
-                                    @error('title_en')
-                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
-                                    @enderror
-                                </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 control-label">@lang('site.service arabic description')</label>
-                                <div class="col-sm-10">
-                                    <textarea name="desc_ar" class="form-control @error('desc_ar') {{  'is-invalid'  }} @enderror">{{ $service->description_ar }}</textarea>
-                                    @error('desc_ar')
-                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
-                                    @enderror
+                                <div class="form-group row">
+                                    <label for="inputTitle" class="col-sm-2 control-label">@lang('site.exam title')</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control @error('title') {{  'is-invalid'  }} @enderror" id="inputTitle" name="title" value="{{ $exam->title }}" placeholder="@lang('site.exam title')">
+                                        @error('title')
+                                            <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 control-label">@lang('site.service arabic description')</label>
-                                <div class="col-sm-10">
-                                    <textarea name="desc_en" class="form-control @error('desc_en') {{  'is-invalid'  }} @enderror">{{ $service->description_en }}</textarea>
-                                    @error('desc_en')
-                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
-                                    @enderror
+                                <div class="form-group row">
+                                    <label for="inputCode" class="col-sm-2 control-label">@lang('site.exam code')</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control @error('code') {{  'is-invalid'  }} @enderror" id="inputCode" name="code" min="1" value="{{ $exam->code }}" placeholder="@lang('site.exam code')" required>
+                                        @error('code')
+                                            <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
                                 </div>
+
+
+                                <div class="form-group row">
+                                    <label for="inputContent" class="col-sm-3 control-label">@lang('site.exam content')</label>
+                                    <div class="col-md-3">
+                                        <label for="inputContent1" class="col-sm-9 control-label">@lang('site.course')</label>
+                                        <input type="radio" name="content" class="form-control col-md-3" id="inputContent1" value="0" {{ $exam->content == 0 ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="inputContent2" class="col-sm-9 control-label">@lang('site.level')</label>
+                                        <input type="radio" name="content" class="form-control col-md-3" id="inputContent2" value="1" {{ $exam->content == 1 ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="inputContent3" class="col-sm-9 control-label">@lang('site.lesson')</label>
+                                        <input type="radio" name="content" class="form-control col-md-3" id="inputContent3" value="2" {{ $exam->content == 2 ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row col-md-12" id="exam_content">
+                                        {{--- Courses ---}}
+                                        <div class="col-sm-4 row" id="Courses">
+                                            <label for="inputCourses" class="col-sm-3 control-label">@lang('site.course title')</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control course @error('course_id') {{  'is-invalid'  }} @enderror" id="inputCourses" name="course_id" required>
+                                                    <option value="" disabled selected>-- @lang('site.Choose the course') --</option>
+                                                    @foreach ($courses as $course)
+                                                    <option value="{{ $course->id }}"  {{  $exam->course_id ==  $course->id ? 'selected' : '' }} > {{ app()->getLocale() == 'ar' ? $course->title_ar : $course->title_en }} </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('course_id')
+                                                    <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                                @enderror
+                                            </div>
+                                        </div>{{--- /Courses ---}}
+                                        {{--
+                                        <!--- Levels ---->
+                                        <div class="col-sm-4 row" id="Levels">
+                                            <label for="inputLevels" class="col-sm-3 control-label">@lang('site.level')</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control course @error('level_id') {{  'is-invalid'  }} @enderror" id="inputLevels" name="level_id" required>
+                                                    <option value="" disabled selected>-- @lang('site.Choose the level') --</option>
+                                                    @foreach ($levels as $level)
+                                                    <option value="{{ $level->id }}"  {{  $exam->level_id ==  $level->id ? 'selected' : '' }} > {{ app()->getLocale() == 'ar' ? $level->title_ar : $level->title_en }} </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('level_id')
+                                                    <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                                @enderror
+                                            </div>
+                                        </div><!--- /Levels --->
+
+                                        <!--- Lessons --->
+                                        <div class="col-sm-4 row" id="Lessons">
+                                            <label for="inputLessons" class="col-sm-3 control-label">@lang('site.lesson')</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control lessons @error('lesson_id') {{  'is-invalid'  }} @enderror" id="inputLessons" name="lesson_id" required>
+                                                    <option value="" disabled selected>-- @lang('site.Choose the level') --</option>
+                                                    @foreach ($lessons as $lesson)
+                                                    <option value="{{ $lesson->id }}"  {{  $exam->lesson_id ==  $lesson->id ? 'selected' : '' }} > {{ app()->getLocale() == 'ar' ? $lesson->title_ar : $lesson->title_en }} </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('lesson_id')
+                                                    <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
+                                                @enderror
+                                            </div>
+                                        </div><!--- /Lessons --->
+                                        --}}
+                                    </div>
+
                             </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn bg-gradient-info text-white">@lang('site.update')</button>
-                        </div>
-                        <!-- /.card-footer -->
-                    </form>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn bg-gradient-info text-white">@lang('site.edit')</button>
+                            </div>
+                            <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
-            </div>
-            <!--/.col (right) -->
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-        </section>
+                <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+            </section>
+        </form>
         <!-- /.content -->
     </div>
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
 <script>
-    $('#role').on('change',function(){
-        console.log('test');
-        $(this).removeClass('is-invalid');
+    //Getting All Sections Contetnt Courses And Levels And Lessons On Edit
+    if($('[name="content"]').is(':checked')) {
+        var content_val =$('input[name=content]:checked').val();
+        console.log(content_val);
+        switch (content_val) {
+            case '0':
+                $('.levels').hide();
+                $('.lessons').hide();
+                break;
+            case '1':
+                $('#exam_content').append('<div class="levels col-sm-4 row"></div>');
+                get_levels();
+                $('.levels').show();
+                $('.lessons').hide();
+                break;
+            case '2':
+                $('#exam_content').append('<div class="levels col-sm-4 row"></div><div class="lessons col-sm-4 row"></div>');
+                $('.levels').show();
+                $('.lessons').show();
+                get_levels();
+                get_lessons();
+                break;
+            default:
+                console.log('not found');
+        }
+    }
+
+    //Getting All Sections Contetnt Courses And Levels And Lessons On Change
+    $('input[name=content]').on('change',function(){
+        var content_val = $( 'input[name=content]:checked' ).val();
+        console.log(content_val);
+        $('#Courses').show();
+        $('#Levels').remove();
+        $('#Lessons').remove();
+        switch (content_val) {
+            case '0':
+                $('#Levels').remove();
+                $('#Lessons').remove();
+                $('.levels').remove();
+                $('.lessons').remove();
+                break;
+            case '1':
+                $('#Lessons').remove();
+                $('.lessons').remove();
+                $('#exam_content').append('<div class="levels col-sm-4 row"></div>');
+                break;
+            case '2':
+                $('#exam_content').append('<div class="levels col-sm-4 row"></div><div class="lessons col-sm-4 row"></div>');
+                break;
+            default:
+                console.log('not found');
+        }
     });
+    //--- ON EDIT MOOD ---
+    function get_levels(){
+        $.ajax({
+            url:"{{ url('admin/exam/levels') }}"+'/'+ '{{ $exam->course_id }}',
+            method:"GET",
+            data:{
+                "_token": "{{ csrf_token() }}",
+                "level_id": {{ $exam->level_id ?? '0' }}
+            },success:function(res){
+                $('.levels').show();
+                $('.levels').html(res);
+            }
+        });
+    }
+    //--- ON EDIT MOOD ---
+    function get_lessons(){
+        $.ajax({
+            url:"{{ url('admin/exam/lessons') }}"+'/'+'{{ $exam->level_id }}',
+            method:"GET",
+            data:{
+                "_token": "{{ csrf_token() }}",
+                "lesson_id": {{ $exam->lesson_id ?? '0' }}
+            },success:function(res){
+                $('.lessons').show();
+                $('.lessons').html(res);
+            }
+        });
+    }
+
+
+
+    //--- Getting All levels related to the specific course id ---
+    $('.course').on('change',function(){
+        var course_id = $(this).val();
+        $('.levels').hide();
+        $('.lessons').hide();
+        $.ajax({
+            url:"{{ url('admin/exam/levels') }}"+'/'+course_id,
+            method:"GET",
+            success:function(res){
+                $('.levels').html(res);
+                $('.levels').show();
+            }
+        });
+    });
+
+
+    //--- Getting All lessons related to the specific level id ---
+    function lessons(){
+        var level_id = $('#level').val();
+        $.ajax({
+            url:"{{ url('admin/exam/lessons') }}"+'/'+level_id,
+            method:"GET",
+            success:function(res){
+                $('.lessons').show();
+                $('.lessons').html(res);
+            }
+        });
+    }
+
+
+
+
 </script>
 @endsection
