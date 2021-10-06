@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>@lang('site.exams')</h1>
+            <h1>@lang('site.exam questions')</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.exams')</li>
+              <li class="breadcrumb-item active">@lang('site.exam questions')</li>
             </ol>
           </div>
         </div>
@@ -30,9 +30,8 @@
 
           <div class="card">
             <div class="card-header">
-            <a class="btn bg-gradient-primary text-white" href="{{url('/admin/exams/create')}}">@lang('site.create new exam')</a>
-            <button class="btn bg-gradient-primary text-white delete_all"> {{ __('site.Delete All Selected') }}</button>
-                <h3 class="card-title">@lang('site.exams')</h3>
+            <a class="btn bg-gradient-primary text-white" href="{{url('/admin/exam/'. $exam_id .'/questions/create')}}">@lang('site.create new question')</a>
+            <h3 class="card-title">@lang('site.exam questions')</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -40,42 +39,43 @@
                 <thead>
                     <tr>
                         <th width="50px"><input type="checkbox" id="master"></th>
-                        <th>@lang('site.exam logo')</th>
-                        <th>@lang('site.exam code')</th>
-                        <th>@lang('site.exam title')</th>
-                        <th>@lang('site.exam user')</th>
-                        <th>@lang('site.exam course')</th>
-                        <th>@lang('site.exam level')</th>
-                        <th>@lang('site.exam lesson')</th>
-                        <th>@lang('site.exam view')</th>
-                        <th>Actions</th>
+                        <th>@lang('site.question title')</th>
+                        <th>@lang('site.question type')</th>
+                        <th>@lang('site.question solution')</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($exams as $i => $exam)
-                <tr data-row-id='{{ $exam->id }}'>
-                    <td><input type="checkbox" name="exams[]" class="sub_chk" data-id="{{$exam->id}}"></td>
-                    <td><img src="{{url('/')}}/{{$exam->logo}}" width="100px"/></td>
-                    <td>{{ $exam->code }}</td>
-                    <td>{{ $exam->title }}</td>
-                    <td>{{ $exam->user->name }}</td>
-                    <td>{{ $exam->course->title ?? ''}}</td>
-                    <td>{{ $exam->levels->title ?? ''}}</td>
-                    <td>{{ $exam->lesson->title ?? '' }}</td>
-                    <td>{{ $exam->view }}</td>
-
+                @foreach($questions as $i => $question)
+                <tr data-row-id='{{ $question->id }}'>
+                    <td><input type="checkbox" name="examQuestions[]" class="sub_chk" data-id="{{ $question->id }}"></td>
+                    <td>{{$question->question}}</td>
+                    <td>{{$question->type == 0 ? __('site.exam question mcq') : __('site.exam question correct') }}</td>
                     <td>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <a class="edit btn bg-gradient-primary m-1" href="{{ url('/admin/exams/'.$exam->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $exam->id }}"><i class="fa fa-trash text-white"></i></a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a class="questions btn bg-gradient-info m-1 text-white" href="{{ url('/admin/exam/'.$exam->id.'/questions') }}" data-exam-id="{{ $exam->id }}"><i class="fa fa-question text-white"></i></a>
-                                </div>
+                        @switch($question->sol)
+                            @case(1)
+                                {{ __('site.exam question first answer') }}
+                                @break
+                            @case(2)
+                                {{ __('site.exam question second answer') }}
+                                @break
+                            @case(3)
+                                {{ __('site.exam question third answer') }}
+                                @break
+                            @case(4)
+                                {{ __('site.exam question fourth answer') }}
+                                @break
+
+                            @default
+                        @endswitch
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a class="edit btn bg-gradient-primary m-1" href="{{ url('/admin/exam/'.$exam_id.'/questions/'.$question->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $question->id }}"><i class="fa fa-trash text-white"></i></a>
                             </div>
                         </div>
                     </td>
@@ -116,8 +116,46 @@
     });
   });
 </script>
-<script>
-
+<script type="text/javascript">
+    $('.delete').on('click',function(e){
+      id = $(this).attr('data-delete-id');
+        e.preventDefault();
+        Swal.fire({
+          title: "@lang('site.alert_confirm_message')",
+          text: "@lang('site.alert_irreversible_message')",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: "@lang('site.alert_delete')",
+          cancelButtonText: "@lang('site.alert_cancel')"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                type:'POST',
+                dataType: 'json',
+                data:{ id:id, _method: 'DELETE', _token:"{{ csrf_token() }}" },
+                url: "{!! url('admin/exams/' ) !!}" + "/" + id,
+                success:function(data){
+                    Swal.fire({
+                        position: 'center',
+                        icon: data['alert']['icon'],
+                        title: data['alert']['title'],
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    if(data['err'] == 0){
+                        $('table tr').filter("[data-row-id='" + value + "']").remove();
+                    }
+                },
+                error:function(data){
+                    console.log("error");
+                    console.log(data);
+                }
+                });
+            }
+        });
+    });
 
 $('#master').on('click', function(e) {
     if($(this).is(':checked',true))
@@ -186,52 +224,6 @@ $('.delete_all').on('click', function(e) {
                 }
             })
     }
-
-
-
-});
-</script>
-//var id = $(this).attr('data-delete-id');
-<script type="text/javascript">
-    $('.delete').on('click',function(e){
-      id = $(this).attr('data-delete-id');
-      console.log(id);
-        e.preventDefault();
-        Swal.fire({
-          title: "@lang('site.alert_confirm_message')",
-          text: "@lang('site.alert_exam_delete')",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: "@lang('site.alert_delete')",
-          cancelButtonText: "@lang('site.alert_cancel')"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                type:'POST',
-                dataType: 'json',
-                data:{ id:id, _method: 'DELETE', _token:"{{ csrf_token() }}" },
-                url: "{!! url('admin/exams/' ) !!}" + "/" + id,
-                success:function(data){
-                    Swal.fire({
-                        position: 'center',
-                        icon: data['alert']['icon'],
-                        title: data['alert']['title'],
-                        showConfirmButton: false,
-                        timer: 1500,
-                    })
-                    if(data['err'] == 0){
-                        location.reload();
-                    }
-                },
-                error:function(data){
-                    console.log("error");
-                    console.log(data);
-                }
-            });
-        }
-    });
 });
 </script>
 @endsection

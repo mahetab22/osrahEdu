@@ -9,13 +9,14 @@ class Exam extends Model
 
     public function course()
     {
-        return $this->belongsTo('App\Course', 'cousre_id');
+        return $this->belongsTo('App\Course', 'course_id');
     }
 
     public function levels()
     {
         return $this->belongsTo('App\Level', 'level_id');
     }
+
 
     public function lesson()
     {

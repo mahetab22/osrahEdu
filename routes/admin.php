@@ -59,6 +59,12 @@ Route::group(['prefix' => 'admin',
         Route::post('/delete_all','ExamController@delete_all');
         Route::get('/levels/{id}','ExamController@levels');
         Route::get('/lessons/{id}','ExamController@lessons');
+        // ------------------ Exam Questions -------------------------
+        Route::get('/{id}/questions','ExamQuestionsController@index');
+        Route::get('/{id}/questions/create','ExamQuestionsController@create');
+        Route::post('/{id}/questions/store','ExamQuestionsController@store');
+        Route::get('/{id}/questions/{question_id}/edit','ExamQuestionsController@edit');
+        Route::post('/{id}/questions/{question_id}/update','ExamQuestionsController@update');
     });
 
 
