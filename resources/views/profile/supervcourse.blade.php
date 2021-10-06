@@ -117,19 +117,7 @@
                             </div>
                         </div>
                           
-               {{--         <div class="all-buttons ">
-                                <a href="{{$course->link_url }}"class="add-btn addstr" >
-                                    <div class="swq-sv">
-                                        <div class="tyuo-img">
-                                            <img src="{{ url('/') }}/public/src_website/images/whats.svg">
-                                        </div>
-                                        <div class="wei">
-                                            <span class="whatsup-span">whatsup</span>
-                                            <span>قروب الواتس اب</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>--}}
+           
                             @if(isset($course->link_url))
                             <div class="all-buttons soci-btn">
                                 <a href="{{$course->link_url }}" class="add-btn addstr" >
@@ -267,10 +255,7 @@
                         </div>
                     </div>
 
-                <!-- <div class="download-attch">
-                                <h3><i class="fa fa-paperclip"></i>@lang("site.Download the attachments") </h3>
-                                <a href="{{ url('/') }}/public/storage/{{ $course->file }}" download>@lang("site.Press here")</a>
-                            </div>-->
+             
 
                 </div>
                 <!-- lesson -->
