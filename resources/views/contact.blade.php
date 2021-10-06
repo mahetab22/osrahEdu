@@ -2,105 +2,118 @@
 
 @section('content')
 
-        <!-- Start Title -->
-        <section class="title-s" style="background-image: url({{ asset('public/src_website/images/111.jpg') }})">
-            <div class="container">
-                <h2>@lang("site.Contact_Us")</h2>
-                <ul>
-                    <li>
-                        <a href="{{ route('/') }}">
-                           @lang("site.Main")
-                        </a>
-                    </li>
-                    <li>
-                        <span>
-                           @lang("site.Contact_Us")
-                        </span>
-                    </li>
-                </ul>
+    <!--======================== Start page header =============================-->
+    <section class="page_header" style="background-image: url({{url('/')}}/public/src_website/assets/img/hero.png);">
+        <div class="container">
+            <div class="content">
+                <h4 class="title">@lang("site.Contact_Us")</h4>
+                <div class="history">
+                    <a href="#" class="home">@lang("site.Main")</a>
+                    <span class="break"></span>
+                    <h5 class="page_name">@lang("site.Contact_Us")</h5>
+                </div>
             </div>
-        </section>
-        <!-- End Title -->
-        
-        <!-- Start Contact-inner -->
-        <section class="contact-inner body-inner">
-            <div class="container">
-                <div class="col-md-3 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="form-contact">
-                        <form action="{{ route('addcontacts') }}" method="POST" role="form"  enctype="multipart/form-data">
-                         @csrf
-                            <h3>@lang("site.contact_details")</h3>
-                            <div class="form-group">
-                                <label>@lang("site.Address_the_problem")</label>
-                                <input type="text" name="title_problem" placeholder="@lang("site.Address_the_problem")" class="form-control" required/>
-                            </div>
-                            <div class="form-group">
-                             <select  class="form-control" name="Suggestions_and_Complaints" required >
+        </div>
+    </section>
+    <!--======================== End page header =============================-->
 
-                                  <option value="@lang("site.Complaints")" selected>@lang("site.Complaints")</option>
-                                  <option value="@lang("site.Suggestions")">@lang("site.Suggestions")</option>
-                             </select>
-                            </div>
-                            <div class="form-group">
-                                <label>@lang("site.Course_name")</label>
-                                <input type="text" name="course_link" placeholder="@lang("site.Course_name")" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>@lang("site.Message_details")</label>
-                                <textarea name="details" placeholder="@lang("site.Message_details")" class="form-control"></textarea>
-                            </div>
-                            
-                            <h3> @lang("site.Personal_data")</h3>
+    <!-- ==================== Start common questions page =================== -->
+    <section class="contact_page">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-8 o-2">
+                    <div class="modal_form">
+                        <div class="">
+                            <form action="{{ route('addcontacts') }}" method="POST" role="form"  enctype="multipart/form-data">
+                            @csrf
                             <div class="form-group">
                                 <label>@lang("site.name")</label>
-                                <input type="text" name="name" placeholder="@lang("site.name")" class="form-control" required />
+                                <input type="text" name="name" placeholder="@lang('site.name')" class="form-control"  />
+                                @error('name')
+                                    <span class="alert alert-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>@lang("site.email")</label>
-                                <input type="email" name="email" placeholder="@lang("site.email")" class="form-control" required/>
+                                <input type="email" name="email" placeholder="@lang('site.email')" class="form-control"/>
+                                @error('email')
+                                    <span class="alert alert-danger">{{ $message }}</span>
+                                @enderror
                             </div>
+                          
                             <div class="form-group">
-                                <label>@lang("site.phone")</label>
-                                <input placeholder="@lang("site.phone")" class="form-control"  type="tel" id="phone" name="phone" />
-                            </div>
-                            <div class="form-group">
-                                <label>@lang("site.Attachments")</label>
-                                <div class="input-group">
-                                    <label class="input-group-btn">
-                                        <span class="btn btn-primary">
-                                            <i class="fa fa-upload"></i> <input type="file" name="file" style="display: none;" multiple>
-                                        </span>
-                                    </label>
-                                    <input type="text" class="form-control" placeholder="@lang("site.files")" readonly>
+                                <label>@lang("site.contactType")</label>
+                                   <select name="type" class="form-control">
+                                       @foreach($types as $type)
+                                            <option value="{{$type->id}}">{{$type->title_ar}}</option>
+                                        @endforeach
+                                   </select>
+                             </div>
+                                <div class="form-group">
+                                    <label for="">@lang('site.topic')</label>
+                                    <input type="text" placeholder="الموضوع" name="topic" class="form-control">
+                                    @error('topic')
+                                    <span class="alert alert-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="@lang("site.send")" class="form-control btn-style" />
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <label for="">@lang('site.message')</label>
+                                    <textarea placeholder="الرسالة" class="form-control" name="message" style="height: 150px; resize: none;"></textarea>
+                                    @error('message')
+                                    <span class="alert alert-danger">{{ $message }}</span>
+                                   @enderror
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button class="main-btn main">@lang('site.sent')</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-xs-12"></div>
-               <!--  <div class="col-md-5 col-xs-12">
-                    <div class="qut">
-                        <h4>@lang("site.common_questions")</h4>
-                        <ul>
-                            
-                        @foreach($questions as $question)
-                            <li>
-                                <a href="{{ url('/') }}/comquestion/{{ $question->id }}/view">
-                                    {{ $question->question }}
-                                </a>
-                            </li>
-                         @endforeach
-                        </ul>
+                <div class="col-lg-4">
+                    <div class="card_contact">
+                        <div>
+                            <h5 class="head">للتواصل معنا</h5>
+                            <div class="item">
+                                <span>{{$info->email}}</span>
+                            </div>
+                            <!-- <div class="item">
+                                <span>rwabet2030@gmail.com</span>
+                            </div> -->
+                            <div class="item">
+                                <span>الجوال : {{$info->whatsapp_male}}</span>
+                            </div>
+                            <div class="item">
+                                <span>الجوال : {{$info->whatsapp_female}}</span>
+                            </div>
+                            <div class="sochial_media">
+                                <a href="{{$info->fb}}" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{$info->tw}}" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="{{$info->inst}}" class="insta"><i class="fab fa-instagram"></i></a>
+                                
+                            </div>
+                        </div>
                     </div>
-                </div>-->
+                </div>
             </div>
-        </section>
-        <!-- End Contact-inner -->
-        
+        </div>
+        <div class="animate-group">
+            <img class="shape-1 move-1" src="{{url('/')}}/public/src_website/assets/img/shapes/01.png" alt="">
+            <img class="shape-2 move-2" src="{{url('/')}}/public/src_website/assets/img/shapes/02.png" alt="">
+            <img class="shape-3 rotate" src="{{url('/')}}/public/src_website/assets/img/shapes/03.png" alt="">
+            <img class="shape-4 move-3" src="{{url('/')}}/public/src_website/assets/img/shapes/04.png" alt="">
+            <img class="shape-5 move-2" src="{{url('/')}}/public/src_website/assets/img/shapes/05.png" alt="">
+        </div>
+    </section>
+    <!-- ==================== End common questions page =================== -->
+
+
+    <section class="location_section">
+        <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0"
+            marginwidth="0"></iframe>
+    </section>
+
+
         
 
 @endsection

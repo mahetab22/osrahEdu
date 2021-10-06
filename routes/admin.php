@@ -21,8 +21,11 @@ Route::group(['prefix' => 'admin',
         Route::post('/active','courseController@course_active')->name('courseActive');
         Route::post('/delete_all','courseController@delete_all');
         Route::get('/{id}/students','courseController@course_students');
-        Route::post('course/student/delete_all','courseController@course_students');
+        Route::post('/student/delete_all','courseController@delete_all_student');
+        Route::post('/student/attend_all','courseController@attend_students');
+        Route::get('student/reports/{id}','courseController@student_report');
     });
+
     // ------------------ Levels -------------------------
     Route::group(['prefix' => 'levels'],function(){
         Route::get('/course/{id}','levelController@index');
@@ -39,6 +42,26 @@ Route::group(['prefix' => 'admin',
         Route::post('/delete_all','lessonController@delete_all');
         Route::delete('/delete/{id}','lessonController@destroy');
     });
+    //-------------------Activities-------------------------
+
+    Route::group(['prefix' => 'activities'],function(){
+      Route::get('/{course}','ActivityController@index');
+      Route::post('/create','ActivityController@store');
+      Route::post('/update/{id}','ActivityController@update');
+      Route::get('{id}/student_activity','ActivityController@student_activity');
+      Route::post('/delete_all','ActivityController@delete_all');
+      Route::delete('/delete/{id}','ActivityController@destroy');
+      Route::post('/delete_all_student_activity','ActivityController@delete_all_student_activity');
+    });
+    Route::group(['prefix' => 'apps'],function(){
+        Route::get('/{course}','ApplicationsForCourseController@index');
+        Route::post('/create','ApplicationsForCourseController@store');
+        Route::post('/update/{id}','ApplicationsForCourseController@update');
+        Route::get('{id}/student_apps','ApplicationsForCourseController@student_apps');
+        Route::post('/delete_all','ApplicationsForCourseController@delete_all');
+        Route::delete('/delete/{id}','ApplicationsForCourseController@destroy');
+        Route::post('/delete_all_student_apps','ApplicationsForCourseController@delete_all_student_apps');
+      });
     // ------------------ Service -------------------------
     Route::resource('services','ServiceController');
     Route::post('/service/delete_all','ServiceController@delete_all');
@@ -97,8 +120,13 @@ Route::group(['prefix' => 'admin',
         //------------------------ FAQ -------------------
         Route::resource('/partners','PartnerController');
         Route::post('/partners/delete_all','PartnerController@delete_all');
+
+        //------------------------survey-------------------
+        Route::get('survey','adminController@survey');
+        Route::post('/survey/delete_all','adminController@delete_all');
         //------------------------ Breadcrumbs -------------------
         Route::resource('/breadcrumbs','BreadcrumbController');
+
     });
 
 

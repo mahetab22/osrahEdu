@@ -115,6 +115,8 @@ return [
     'goal1_us' => $info->goal1_ar,
     'goal2_us' => $info->goal2_ar,
     'goal3_us' => $info->goal3_ar,
+    'assembly_classification'=>$info->assembly_classification_ar,
+    'ourmessage'=>$info->ourmessage_ar,
     'Browse_sections' => 'تصفح الأقسام',
     'Go_now' => 'انتقل الآن',
     'contact_details' => 'تفاصيل الاتصال',
@@ -703,6 +705,29 @@ return [
     // ----------- Partners Alert -----------
     'partner added successfully'=>'تم إضافة الشريك بنجاح',
     'partner updated successfully'=>'تم تعديل الشريك بنجاح',
+
+  
+
+    //-------------count attending course,--------------
+    'count attending'=>'عدد مرات الحضور',
+    'reports'=>'تقارير',
+    'Attend All Selected'=>'تحضير كل الطلاب',
+    'no students checked'=>'لم يتم اختيار اى طالب',
+    'alert_attend'=>'تحضير',
+    'whatsapp'=>'واتساب',
+    'telegram'=>'تليجرام',    
+    'activities'=>'الأنشطة',
+    'activity'=>'نشاط',
+    'applications'=>'التطبيقات',
+    'app'=>'التطبيق',
+    'student'=>'طالب',
+    'notes'=>'ملاحظات',
+    'Check out the events and news'=>'أطلع على أحداث وأخبار ',
+    'Be aware of our events'=>'كن على إطلاع بأحداثنا؟',
+    'Subscribe by e-mail to receive new news'=>'أشترك فالبريد الألكترونى ليصلك كل جديد ',
+    'all'=>'الكل',
+    'online'=>'بث مباشر',
+    'offline'=>'تعليم ذاتى',
     // ----------- Breadcrumb -----------
     'breadcrumb'=>'صورة الصفحة',
     'breadcrumbs'=>'صور الصفحات',

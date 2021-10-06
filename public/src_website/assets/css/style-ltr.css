@@ -32,6 +32,10 @@ body {
     background: linear-gradient( 231deg, #0b2a41 40%, #0b518a 100%);
 }
 
+.item_carousel {
+    direction: ltr;
+}
+
 
 /*--------------------------------------------------------------
 # End Global Page

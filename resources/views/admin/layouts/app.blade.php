@@ -296,6 +296,11 @@
                     <p>@lang('site.pages information')</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{url('/')}}/admin/survey" class="nav-link">
+                    <p>@lang('site.survey')</p>
+                </a>
+            </li>
             </ul>
         </li>
         </ul>
@@ -342,6 +347,7 @@
 
 <!-- jQuery -->
 <script src="{{url('/')}}/public/admin/plugins/jquery/jquery.min.js"></script>
+@yield('before_script')
 <!-- daterangepicker -->
 <script src="{{url('/')}}/public/admin/plugins/moment/moment.min.js"></script>
 <script src="{{url('/')}}/public/admin/plugins/daterangepicker/daterangepicker.js"></script>

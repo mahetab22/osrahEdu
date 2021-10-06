@@ -119,11 +119,11 @@
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">@lang('site.choose image')</label>
+                                                <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
                                             </div>
 
                                             <div class="input-group-append">
-                                                <span class="input-group-text" id="">@lang('site.choose image')</span>
+                                                <span class="input-group-text" id="">@lang('site.choose file')</span>
                                             </div>
                                         </div>
                                 </div>
@@ -198,11 +198,11 @@
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">@lang('site.choose image')</label>
+                                <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
                             </div>
 
                             <div class="input-group-append">
-                                <span class="input-group-text" id="">@lang('site.choose image')</span>
+                                <span class="input-group-text" id="">@lang('site.choose file')</span>
                             </div>
                         </div>
                    </div>

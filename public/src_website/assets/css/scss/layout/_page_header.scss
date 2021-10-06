@@ -4,7 +4,7 @@
 
 .page_header {
     position: relative;
-    height: 204px;
+    height: 180px;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -16,24 +16,37 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba($color: #000000, $alpha: 0.36);
+        background-color: rgba($color: #000000, $alpha: 0.60);
     }
-    .info {
+    .content {
         position: relative;
         z-index: 1;
-        font-size: 20px;
-        a {
+        text-align: center;
+        font-family: $semiBold;
+        .title {
             color: #fff;
-            font-weight: 700;
-            display: inline-block;
-            &.active,
-            &:hover {
-                color: $secColor;
-            }
+            font-size: 23px;
+            margin-bottom: 15px;
         }
-        .break {
-            color: $secColor;
-            margin: 0 7px;
+        .history {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .home {
+                color: #fff;
+                font-size: 18px;
+            }
+            .break {
+                width: 1px;
+                height: 28px;
+                display: block;
+                margin: 0 12px;
+                background-color: #fff;
+            }
+            .page_name {
+                margin: 0;
+                color: $mainColor;
+            }
         }
     }
 }

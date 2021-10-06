@@ -77,6 +77,10 @@
         }
         .sochial {
             text-align: end;
+            .logo {
+                display: block;
+                margin-bottom: 15px;
+            }
             .s_media {
                 a {
                     width: 35px;

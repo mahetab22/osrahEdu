@@ -7,9 +7,9 @@
     display: inline-block;
     border-radius: 50px;
     &.main {
-        background-color: $mainColor;
+        background: linear-gradient(270deg, rgba(0, 84, 165, 1) 0%, rgba(0, 153, 255, 1) 100%);
         &:hover {
-            background-color: $secColor;
+            background: linear-gradient(90deg, rgba(0, 84, 165, 1) 0%, rgba(0, 153, 255, 1) 100%);
             color: #fff;
         }
     }

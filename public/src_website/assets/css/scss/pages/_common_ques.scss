@@ -1,0 +1,51 @@
+.advices_page {
+    padding: 80px 0 60px;
+    .advices_content {
+        width: 75%;
+        margin: 0 auto;
+        .box {
+            margin-bottom: 20px;
+            .head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+                border: 1px solid #0278B0;
+                padding: 20px;
+                border-radius: 5px;
+                h5 {
+                    font-weight: bold;
+                    color: #0278B0;
+                    margin: 0;
+                    font-size: 16px;
+                }
+                span {
+                    cursor: pointer;
+                    transition: 0.3;
+                    color: #0278B0;
+                }
+            }
+            .content {
+                position: relative;
+                margin-top: 20px;
+                padding-inline-start: 15px;
+                display: none;
+                p {
+                    margin: 0;
+                    line-height: 28px;
+                }
+                &:after {
+                    position: absolute;
+                    content: "";
+                    top: 50%;
+                    right: 0;
+                    width: 3px;
+                    height: 80%;
+                    background-color: #0278B0;
+                    border-radius: 50px;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+}

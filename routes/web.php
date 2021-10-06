@@ -101,11 +101,6 @@ if (!empty($_SERVER['HTTP_CLIENT_IP']))
     echo $ip_address;
 });
 
-
-
-// Route::get('/certificate', function () {
-//     return view('certificate');
-// });
 Route::get('/testblade', function () {
     return view('profile.testblade');
 
@@ -122,10 +117,6 @@ Route::post('add-link','courseController@add_link')->name('addLink');
     Route::post('/smycourse/lesson', 'ajaxController@slesson')->name('/smycourse/lesson');
     Route::post('/smycourse/exam', 'ajaxController@sexam')->name('/smycourse/exam');
     //     - - ------------    start ajax   ----------- - -
-
-// Route::get('admin', function () {
-//    return redirect('/admin');
-// })->name('admin');
 Route::get('/Artisan', function () {
     Artisan::call('storage:link');
 //Artisan::call('config:cache');
@@ -134,20 +125,7 @@ echo 'success';
 });
 
 
-// Route::group(['prefix' => 'admin',
-// 'middleware' => [ 'admin' ,'auth']
-// ], function () {
-//     Route::get('/','Admin\adminController@index');
-//     // ---------------------user------------------------
-//     Route::get('/users','Admin\userController@index');
-//     Route::post('/user/active','Admin\userController@userActive')->name('userActive');
-//     Route::delete('/user/delete/{id}','Admin\userController@destroy');
-//     Route::get('/user/create','Admin\userController@create');
-//     // ------------------course-------------------------
-//     Route::get('/courses','Admin\courseController@index');
 
-//     // Voyager::routes();
-// });
 
 
 Route::group(
@@ -157,20 +135,20 @@ Route::group(
 ], function(){ //...
 
 Auth::routes();
-
+Route::get('get/course/exam/{id}','examCourseController@get_student_exam')->name('get_student_exam')->middleware('auth');
+Route::get('attending/course/{subscripe_id}','CourseSubscriptionController@attending_course');
+Route::post('student/add/activities','CourseSubscriptionController@student_upload_activity')->name('student_add_activity')->middleware('auth');
+Route::post('student/add/apps','CourseSubscriptionController@student_upload_app')->name('student_add_app')->middleware('auth');
+Route::get('survey/{course_id}','SurveyController@index');
+Route::post('add/survey/{course_id}','SurveyController@store')->name('add_survey')->middleware('auth');
 Route::get('/testnotiphy', 'VisionController@testnotiphy')->name('/testnotiphy');
-
-// Route::get('/testnotiphy', function () {
-// 	$user = Auth::user();
-// 	$user->notify(new \App\Notifications\InvoicePaid());
-// 	echo 'success';
-//   // return redirect('/admin');
-// })->name('testnotiphy');
 //     - - ------------    aboutController   ----------- - -
 	Route::get('/', 'indexController@index')->name('/');
-	Route::get('/osrah', function(){
-	    return view('osrah');
-	})->name('/');
+    Route::get('/news', 'indexController@news')->name('news');
+    Route::get('/single/{id}/news', 'indexController@single_news')->name('single_news');
+    Route::get('/books', 'indexController@books')->name('books');
+    Route::get('/single/{id}/books', 'indexController@single_books')->name('single_books');
+
 	Route::get('/home', 'indexController@index')->name('home');
     Route::get('/conditions', 'indexController@conditions')->name('conditions');
 // ------------------------marketer--------------------------
@@ -188,6 +166,7 @@ Route::get('pay/Marketer/{id}','indexController@payMarketer')->name('payMarketer
 //     - - ------------  start courseController    ----------- - -
 
 	Route::get('/courses', 'courseController@course')->name('courses');
+    Route::get('/ajax/courses','courseController@course_ajax');
 	//Route::get('/courseSingle', 'courseController@courseSingle')->name('courseSingle');
     Route::get('/courseSingle', 'courseController@coursedSingle')->name('coursedSingle');
 	Route::get('/coursedSingle', 'courseController@coursedSingle')->name('coursedSingle');
@@ -205,7 +184,7 @@ Route::get('pay/Marketer/{id}','indexController@payMarketer')->name('payMarketer
 
 //     - - ------------   CourseSubscriptionController    ----------- - -
     Route::get('/editcourse/{course}/','CourseSubscriptionController@geteditcourse');
-	Route::get('/mycourse/{course}/','CourseSubscriptionController@getmycourse');
+	Route::get('/mycourse/{course}/','CourseSubscriptionController@getmycourse')->name('getmycourse');
 	Route::get('/subscribe/{course}', 'CourseSubscriptionController@subscribe');
     Route::get('/subscribemag/{course}', 'CourseSubscriptionController@subscribemag');
     //Route::post('/subscribe', 'CourseSubscriptionController@subscribee')->name('subscribe');

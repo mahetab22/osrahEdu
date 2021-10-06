@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@dd("single_course");
 
         <!-- Start Title -->
         <section class="title-s" style="background-image: url({{ asset('public/src_website/images/111.jpg') }})">

@@ -1,0 +1,36 @@
+.survey_page {
+    color: #fff;
+    .modal_form {
+        width: 65%;
+        h6.name {
+            margin-bottom: 16px;
+        }
+        .form-group {
+            &:not(:last-of-type) {
+                padding-bottom: 30px;
+                border-bottom: 1px solid #707070;
+                margin-bottom: 32px;
+            }
+            .input_custom_m {
+                display: inline-block;
+                margin-inline-end: 26px;
+            }
+            .custom_checkbox {
+                .text {
+                    margin-inline-start: 29px;
+                    width: auto;
+                }
+                .checkmark {
+                    border: transparent;
+                    height: 22px;
+                    width: 22px;
+                    background-color: #fff;
+                    border-radius: 50%;
+                }
+            }
+            .custom_checkbox input:checked~.checkmark {
+                background-color: #3498DB !important;
+            }
+        }
+    }
+}

@@ -2,74 +2,63 @@
 
 @section('content')
 
-        <!-- Start Title -->
-        <section class="title-s" style="background-image: url({{ asset('public/src_website/images/111.jpg') }})">
-            <div class="container">
-                <h2>@lang("site.common_questions")</h2>
-                <ul>
-                    <li>
-                        <a href="index.html">
-                            @lang("site.Main")
-                        </a>
-                    </li>
-                    <li>
-                        <span>
-                            @lang("site.common_questions")
-                        </span>
-                    </li>
-                </ul>
+    <!--======================== Start page header =============================-->
+    <section class="page_header" style="background-image: url({{url('/')}}/public/src_website/assets/img/hero.png);">
+        <div class="container">
+            <div class="content">
+                <h4 class="title"> @lang("site.common_questions")</h4>
+                <div class="history">
+                    <a href="{{url('/')}}" class="home">@lang('site.Main')</a>
+                    <span class="break"></span>
+                    <h5 class="page_name">@lang("site.common_questions") </h5>
+                </div>
             </div>
-        </section>
-        <!-- End Title -->
-        
-        <!-- Start Qu-inner -->
-        <section class="qu-inner body-inner">
-            <div class="container">
-                <div class="col-md-1 col-xs-12"></div>
-                <div class="col-md-10 col-xs-12">
-                    <div class="panel-group" id="accordion">
-
-                    @if(!empty($commonquestion))
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $commonquestion->id }}" aria-expanded="true">
-                                        {{ $commonquestion->question }}
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapse{{ $commonquestion->id }}" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    {{ $commonquestion->solution }}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-
-                        @foreach($questions as $question)
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $question->id }}" >
-                                        {{ $question->question }}
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapse{{ $question->id }}" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    {{ $question->solution }}
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-
-                    
+        </div>
+    </section>
+    <!--======================== End page header =============================-->
+    <!-- ==================== Start common questions page =================== -->
+    <section class="advices_page">
+        <div class="container">
+            <div class="advices_content">
+            @if(!empty($commonquestion))
+                <div class="box">
+                    <div class="head">
+                        <h5>{{$commonquestion->question}}</h5>
+                        <span class="chevron"><i class="fal fa-plus"></i></span>
+                    </div>
+                    <div class="content">
+                        <p>
+                        {{$commonquestion->solution}}
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-1 col-xs-12"></div>
+             @endif
+             @foreach($questions as $question)
+                <div class="box">
+                    <div class="head">
+                        <h5>{{$question->question}}</h5>
+                        <span class="chevron"><i class="fal fa-plus"></i></span>
+                    </div>
+                    <div class="content">
+                        <p>
+                        {{$question->solution}}
+                        </p>
+                    </div>
+                </div>
+             @endforeach
+              
             </div>
-        </section>
-        <!-- End Qu-inner -->
+        </div>
+        <div class="animate-group">
+            <img class="shape-1 move-1" src="{{url('/')}}/public/src_website/assets/img/shapes/01.png" alt="">
+            <img class="shape-2 move-2" src="{{url('/')}}/public/src_website/assets/img/shapes/02.png" alt="">
+            <img class="shape-3 rotate" src="{{url('/')}}/public/src_website/assets/img/shapes/03.png" alt="">
+            <img class="shape-4 move-3" src="{{url('/')}}/public/src_website/assets/img/shapes/04.png" alt="">
+            <img class="shape-5 move-2" src="{{url('/')}}/public/src_website/assets/img/shapes/05.png" alt="">
+        </div>
+    </section>
+    <!-- ==================== End common questions page =================== -->
+
+
 
 @endsection

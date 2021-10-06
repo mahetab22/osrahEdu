@@ -27,7 +27,7 @@ class Level extends Model
 
     public function exam()
     {
-        return $this->hasOne('App\Exam', 'level_id');
+        return $this->hasOne('App\Exam', 'level_id')->where('lesson_id',null);
     }
 
 }

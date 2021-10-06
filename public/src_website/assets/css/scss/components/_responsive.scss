@@ -1,6 +1,30 @@
+/*--------------------------------------------------------------
+# Start responsive
+--------------------------------------------------------------*/
+
 @media(max-width:1199.98px) {
     .nav_bar .list li {
         font-size: 15px;
+    }
+    .login_page .modal_form {
+        width: 100%;
+    }
+    .single_course_Page .lessons-card-show .item_slide {
+        margin: 0 20px 20px;
+    }
+    .single_course_Page .lessons-card-show .some_features {
+        margin: 0 20px;
+    }
+}
+
+@media(max-width:991.98px) and (min-width:768px) {
+    .login_page .modal_form form .custom {
+        display: block;
+        text-align: center;
+        .forget_pass {
+            margin-top: 7px;
+            display: block;
+        }
     }
 }
 
@@ -44,6 +68,83 @@
     .library_section .slick-slide {
         opacity: 1;
     }
+    .login_page .modal_form form .form-control {
+        height: 47px;
+        background-position: 95% 50%;
+        text-indent: 27px;
+    }
+    .login_page .modal_form form .main-btn.main {
+        height: 47px;
+    }
+    .about_page_section .image {
+        height: auto;
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0 20px;
+        .points_shape {
+            display: none;
+        }
+        .img {
+            position: unset;
+            border: 0 !important;
+            height: 300px !important;
+            max-width: 50% !important;
+            flex: 50%;
+            object-fit: cover;
+        }
+    }
+    .counter-section .box {
+        margin-bottom: 50px;
+    }
+    .single_book_page .book_details {
+        width: 100%;
+    }
+    .new_page .news_side {
+        margin-bottom: 30px;
+        display: none;
+    }
+    .advices_page .advices_content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .contact_page {
+        .o-2 {
+            order: 2;
+        }
+        .card_contact {
+            border-radius: 15px 15px 0 0;
+            position: unset;
+            transform: translateY(0);
+        }
+    }
+    .course_header .image {
+        display: none;
+    }
+    .our_courses_page {
+        .filter_courses {
+            .o-2 {
+                order: 2;
+                margin-top: 15px;
+            }
+        }
+    }
+    .single_course_Page .lessons-card-show {
+        margin-bottom: 50px;
+        .details_course_box {
+            text-align: center;
+        }
+    }
+    .payment_page .payment-body #bank-method .form_payment,
+    .payment_page .payment-body #visa-method .info {
+        padding-inline-start: 0;
+        border-inline-start: 0;
+        height: auto;
+    }
+    .payment_page .payment-body .image {
+        display: none;
+    }
 }
 
 @media(max-width:767.98px) {
@@ -59,6 +160,57 @@
     }
     .library_section .slick-slide {
         opacity: 0.28;
+    }
+    .nav_top .btns {
+        margin-inline-end: 0;
+    }
+    .login_page {
+        .modal_form .border_form {
+            border-inline-end: 0;
+        }
+    }
+    .login_page .modal_form .image {
+        display: none;
+    }
+    .about_page_section {
+        margin-top: 30px;
+    }
+    .single_book_page .book_details .image img {
+        height: auto;
+    }
+    .contact_page .modal_form {
+        padding: 40px;
+    }
+    .contact_page .card_contact {
+        min-height: 464px;
+    }
+    .our_courses_page {
+        .text {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .filter_courses .box_filter .mini_box {
+            max-width: 50%;
+            flex: 50%;
+            padding: 10px;
+        }
+    }
+    .single_course_Page .info_course .content_course .list_control ul {
+        display: block;
+    }
+    .single_course_Page .info_course .content_course .main_content .box_content .file_item {
+        display: block;
+        text-align: center;
+        .main-btn {
+            margin-top: 15px;
+        }
+    }
+    .payment_page .payment-body .box_content {
+        padding: 40px 30px;
+    }
+    .payment_page .tabs-li ul li {
+        padding: 20px 11px 10px;
+        font-size: 14px;
     }
 }
 
@@ -104,16 +256,100 @@
         display: block;
         margin-top: 30px;
     }
+    .footer .newsletter_section .text h4 {
+        font-size: 26px;
+    }
     .library_section .item_carousel {
         padding: 15px 5px;
     }
     .library_section .box_lib {
         padding: 18px 10px;
     }
-    .library_section .box_lib .info .details .item {
+    .details_book .item {
         font-size: 12px;
     }
     .library_section .box_lib .info .name {
         font-size: 17px;
     }
+    .nav_top .btns .main-btn:not(:last-of-type) {
+        margin-inline-end: 0;
+        margin-bottom: 5px;
+    }
+    .nav_top .btns .main-btn {
+        font-size: 13px;
+        display: flex;
+    }
+    .services_section:after {
+        display: none;
+    }
+    .login_page .modal_form form .custom {
+        display: block;
+        text-align: center;
+        .forget_pass {
+            margin-top: 7px;
+            display: block;
+        }
+    }
+    .login_page .modal_form {
+        padding: 25px 0;
+    }
+    .login_page .modal_form form .head {
+        font-size: 19px;
+    }
+    .about_page_section .info .desc {
+        margin: 10px 0 40px;
+    }
+    .about_page_section .image .img {
+        max-width: 100% !important;
+        flex: 100%;
+        margin-bottom: 15px;
+    }
+    .new_page .main_news .box_new .info {
+        padding: 0 15px 55px;
+    }
+    .single_new_page .info_single_new .details {
+        display: block;
+    }
+    .contact_page .modal_form {
+        padding: 40px 15px;
+    }
+    .course_header .info h3 {
+        font-size: 29px;
+    }
+    .course_header .info .tags .tag {
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-size: 13px;
+    }
+    .our_courses_page .filter_courses .box_filter .mini_box {
+        max-width: 100%;
+        flex: 100%;
+    }
+    .single_course_Page .info_course .about_taecher .box {
+        display: block;
+    }
+    .single_course_Page .lessons-card-show .item_slide {
+        margin: 0 20px 20px;
+    }
+    .profile_nav {
+        .flex_end {
+            justify-content: center;
+        }
+        .profile_list ul {
+            margin-inline-end: 33px;
+        }
+    }
+    .payment_page .tabs-li ul li {
+        margin: 0 5px;
+        padding: 15px 9px 10px;
+        font-size: 13px;
+    }
+    .payment_page .tabs-li ul li img {
+        width: 36px;
+    }
 }
+
+
+/*--------------------------------------------------------------
+# End responsive
+--------------------------------------------------------------*/

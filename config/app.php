@@ -177,6 +177,9 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
     //    Weboap\Visitor\VisitorServiceProvider::class,
        // abdullahobaid\mobilywslaraval\MobilywsProvider::class,
+
+       SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
     ],
 
     /*
@@ -230,6 +233,8 @@ return [
         // 'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
        // 'Mobily'    => abdullahobaid\mobilywslaraval\Mobily::class,
+       'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+
 
     ],
 

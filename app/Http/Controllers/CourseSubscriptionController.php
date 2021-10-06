@@ -17,7 +17,7 @@ use Validator;
 use DB;
 use App\Streaming;
 use App\Comment;
-
+use App\StudentActivity;
 use App\StudStreaming;
 use Illuminate\Support\Str; 
 use App\Notifications\commentNotify;
@@ -26,8 +26,25 @@ use App\MarketeInfo;
 use URL;
 use App\Mail\MarketerMail;
 use Illuminate\Support\Facades\Mail;
+use QrCode;
+use App\AttendingCourse;
+use App\StudentApp;
 class CourseSubscriptionController extends HomeController
 {
+  public function attending_course($user_course){
+    $subscripe=StuSubscriptionCourse::find($user_course);
+    if($subscripe){
+      $att=AttendingCourse::where('student_course',$subscripe->id)->where('created_at','like',Carbon::now()->format('Y-m-d').'%')->first();
+      if(!$att){
+    $attend=new AttendingCourse;
+    $attend->student_course=$user_course;
+    $attend->save();
+    }
+    return redirect()->route('getmycourse',$subscripe->course_id);
+    }else{
+      return redirect('/');
+    }
+}
     
    public function geteditcourse(course $course)
     {
@@ -43,6 +60,8 @@ class CourseSubscriptionController extends HomeController
     
     public function getmycourse(course $course)
     {
+
+
 $allowed=false;
 
           $countlessonns=0;
@@ -65,18 +84,19 @@ $allowed=false;
 
             $data=StudStreaming::where('course_id',$course->id)->where('stud_id',auth()->id())->pluck('class_id')->toArray();
 $streamings=Streaming::whereIn('class_id',$data)->orderby('created_at','desc')->get();
-
-//dd($streamings);
-//$ids=$data->get()->pluck('class_id')->toArray();
-//$stream=Streaming::whereIn('class_id',$data)->orderby('created_at','desc')->first();
- //return $streams[0]->;
           $countlessons=(count(Auth::user()->stulessons->where('course_id',$course->id))/$countlessonns)*100;
-          //echo dd(Auth::user()->stulessons);
-    		foreach (Auth::user()->stusubscriptioncourses as $stusubscriptioncourse) {
-
-	    		if ($stusubscriptioncourse->course->id == $course->id) {
-	                return view('profile.studcourse',compact('course','countlessons','streamings'));
-	    		}
+          $student_course=Auth::user()->stusubscriptioncourses->where('course_id',$course->id)->first();
+  
+  if($student_course){
+            //qr code
+$url=env('APP_DOMAIN').'/attending/course/'.$student_course->id;
+$qr= QrCode::format('svg')
+->size(200)->errorCorrection('H')
+->color(4, 115, 192)
+->generate($url);
+//end qr
+	                return view('profile.studcourse',compact('course','countlessons','streamings','qr'));
+	    		
     	    }
 
     	}
@@ -372,42 +392,49 @@ public function studcourse($id)
     $course = Course::find($id);
     return view('export-stud-course',compact('course')); 
   }
+   
+ public function student_upload_activity(Request $request){
+   $activity=StudentActivity::where('student_id',auth::user()->id)->where('activity_id',$request['activity'])->first();
+   if(!$activity){
+   $activity=new StudentActivity;
+   $activity->course_id=$request['course_id'];
+
+   $activity->student_id=auth::user()->id;
+   $activity->activity_id=$request['activity'];
+   }
+   if ($request->hasFile('file')) {
+    $image = $request->file('file');
+    $image->extension();
+    $imageName = time() . rand(10, 10000) . '.' . $image->extension();
+    $image->move(public_path().'/storage/student_activity', $imageName);
+    $activity->activity = 'storage/student_activity/'. $imageName;
+    }
+    $activity->notes=$request->notes;
+    $activity->save();
+    return redirect()->back()->with(['success' => 'تم الرفع بنجاح!']);
+
+ }
+ public function student_upload_app(Request $request){
+        $app=StudentApp::where('student_id',auth::user()->id)->where('app_id',$request['app'])->first();
+        if(!$app){
+        $app=new StudentApp;
+        
+        $app->student_id=auth::user()->id;
+        $app->app_id=$request['app'];
+        $app->course_id=$request['course_id'];
+        }
+        if ($request->hasFile('file')) {
+        $image = $request->file('file');
+        $image->extension();
+        $imageName = time() . rand(10, 10000) . '.' . $image->extension();
+        $image->move(public_path().'/storage/student_app', $imageName);
+        $app->app = 'storage/student_app/'. $imageName;
+        }
+        $app->notes=$request->notes;
+        $app->save();
+        return redirect()->back()->with(['success' => 'تم الرفع بنجاح!']);
+
+      }
+
       
 }
-
-    // public function getmycourse(course $course)
-    // {
-    //   //Auth::user()->supervisorcourses[0]->course
-    //   //$course->levels[0]->lessons
-    //   //$course->supervisorcourse
-    //   //$course  = Course::find(2);
-    //   // echo dd($course->levels[0]->lessons);
-    //   //$course->levels[2]->exam->questions[0]->answers
-    //   // echo dd($course->supervisorcourse->supervisor->supervisorinfo);
-    //      //  $examm=Exam::where('id',2)->first();
-    //   //echo dd($course->id);
-    //   // $xx = Lesson::find(1);
-    //   // $xx = Lesson::find(1);
-    //   // echo dd($xx->level->lessons->take(2)->last());
-    //  //  if($xx->level->lessons->take(2)->last() > Auth::user()->stulessons[count(Auth::user()->stulessons)-1]->lesson_id){
-
-    //  //  }
-
-    //   if(Auth::user()->role_id == 3){
-    //   foreach (Auth::user()->supervisorcourses as $supervisorcourse) {
-    //     if ($supervisorcourse->course->id == $course->id) {
-    //             return view('profile.supervcourse',compact('course'));  
-    //     }
-    //   }
-    //   }else{
-    //     //echo dd(Auth::user()->stulessons[count(Auth::user()->stulessons)-1]->lesson_id);
-    //     foreach (Auth::user()->stusubscriptioncourses as $stusubscriptioncourse) {
-    //       if ($stusubscriptioncourse->course->id == $course->id) {
-    //               return view('profile.studcourse',compact('course'));  
-    //       }
-    //       }
-    //           //  return view('profile.studcourse',compact('course'));
-    //   }
-    //    echo dd(Auth::user());
-
-    // }

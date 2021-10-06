@@ -1,0 +1,138 @@
+.course_header {
+    background-color: #E9F6FC;
+    padding: 40px 0;
+    .info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        h3 {
+            font-size: 34px;
+            color: #111;
+            font-family: $semiBold;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 15px;
+            color: #111;
+        }
+        .search_input {
+            position: relative;
+            margin: 20px 0;
+            padding: 7px;
+            border-radius: 50px;
+            border: 1px solid #0278B0;
+            background-color: #fff;
+            input {
+                border: 0;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .icon {
+                width: 42px;
+                height: 42px;
+                border-radius: 50%;
+                color: #fff;
+                background-color: #0278B0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                transition: 0.3s;
+                cursor: pointer;
+                &:hover {
+                    background-color: $mainColor;
+                }
+            }
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 10px;
+            .tag {
+                border: 1px solid #CEEBFF;
+                padding: 11px 20px;
+                color: #0278B0;
+                font-family: $semiBold;
+                display: inline-block;
+                background-color: #fff;
+                margin-bottom: 13px;
+                border-radius: 5px;
+            }
+        }
+    }
+    .image {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.our_courses_page {
+    padding-bottom: 50px;
+    .filter_courses {
+        padding: 50px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        .text {
+            h5 {
+                color: #0278B0;
+                font-size: 23px;
+                font-family: $semiBold;
+            }
+        }
+        .box_filter {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 16px 25px;
+            box-shadow: 0px 3px 16px #E9F6FC;
+            border: 1px solid #E9F6FC;
+            border-radius: 5px;
+            .mini_box {
+                max-width: 25%;
+                flex: 25%;
+                padding: 0 7px;
+            }
+            .form-group {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                .icon {
+                    margin-inline-end: 5px;
+                    font-size: 23px;
+                }
+            }
+        }
+        .filter_date {
+            border: 1px solid #8F8E8E;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            padding-inline-end: 2px;
+            .icon {
+                margin-inline-end: 10px;
+            }
+        }
+        .nice-select {
+            flex: 1;
+            border: 0;
+            height: auto;
+            padding: 0;
+            background: transparent;
+            .current {
+                color: #383839;
+                font-size: 15px;
+                font-family: $semiBold;
+            }
+            .option {
+                padding: 0 5px;
+                font-size: 14px;
+            }
+        }
+    }
+}
