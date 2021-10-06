@@ -270,7 +270,7 @@
         @foreach($books as $book)
             <div class="item_carousel">
                 <div class="box_lib">
-                    <div class="image">  <a href="{{url('/')}}/single/{{$book->id}}/books">   <img src="{{url('/')}}/{{$book->title}}" alt="img"></a></div>
+                    <div class="image">  <a href="{{url('/')}}/single/{{$book->id}}/books">   <img src="{{url('/')}}/{{$book->image}}" alt="{{$book->title}}"></a></div>
                     <div class="info">
                         <div class="details">
                             <span class="item"><i class="fal fa-calendar-alt"></i>{{$book->created_at->year}}/{{$book->created_at->month}}/{{$book->created_at->day}}</span>

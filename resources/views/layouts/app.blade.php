@@ -192,7 +192,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h4>@lang('site.Be aware of our events?')</h4>
+                            <h4>@lang('site.Be aware of our events')</h4>
                             <h6>@lang('site.Subscribe by e-mail to receive new news')</h6>
                         </div>
                     </div>

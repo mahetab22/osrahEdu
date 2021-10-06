@@ -707,4 +707,10 @@ return [
     'app'=>'التطبيق',
     'student'=>'طالب',
     'notes'=>'ملاحظات',
+    'Check out the events and news'=>'أطلع على أحداث وأخبار ',
+    'Be aware of our events'=>'كن على إطلاع بأحداثنا؟',
+    'Subscribe by e-mail to receive new news'=>'أشترك فالبريد الألكترونى ليصلك كل جديد ',
+    'all'=>'الكل',
+    'online'=>'بث مباشر',
+    'offline'=>'تعليم ذاتى',
 ];

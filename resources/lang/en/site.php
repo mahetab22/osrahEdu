@@ -670,4 +670,10 @@ return [
     'app'=>'app',
     'student'=>'student',
     'notes'=>'notes',
+    'Check out the events and news'=>'Check out the events and news ',
+    'Be aware of our events'=>'Be aware of our events ?',
+    'Subscribe by e-mail to receive new news'=>'Subscribe by e-mail to receive new news',
+    'all'=>'All',
+    'online'=>'Online',
+    'offline'=>'Offline',
     ];
