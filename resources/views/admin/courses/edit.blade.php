@@ -91,6 +91,7 @@
                                     <div class="col-sm-10">
                                         <?php $sups=$course->supervisorcourses->pluck('supervisor_id')->toArray();?>
                                         <select class="form-control @error('supervisor_id') {{  'is-invalid'  }} @enderror select2 "data-placeholder="-- @lang('site.choose supervisor') --" multiple="multiple" id="inputSupervisor" name="supervisor_id[]" required>
+                                            <option value="" disabled selected>-- @lang('site.choose supervisor') --</option>
                                             @foreach ( $supervisors as $supervisor)
                                                 <option value="{{ $supervisor->user->id }}"{{in_array($supervisor->id,$sups)?'selected':''}} >{{ $supervisor->name }}</option>
                                             @endforeach

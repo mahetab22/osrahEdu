@@ -182,6 +182,7 @@ return [
     'levels'=>'الوحدات',
     'level'=>'الوحدة',
     'Ali exam course' => 'امتحان علي الكورس',
+    'exam course'=>'الدورة',
     'Download the attachments' => 'تحميل المرفقات',
     'Discussions' => 'نقاشات',
     'Add a question' => ' إضافة سؤال',
@@ -636,6 +637,11 @@ return [
     'info english goal3'=>'الهدف 3 باللغة الانجليزية',
     'info script1'=>'سكريبت الاول',
     'info script2'=>'السكريبت الثانى',
+    'info arabic ourmessage'=>'رسالتنا باللغة العربية',
+    'info english ourmessage'=>'رسالتنا باللغة الانجليزية',
+    'info arabic assembly classification'=>'تصنيف الجمعية باللغة العربية',
+    'info english assembly classification'=>'تصنيف الجمعية باللغة الانجليزية',
+    'info year experts'=>'منذ سنة',
     // ----------- Site Info Validation -----------
     'info logo required'=>'حقل لوجو الوقع مطلوب',
     'info logo image'=>'يجب ان يكون اللوجو صورة',
@@ -673,6 +679,14 @@ return [
     'info english goal3 required'=> 'حقل الهدف الثالث باللغة الانجليزية مطلوب',
     'info script1 required'=> 'حقل السكريبت الاول مطلوب',
     'info script2 required'=> 'حقل السكريبت الثانى مطلوب',
+    'info arabic ourmessage required'=>'رسالتنا باللغة العربية',
+    'info english ourmessage required'=>'رسالتنا باللغة الانجليزية',
+    'info arabic assembly classification required'=>'تصنيف الجمعية باللغة العربية',
+    'info english assembly classification'=>'تصنيف الجمعية باللغة الانجليزية',
+    'info year experts required'=>'منذ سنة',
+    'info minimum year experts'=>'لا يمكن ان يكون تاريخ الانشاء قبل 1900',
+    'info maximum year experts'=>'لا يمكن ان يكون تاريخ الانشاء  بعد السنة الحاليه',
+    'info digits year experts'=>'يجب ان يكون تاريخ الانشاء من 4 ارقام',
     // ----------- Site Info Alert -----------
     'info updated successfully'=>'تم تعديل بيانات الموقع بنجاح',
     // ----------- Partners -----------
@@ -691,6 +705,7 @@ return [
     // ----------- Partners Alert -----------
     'partner added successfully'=>'تم إضافة الشريك بنجاح',
     'partner updated successfully'=>'تم تعديل الشريك بنجاح',
+
   
 
     //-------------count attending course,--------------
@@ -713,4 +728,25 @@ return [
     'all'=>'الكل',
     'online'=>'بث مباشر',
     'offline'=>'تعليم ذاتى',
+    // ----------- Breadcrumb -----------
+    'breadcrumb'=>'صورة الصفحة',
+    'breadcrumbs'=>'صور الصفحات',
+    'create new breadcrumb'=>'إضافة صورة صفحة جديدة',
+    'edit breadcrumb'=>'تعديل صورة صفحة',
+    'breadcrumb arabic title'=>'عنوان الصفحة باللغة العربية',
+    'breadcrumb english title'=>'عنوان الصفحة باللغة الانجليزية',
+    'breadcrumb link url'=>'رابط الصفحة',
+    'breadcrumb image'=>'صورة الصفحة',
+    // ----------- Breadcrumb Validation -----------
+    'breadcrumb arabic title required'=>'حقل عنوان الصفحة باللغة العربية مطلوب',
+    'breadcrumb arabic title max'=>'أقصى عدد يمكن ادخاله من الحروف لعنوان الصفحة باللغة العربية هو 100 حرف',
+    'breadcrumb english title required'=>'حقل عنوان الصفحة باللغة الانجليزية مطلوب',
+    'breadcrumb english title max'=>'أقصى عدد يمكن ادخاله من الحروف لعنوان الصفحة باللغة الانجليزية هو 100 حرف',
+    'breadcrumb link url required'=>'حقل رابط الصفحة مطلوب',
+    'breadcrumb image required'=>'حقل صورة الصفحة مطلوبة',
+    'breadcrumb image image'=>'صورة الصفحة يجب ان يكون نوع الملف صورة',
+    'breadcrumb image mimes'=>'يجب ان يكون امتداد صورة الصفحة احدى الامتدادات: png,jpeg,jpg',
+    // ----------- Breadcrumb Alert -----------
+    'breadcrumb added successfully'=>'تم إضافة صورة الصفحة بنجاح',
+    'breadcrumb updated successfully'=>'تم تعديل صورة الصفحة بنجاح',
 ];

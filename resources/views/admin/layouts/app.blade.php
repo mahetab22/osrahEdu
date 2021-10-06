@@ -109,7 +109,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/')}}/admin" class="brand-link">
-      <img src="{{ url('/') }}/public/storage/{{ $info->logo }}" alt="@lang('lang.name_us')" class="brand-image img-circle elevation-3"
+      <img src="{{ url('/') }}/{{ $info->logo }}" alt="@lang('lang.name_us')" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">@lang('site.name_us')</span>
     </a>
@@ -265,6 +265,13 @@
             </a>
         </li>
 
+        <li class="nav-item ">
+            <a href="{{url('/')}}/admin/breadcrumbs" class="nav-link">
+                <i class="nav-icon fa fa-file-image"></i>
+                <p>@lang('site.breadcrumbs')</p>
+            </a>
+        </li>
+
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
             <i class="fas fa-info-circle"></i>
@@ -332,6 +339,9 @@
 
 <!-- Bootstrap 4 rtl -->
 <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
 <!-- Bootstrap 4 -->
 <script src="{{url('/')}}/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 

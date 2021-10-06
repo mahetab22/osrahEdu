@@ -120,9 +120,13 @@ Route::group(['prefix' => 'admin',
         //------------------------ FAQ -------------------
         Route::resource('/partners','PartnerController');
         Route::post('/partners/delete_all','PartnerController@delete_all');
+
         //------------------------survey-------------------
         Route::get('survey','adminController@survey');
         Route::post('/survey/delete_all','adminController@delete_all');
+        //------------------------ Breadcrumbs -------------------
+        Route::resource('/breadcrumbs','BreadcrumbController');
+
     });
 
 
