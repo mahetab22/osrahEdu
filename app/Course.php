@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Auth;
 
 class Course extends Model
-{
+{   
+    protected $guarded=[];
+    protected $table="courses";
     use SoftDeletes;
     public function getTitleAttribute()
     {
@@ -143,6 +145,11 @@ class Course extends Model
         foreach($this->survey as $sr){
             $r+=$sr->course;
         }
-        return round($r/$this->survey->count());
+        if($this->survey->count()>0){
+            $x=round($r/$this->survey->count());
+        }else{
+            $x=0;
+        }
+        return $x;
     }
 }

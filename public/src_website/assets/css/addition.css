@@ -1,0 +1,41 @@
+.all-buttons {
+    margin-top: 30px;
+    margin:10px
+}
+
+.big-tw-box {
+    display: flex;
+    align-items: center;
+    background: #4a8cff;
+    border-radius: 15px;
+    padding: 10px;
+}
+.tyuo-img img {
+    max-width: 45px;
+    max-height: 45px;
+    height: 45px;
+    width: 45px;
+}
+.tri-bs {
+    margin-right: 10px;
+    width: 100%;
+    display: block;
+}
+.all-buttons .add-btn.addstr {
+    margin-left: 3px;
+}
+.tyuo-title {
+    border-radius: 7px;
+    padding: 5px;
+    transition: all .3s linear;
+    color: #fff;
+}
+.zoom-btn a span:first-of-type {
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.zoom-btn a span {
+    display: inline-block;
+    width: 100%;
+}

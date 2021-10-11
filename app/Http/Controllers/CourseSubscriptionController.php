@@ -75,10 +75,12 @@ $allowed=false;
 //echo dd($countlessonns);
     	if(Auth::user()->role_id == 3){
     	foreach (Auth::user()->supervisorcourses as $supervisorcourse) {
+        if($supervisorcourse->course){
     		if ($supervisorcourse->course->id == $course->id) {
     		    ///echo dd(empty($course->streamings_zoom[0]));
                 return view('profile.supervcourse',compact('course','countlessonns'));	
     		}
+      }
     	}
     	}else{
 

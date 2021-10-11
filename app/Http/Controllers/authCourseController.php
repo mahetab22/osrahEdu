@@ -45,24 +45,16 @@ class authCourseController extends HomeController
             if (!empty($dataa)) {
                 $dataa->view = 1;
                 $dataa->save();
-                return redirect()->back()->with(['success' => 'تم إظهار النتيجة للطالب']);
             } else {
 
                 $data = new Certificate;
                 $data->super_id = Auth::user()->id;
                 $data->course_id = $request['course_id'];
                 $data->user_id = $attendee;
-
-
                 $data->save();
-
-                //  Mail::to($data['email'])->send(new WelcomeMail($data));
-
-                //  return redirect()->back()->with(['success' => 'تم أضافة شهادة اتمام الدورة للطالب']);
             }
-            // return redirect()->back()->with(['success' => 'تم اضافة الحساب بنجاح  !']);
-        }
-        return redirect()->back()->with(['success' => 'تم أضافة شهادة اتمام الدورة للطالب']);
+                  }
+        return redirect()->back()->with(['success' => 'تم أضافة شهادة اتمام الدورة للطلاب']);
 
     }
 
@@ -1000,13 +992,16 @@ public function uploadimg(Request $request)
                 $answers=$request->answers;
                 $checkboxs=$request->checkboxs;
                 $exam = new Exam;
-                
                 if($request->radio1 == "lesson" ){
                     $exam->lesson_id = $request['lesson_id'];
+                    $exam->content=2;
                 }elseif($request->radio1 == "level" ){
                     $exam->level_id = $request['level_id'];
+                    $exam->content=1;
+
                 }elseif($request->radio1 == "course" ){
                     $exam->course_id = $request['course_id'];
+                    $exam->content=0;
                 }
                 $exam->publicexam = $request['publicexam'];
                 $exam->save();
@@ -1039,10 +1034,13 @@ public function uploadimg(Request $request)
                        $exam = new Exam;
                         if($request->radio1 == "lesson" ){
                             $exam->lesson_id = $request['lesson_id'];
+                            $exam->content=2;
                         }elseif($request->radio1 == "level" ){
                             $exam->level_id = $request['level_id'];
+                            $exam->content=1;
                         }elseif($request->radio1 == "course" ){
                             $exam->course_id = $request['course_id'];
+                            $exam->content=2;
                         }
                        $exam->publicexam = $request['publicexam'];
                        $exam->save();

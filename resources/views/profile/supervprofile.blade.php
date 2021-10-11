@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('style')
+    <link rel="stylesheet" href="{{url('/')}}/public/src_website/css/mobile.css">
+<link rel="stylesheet" href="{{url('/')}}/public/src_website/css/style.css">
+    @endsection
 @section('content')
 <?php
     $imagePreview=json_encode(url('/').'/public/storage/'.Auth::user()->avatar);
@@ -50,18 +53,19 @@
                                     <li><a data-toggle="tab" href="#profile8">الاختبارات <span class="badge">{{ count(Auth::user()->supervisorexams) }}</span></a></li>
                                     <li><a data-toggle="tab" href="#profile3">إضافة دورات</a></li>
                                     <li><a data-toggle="tab" href="#profile9">إضافة اختبارات</a></li>
-                                    
-                                    @if(!empty(Auth::user()->supervisorcourses[0]) and !empty(Auth::user()->supervisorcourses[0]->course->comments->where('commentORmassage',1)[0]))
+                                    @if(!empty(Auth::user()->supervisorcourses[0]) and Auth::user()->supervisorcourses[0]->course and !empty(Auth::user()->supervisorcourses[0]->course->comments->where('commentORmassage',1)[0]))
                                     <li><a data-toggle="tab" href="#profile5">أسئلة تم الرد عليها</a></li>
                                     @endif
                                     <?php $rep = 0; ?>
                                     @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                    @if($supervisorcourse->course)
                                      @foreach($supervisorcourse->course->comments->where('commentORmassage',1) as $comment)
                                       @if(empty($comment->replay) and $rep==0)
                                       <?php $rep = 1; ?>
                                          <li><a data-toggle="tab" href="#profile4">أسئلة لم يتم الرد عليها</a></li>
                                       @endif
                                     @endforeach
+                                    @endif
                                     @endforeach
                                     @endif
                                 </ul>
@@ -79,14 +83,7 @@
                                                     <span>{{ Auth::user()->name }}</span>
                                                 </div>
                                             </div>
-{{--                                             <div class="block-item">
-                                                <div class="label-title">
-                                                    <span>الاسم الاخير</span>
-                                                </div>
-                                                <div class="label-details">
-                                                    <span>احمد</span>
-                                                </div>
-                                            </div> --}}
+
                                             <div class="block-item">
                                                 <div class="label-title">
                                                     <span>المؤهل</span>
@@ -95,14 +92,7 @@
                                                     <span>{{ $supervisor_info->Educational }}</span>
                                                 </div>
                                             </div>
-                                          {{--  <div class="block-item">
-                                                <div class="label-title">
-                                                    <span>النوع</span>
-                                                </div>
-                                                <div class="label-details">
-                                                    <span>{{ Auth::user()->gender }}</span>
-                                                </div>
-                                            </div> --}}
+                                        
                                             <div class="block-item">
                                                 <div class="label-title">
                                                     <span>رقم الهاتف</span>
@@ -136,6 +126,7 @@
                                         <div class="allcourse">
                                             <ul>
                                                 @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                                @if($supervisorcourse->course)
                                                     <li class="active">
                                                         <a href="{{ url('/') }}/mycourse/{{ $supervisorcourse->course->id }}"><i class="far fa-play-circle"></i>{{ $supervisorcourse->course->title_ar }}<span></span></a>
                                                         <div class="all-buttons">
@@ -148,6 +139,7 @@
                                                              @endif
                                                         </div>
                                                     </li>
+                                                    @endif
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -525,6 +517,7 @@
                                     <div id="profile4" class="tab-pane fade">
                                         <div class="replay-text">
                                      @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                     @if($supervisorcourse->course)
                                          @foreach($supervisorcourse->course->comments->where('commentORmassage',0) as $comment)
                                             @if(empty($comment->replay))
                                             <div class="block">
@@ -543,6 +536,7 @@
                                             </div>
                                             @endif
                                          @endforeach
+                                         @endif
                                         @endforeach
                                         </div>
                                     </div>
@@ -551,6 +545,7 @@
                                     <div id="profile5" class="tab-pane fade">
                                         <div class="replay-text">
                                      @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                     @if($supervisorcourse->course)
                                          @foreach($supervisorcourse->course->comments->where('commentORmassage',1) as $comment)
                                             @if(!empty($comment->replay))
                                             <div class="block">
@@ -569,6 +564,7 @@
                                             </div>
                                             @endif
                                          @endforeach
+                                         @endif
                                         @endforeach
                                         </div>
                                     </div>

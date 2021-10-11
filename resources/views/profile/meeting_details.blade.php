@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    <link href="{{ asset('public/src_website/css/style.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('public/src_website/css/mobile.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/src_website/css/style2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/src_website/css/mobile2.css') }}" rel="stylesheet" type="text/css" />
 
     @if(app()->getLocale() == 'ar')
         <link href="{{ asset('public/src_website/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css" />

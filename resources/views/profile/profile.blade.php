@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('style')
+    <link rel="stylesheet" href="{{url('/')}}/public/src_website/css/mobile.css">
+<link rel="stylesheet" href="{{url('/')}}/public/src_website/css/style.css">
+    @endsection
 @section('content')
 <?php
 $conversation=array();
