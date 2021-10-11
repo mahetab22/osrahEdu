@@ -114,7 +114,7 @@ class userController extends HomeController
   	                  {
   	                    $img_name ='user_img'.rand(0,999). '.' . $license_img->getClientOriginalExtension();
   	                    $license_img->move(base_path('/public/storage/users/'.$today->isoFormat('Y').'/'), $img_name);
-  	                    $avatar = 'users/'.$today->isoFormat('Y').'/'.$img_name;
+  	                    $avatar = 'public/storage/users/'.$today->isoFormat('Y').'/'.$img_name;
   	                  }
                     }
 
@@ -186,7 +186,7 @@ class userController extends HomeController
 
                       $img_name ='user_img'.rand(0,999). '.' . $license_img->getClientOriginalExtension();
                       $license_img->move(base_path('/public/storage/users/'.$today->isoFormat('Y').'/'), $img_name);
-                      $avatar = 'users/'.$today->isoFormat('Y').'/'.$img_name;
+                      $avatar = 'public/storage/users/'.$today->isoFormat('Y').'/'.$img_name;
                     }
                     }
 

@@ -15,7 +15,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.news')</li>
+              <li class="breadcrumb-item"></li>
+              <li class="active">@lang('site.news')</li>
             </ol>
           </div>
         </div>
@@ -55,7 +56,7 @@
                       <td>{{$new->title}}</td>
                       <td>{{$new->short_desc}}</td>
                       <td >{{$new->desc}}</td>
-                    
+
 
                       <td>
                           <div class="row">

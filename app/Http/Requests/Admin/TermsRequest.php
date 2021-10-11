@@ -41,9 +41,9 @@ class TermsRequest extends FormRequest
             'title_ar.required'=>__('site.term title required'),
             'title_ar.required'=>__('site.term arabic title required'),
             'title_en.required'=>__('site.term  english title required'),
-            'term_ar.required'=>__('site.terms descrpiotion required'),
-            'term_ar.required'=>__('site.terms arabic descrpiotion required'),
-            'term_en.required'=>__('site.terms english descrpiotion required'),
+            'terms_ar.required'=>__('site.terms descrpiotion required'),
+            'terms_ar.required'=>__('site.terms arabic description required'),
+            'terms_en.required'=>__('site.terms english description required'),
         ];
     }
 

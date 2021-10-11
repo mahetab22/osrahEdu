@@ -14,7 +14,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/exam/'.$exam_id.'/questions') }}">@lang('site.exam questions')</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/exam/'.$exam_id.'/questions') }}">{{  App\Exam::find($exam_id)->title }}</a></li>
+                    <li class="breadcrumb-item"></li>
                     <li class="breadcrumb-item active">@Lang('site.edit exam question')</li>
                     </ol>
                 </div>
@@ -37,16 +38,16 @@
                             <div id="Question">
                                 <div  class="col-md-12 newQuestion">
                                     <div class="form-group row">
-                                        <div class="col-sm-6 row">
-                                            <label for="inputMCQ" class="col-sm-4 control-label">@lang('site.exam question mcq')</label>
-                                            <div class="col-sm-8">
+                                        <div class="col-sm-6 clearfix">
+                                            <div class="icheck-primary d-inline">
                                                 <input type="radio" id="inputMCQ" name="q_type" value="0" {{  $question->type == 0 ? 'checked' : '' }}>
+                                                <label for="inputMCQ">@lang('site.exam question mcq')</label>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 row">
-                                            <label for="inputCorrection" class="col-sm-4 control-label">@lang('site.exam question correct')</label>
-                                            <div class="col-sm-8">
-                                                <input type="radio" id="inputCorrection" name="q_type" value="1" {{  $question->type == 1 ? 'checked' : '' }}>
+                                        <div class="col-sm-6 clearfix">
+                                            <div class="icheck-primary d-inline">
+                                                <input type="radio" id="radioSuccess3" class="" name="q_type" value="1" {{  $question->type == 1 ? 'checked' : '' }}>
+                                                <label for="radioSuccess3" class="">@lang('site.exam question correct')</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
@@ -58,7 +59,7 @@
                                     <div class="form-group row">
                                         <label for="inputQuestion" class="col-sm-2 control-label">@lang('site.exam question')</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control @error('question') {{  'is-invalid'  }} @enderror" id="inputQuestion" name="question" value="{{ $question->question }}" placeholder="@lang('site.exam question')">
+                                            <input type="text" class="@error('question') {{  'is-invalid'  }} @enderror" id="inputQuestion" name="question" value="{{ $question->question }}" placeholder="@lang('site.exam question')">
                                             @error('question')
                                                 <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                             @enderror
@@ -68,7 +69,7 @@
                                         <div class="col-sm-12 row mcq">
                                             @foreach ($answers as $i => $answer)
                                             <div class="form-group col-sm-6 row question{{ $i + 1 }}">
-                                                <input type="radio" class="col-md-1 mt-2" value="{{ $i + 1 }}" name="co" {{  $question->sol == ($i + 1) ? 'checked' : '' }}>
+                                                <input type="radio" class="icheck-primary col-md-1 mt-2" value="{{ $i + 1 }}" name="co" {{  $question->sol == ($i + 1) ? 'checked' : '' }}>
                                                 <label for="inputAnswer{{ $i + 1 }}" class="col-sm-3 control-label">@lang('site.exam answer'.($i + 1))</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control @error('a.'.$i) {{  'is-invalid'  }} @enderror" id="inputAnswer{{ $i + 1 }}" name="a[]" value="{{ $answer->answer }}" placeholder="@lang('site.exam answer'.($i+1))">

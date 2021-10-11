@@ -45,6 +45,7 @@ return [
     'updated_successfully' => 'تم تعديل البيانات بنجاح',
     'deleted_successfully' => 'تم حذف البيانات بنجاح',
 
+    'warning'=>'تحذير',
     'added_failed' => 'فشل فى عملية التسجيل',
     'updated_failed' => 'فشل فى عملية التعديل',
     'deleted_failed' => 'فشل فى عملية الحذف',
@@ -98,6 +99,7 @@ return [
     'Specialized_Services' => 'الخدمات التخصصية',
     'Our_team' => 'فريقنا',
     'Contact_Us' => 'تواصل معنا',
+
     'about' => ' من نحن',
     'Ready_to_start_learning_now' => 'جاهز لتبدأ بالتعلم الآن ؟',
     'Our_Vision' => 'رؤيتنا',
@@ -293,7 +295,7 @@ return [
     'visitors' => 'الزوار',
      'coaches'=>'المدربين',
      'students'=>'الطلاب',
-     'alert_confirm_message'=>'هل أنت متأكد',
+     'alert_confirm_message'=>'هل أنت متأكد؟',
      'alert_irreversible_message'=>'لن تستطيع العوده',
      'alert_delete'=>'أمسح',
      'alert_cancel'=>'إلغاء',
@@ -453,6 +455,17 @@ return [
     "arabic description"=>"الوصف باللغة العربية",
     "english description"=>"الوصف باللغة الأنجليزية",
     "close"=>"غلق",
+    'contactType'=>'نوع الاتصال',
+    'contact'=>'اتصل بنا',
+    'messages'=>'الرسائل',
+    'details'=>'التفاصيل',
+    'news'=>'الاخبار',
+    'short_desc'=>'وصف قصير للاخبار',
+    'newsEmail'=>'بريد الاخبار',
+    'comment'=>'تعليق',
+    'job'=>'وظيفة',
+    'said_about_us'=>'قالوا عنا',
+    'rate'=>'تقييم',
     // ----------- END ANON  -----------
     // ----------- Lessons  ------------
     'lessons'=>'الدروس',
@@ -500,9 +513,13 @@ return [
     'teacher arabic educational max'=>'أقصى طول للمؤهل التعليمى للمدرب باللغة العربية هو 100 حرف',
     'teacher english educational max'=>'أقصى طول للمؤهل التعليمى للمدرب باللغة الانجليزية هو 100 حرف',
     'teacher service required'=>'حقل الخدمة مطلوب',
-    'teacher arabic skill1 required'=>'حقل مهارة 1 باللغة العربية مطلوب',
-    'teacher english skill1 required'=>'حقل مهارة 1 باللغة الانجليزية مطلوب',
     'teacher arabic profile required'=>'حقل المؤهل مطلوب',
+    'teacher arabic skill1 required'=>'حقل مهارة 1 باللغة العربية مطلوب',
+    'teacher english skill required'=>'حقل مهارة 1 باللغة الانجليزية مطلوب',
+    'teacher arabic skill2 required'=>'حقل مهارة 2 باللغة العربية مطلوب',
+    'teacher english skill2 required'=>'حقل مهارة 2 باللغة الانجليزية مطلوب',
+    'teacher arabic skill3 required'=>'حقل مهارة 3 باللغة العربية مطلوب',
+    'teacher english skill3 required'=>'حقل مهارة 3 باللغة الانجليزية مطلوب',
 
     'teacher arabic skill1 max'=>'أقصى عدد يمكن ادخاله لوصف المهارة 1 باللغة العربية هو 250 حرف',
     'teacher arabic skill2 max'=>'أقصى عدد يمكن ادخاله لوصف المهارة 2 باللغة العربية هو 250 حرف',
@@ -527,6 +544,7 @@ return [
     // ----------- Exams -----------
     'exams'=>'الإمتحانات',
     'create new exam'=>'إضافة إمتحان جديد',
+    'edit exam'=>'تعديل الامتحان',
     'exam logo'=>'لوجو الامتحان',
     'exam code'=>'كود الامتحان',
     'exam title'=>'عنوان الامتحان',
@@ -583,7 +601,9 @@ return [
     'exam question third answer'=>'الاجابة الثالثة',
     'exam question fourth answer'=>'الاجابة الرابعة',
     // ----------- Exam Questions Alert -----------
+    'alert_question_delete'=>'!لن تكون قادر على استعادة هذه البيانات مرة اخرى',
     'question_failed_add'=>'فشل فى عملية الإضافة يرجى المحاولة مرة اخرى!',
+    'question deleted successfully'=>'تم مسح السؤال و البيانات المرتبطة به بنجاح!',
     // ----------- News -----------
     'news'=>'الأخبار',
     'add new news'=>'إضافة خبر جديد',
@@ -601,7 +621,7 @@ return [
     'image mimes'=>'امتداد الصورة يجب ان يكون: jpg,png,jpeg',
     'pdf required'=>'ملف الكتاب مطلوب',
     'pdf mimes'=>'ملف المطلوب يجب ان يكون pdf',
-    'pdf max'=>'اقصى حجم للكتاب هو 10000 كيلوبايت',
+    'pdf max'=>'اقصى حجم للكتاب هو 10 ميجابايت',
     'book title required'=>'حقل عنوان الكتاب مطلوب',
     'book descrpiotion required'=>'حقل وصف الكتاب مطلوب',
     'newsEmail'=>'النشرة البريدية',
@@ -749,7 +769,7 @@ return [
     'partner added successfully'=>'تم إضافة الشريك بنجاح',
     'partner updated successfully'=>'تم تعديل الشريك بنجاح',
 
-  
+
 
     //-------------count attending course,--------------
     'count attending'=>'عدد مرات الحضور',
@@ -758,7 +778,7 @@ return [
     'no students checked'=>'لم يتم اختيار اى طالب',
     'alert_attend'=>'تحضير',
     'whatsapp'=>'واتساب',
-    'telegram'=>'تليجرام',    
+    'telegram'=>'تليجرام',
     'activities'=>'الأنشطة',
     'activity'=>'نشاط',
     'applications'=>'التطبيقات',
@@ -792,5 +812,11 @@ return [
     // ----------- Breadcrumb Alert -----------
     'breadcrumb added successfully'=>'تم إضافة صورة الصفحة بنجاح',
     'breadcrumb updated successfully'=>'تم تعديل صورة الصفحة بنجاح',
+    // ----------- Survey -----------
+    'survey'=>'الإستبيانات',
+    'course rate'=>'تقييم الكدورة',
+    'teacher rate'=>'تقييم المدرس',
+    'site rate'=>'تقييم الموقع',
+    
 
 ];

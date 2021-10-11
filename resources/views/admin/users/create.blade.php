@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/users') }}">@lang('site.users')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.add new user')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.add new user')</li>
                     </ol>
                 </div>
             </div>
@@ -45,6 +46,9 @@
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="">@lang('site.choose image')</span>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <img src="" id="profile-img-tag" width="200px" />
                                     </div>
                                     @error('avatar')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
@@ -90,7 +94,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 control-label">@lang('site.age')</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('age') {{  'is-invalid'  }} @enderror" id="inputAge3" name="age" placeholder="@lang('site.user age')">
+                                    <input type="text" class="form-control @error('age') {{  'is-invalid'  }} @enderror" id="inputAge3" name="age" value="{{ old('age') }}" placeholder="@lang('site.user age')">
                                     @error('age')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
@@ -102,7 +106,7 @@
                                     <select class="form-control  @error('role') {{  'is-invalid'  }} @enderror" id="role" name="role" required>
                                         <option value="" disabled selected>-- @lang('site.choose user role') --</option>
                                         @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                                            <option value="{{ $role->id }}" {{ $role->id == old('role') ? 'selected' : ''}}>{{ $role->display_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('role')
@@ -116,7 +120,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" value="male">
+                                            <input class="form-check-input" type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : ''}}>
                                             <label class="form-check-label">@lang('site.male')</label>
                                             </div>
                                         </div>
@@ -124,7 +128,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" value="female">
+                                            <input class="form-check-input" type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : ''}}>
                                             <label class="form-check-label">@lang('site.female')</label>
                                             </div>
                                         </div>
@@ -156,6 +160,22 @@
 @endsection
 @section('script')
 <script>
+    //Display New Image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            console.log(reader);
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#exampleInputFile").change(function(){
+        console.log('test');
+        readURL(this);
+    });
+
     $('#role').on('change',function(){
         console.log('test');
         $(this).removeClass('is-invalid');

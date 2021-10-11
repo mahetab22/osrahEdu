@@ -145,6 +145,12 @@
     .payment_page .payment-body .image {
         display: none;
     }
+    .my_certificates_page .certificates_content .box_content {
+        padding: 50px 30px;
+    }
+    .exam_page .container_exam {
+        padding: 50px 40px;
+    }
 }
 
 @media(max-width:767.98px) {
@@ -211,6 +217,67 @@
     .payment_page .tabs-li ul li {
         padding: 20px 11px 10px;
         font-size: 14px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .shapes_cert img {
+        width: 92px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert {
+        width: auto;
+        margin: 0 30px 80px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert {
+        padding: 0 20px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text {
+        h4 {
+            font-size: 28px;
+            margin-bottom: 2px;
+        }
+        span {
+            padding: 1px 30px;
+            font-size: 11px;
+        }
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two {
+        .shapes_cert img {
+            height: 150px !important;
+        }
+        .inner {
+            .head .text {
+                max-width: 75%;
+                flex: 75%;
+            }
+            .content_cert {
+                padding: 0 20px;
+            }
+            .footer_cert {
+                margin: 0 45px 15px 15px;
+            }
+        }
+    }
+    .my_certificates_page .tabs-li ul {
+        display: block;
+        li {
+            border-radius: 0;
+            border-bottom: 1px solid #fff;
+        }
+    }
+    .exam_page .container_exam .header_exam {
+        .degree {
+            max-width: 50%;
+            flex: 50%;
+            order: 2;
+        }
+        .title {
+            max-width: 100%;
+            flex: 100%;
+            margin-bottom: 20px;
+        }
+        .time {
+            max-width: 50%;
+            flex: 50%;
+            order: 3;
+        }
     }
 }
 
@@ -346,6 +413,119 @@
     }
     .payment_page .tabs-li ul li img {
         width: 36px;
+    }
+    .my_certificates_page .certificates_content .box_content {
+        padding: 50px 10px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert .name {
+        font-size: 24px;
+        margin: 8px 0 15px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert {
+        margin: 0 10px 80px;
+        gap: 0 20px;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .signature {
+        img {
+            width: 79px;
+        }
+        .name_trainer {
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .barcode span {
+        font-size: 12px;
+        text-align: center;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text {
+        display: none;
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two {
+        padding: 10px;
+        .inner {
+            .head {
+                padding: 20px;
+                .logo {
+                    max-width: 100%;
+                    flex: 100%;
+                }
+                .text {
+                    max-width: 100%;
+                    flex: 100%;
+                    margin-top: 20px;
+                }
+            }
+            .content_cert .name {
+                font-size: 28px;
+            }
+            .footer_cert {
+                margin: 0 15px 15px;
+                gap: 0 29px;
+            }
+        }
+        .shapes_cert img {
+            height: 100px !important;
+        }
+    }
+    .my_certificates_page .certificates_content .certificate_box .certificate_design.design_three {
+        .inner {
+            .head .text {
+                margin-top: 22px;
+                h4 {
+                    font-size: 21px;
+                }
+            }
+            .content_cert {
+                padding: 0 30px;
+                .name {
+                    font-size: 26px;
+                    margin: 6px 0 19px;
+                }
+            }
+            .footer_cert {
+                margin: 0 30px 40px;
+                gap: 0 30px;
+            }
+        }
+    }
+    .exam_page .container_exam {
+        padding: 50px 20px;
+        .questions_content {
+            .btn-wrapp {
+                display: block;
+                text-align: center;
+                .must_answer {
+                    padding-inline-start: 0;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+    .question_single {
+        .question_text {
+            display: block;
+            h6 {
+                max-width: 100%;
+                flex: 100%;
+            }
+            span {
+                max-width: 100%;
+                flex: 100%;
+                text-align: start;
+                margin-top: 10px;
+                display: inline-block;
+            }
+        }
+        .chooses_questions {
+            padding-inline-start: 10px;
+        }
+    }
+    .result_exam_page .question_single {
+        padding: 32px 14px;
+    }
+    .payment_page .payment-body .form_payment .main-btn {
+        padding: 16px 40px;
     }
 }
 

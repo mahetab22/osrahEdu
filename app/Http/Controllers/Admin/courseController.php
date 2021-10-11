@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\HTTP\Controllers\Controller;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Department;
 use App\Service;
@@ -21,10 +22,12 @@ use App\Http\Request\CourseRequestl;
 use App\Http\Requests\Admin\CourseRequest;
 use App\Lesson;
 use App\Level;
+use App\Activity;
 use App\Supervisor_Course;
 use App\SupervisorInfo;
 use App\Stusubscriptioncourse;
 use App\AttendingCourse;
+use App\ApplicationsForCourse;
 use Auth;
 use App\Widgets\Supervisor;
 class courseController extends Controller
@@ -68,15 +71,15 @@ class courseController extends Controller
         // dd($request);
         $course = new Course ;
         $course->title_ar = $request->title_ar;
-        $course->title_en = $request->title_en;
+        $course->title_en = $request->title_en ?? $request->title_ar;
         $course->description_ar = $request->desc_ar;
-        $course->description_en = $request->desc_en;
+        $course->description_en = $request->desc_en ?? $request->desc_ar;
         $course->duration = $request->duration;
         $course->service_id = $request->service;
         $course->from_date = $request->to_date;
-        $course->feature1_en = $request->feature1_en;
-        $course->feature2_en = $request->feature2_en;
-        $course->feature3_en = $request->feature3_en;
+        $course->feature1_en = $request->feature1_en ?? $request->feature1_ar;
+        $course->feature2_en = $request->feature2_en ?? $request->feature2_ar;
+        $course->feature3_en = $request->feature3_en ?? $request->feature3_ar;
         $course->feature1= $request->feature1_ar;
         $course->feature2= $request->feature2_ar;
         $course->feature3= $request->feature3_ar;
@@ -171,15 +174,15 @@ class courseController extends Controller
 
         $course =  Course::find($id) ;
         $course->title_ar = $request->title_ar;
-        $course->title_en = $request->title_en;
+        $course->title_en = $request->title_en ?? $request->title_ar;
         $course->description_ar = $request->desc_ar;
-        $course->description_en = $request->desc_en;
+        $course->description_en = $request->desc_en ?? $request->desc_ar;
         $course->duration = $request->duration;
         $course->service_id = $request->service;
         $course->from_date = $request->to_date;
-        $course->feature1_en = $request->feature1_en;
-        $course->feature2_en = $request->feature2_en;
-        $course->feature3_en = $request->feature3_en;
+        $course->feature1_en = $request->feature1_en ?? $request->feature1_ar;
+        $course->feature2_en = $request->feature2_en ?? $request->feature2_ar;
+        $course->feature3_en = $request->feature3_en ?? $request->feature3_ar;
         $course->feature1= $request->feature1_ar;
         $course->feature2= $request->feature2_ar;
         $course->feature3= $request->feature3_ar;
@@ -251,21 +254,29 @@ class courseController extends Controller
     {
         //
         $course = Course::find($id);
-        $levels = Level::where('course_id',$id)->get();
-        $lessons = Lesson::where('course_id',$id)->get();
-        $exams = Exam::where('course_id',$id)->get();
+        
         if(!is_null($course)){
-            $course->delete();
-                foreach($levels as $level){
-                    $level->delete();
-                }
-                foreach($lessons as $lesson){
-                    $lesson->delete();
-                }
-                foreach($exams as $exam){
-                    $exam->delete();
-                }
-
+        //-----Exams-----
+        $exams = Exam::where('course_id',$id)->get(['id']);
+        $subscriptions::destroy($exams->toArray());
+        //-----Levels-----
+        $levels = Level::where('course_id',$id)->get(['id']);
+        Level::destroy($levels->toArray());
+        //-----Lessons-----
+        $lessons = Lesson::where('course_id',$id)->get(['id']);
+        Lesson::destroy($lessons->toArray());
+        //-----Supervisores-----
+        $subscriptions = Supervisor_Course::where('course_id',$id)->get(['id']);
+        Supervisor_Course::destroy($subscriptions->toArray());
+        //-----Avtivities-----
+        $activities = Activity::where('course_id',$id)->get(['id']);
+        Activity::destroy($activities->toArray());
+        //-----Applications-----
+        $apps = ApplicationsForCourse::where('course_id',$id)->get(['id']);
+        ApplicationsForCourse::destroy($apps->toArray());
+        $course->delete();
+            
+            
             return response()->json(['err'=>'0','alert' =>[
                 'icon'=>'success',
                 'title'=>__('site.alert_success'),
@@ -299,19 +310,25 @@ class courseController extends Controller
                 }
             }else{
                 $course=Course::find($request->ids);
-                $levels=Level::where('course_id',$request->ids)->get();
-                $lessons=Lesson::where('course_id',$request->ids)->get();
-                $exams=Exam::where('course_id',$request->ids)->get();
+                //-----Exams-----
+                $exams = Exam::where('course_id',$id)->get(['id']);
+                $subscriptions::destroy($exams->toArray());
+                //-----Levels-----
+                $levels = Level::where('course_id',$id)->get(['id']);
+                Level::destroy($levels->toArray());
+                //-----Lessons-----
+                $lessons = Lesson::where('course_id',$id)->get(['id']);
+                Lesson::destroy($lessons->toArray());
+                //-----Supervisores-----
+                $subscriptions = Supervisor_Course::where('course_id',$id)->get(['id']);
+                Supervisor_Course::destroy($subscriptions->toArray());
+                //-----Avtivities-----
+                $activities = Activity::where('course_id',$id)->get(['id']);
+                Activity::destroy($activities->toArray());
+                //-----Applications-----
+                $apps = ApplicationsForCourse::where('course_id',$id)->get(['id']);
+                ApplicationsForCourse::destroy($apps->toArray());
                 $course->delete();
-                foreach($levels as $level){
-                    $level->delete();
-                }
-                foreach($lessons as $lesson){
-                    $lesson->delete();
-                }
-                foreach($exams as $exam){
-                    $exam->delete();
-                }
             }
             return response()->json(['err'=>'0','alert' =>[
                 'icon'=>'success',

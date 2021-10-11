@@ -2951,6 +2951,9 @@ section {
   padding-inline-start: 37px;
 }
 
+/*--------------------------------------------------------------
+# Start profile page
+--------------------------------------------------------------*/
 .profile_nav .profile_list ul {
   display: flex;
   margin-inline-end: 70px;
@@ -3025,6 +3028,364 @@ section {
   margin-inline-start: 7px;
 }
 
+.my_certificates_page {
+  padding: 100px 0 90px;
+}
+.my_certificates_page .tabs-li ul {
+  display: flex;
+  justify-content: center;
+}
+.my_certificates_page .tabs-li ul li {
+  text-align: center;
+  margin: 0 20px;
+  padding: 20px 40px 10px;
+  border: 1px solid #F1F1F1;
+  color: #0278B0;
+  border-radius: 13px 13px 0 0;
+  background-color: #F1F1F1;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  top: 1px;
+}
+.my_certificates_page .tabs-li ul li.active {
+  border-bottom: 1px solid #fff;
+  background-color: #fff;
+}
+.my_certificates_page .certificates_content .box_content {
+  padding: 50px 175px;
+  box-shadow: 0px 3px 26px rgba(184, 179, 179, 0.16);
+  border-radius: 13px;
+  border: 1px solid #E1E1E1;
+  display: none;
+  opacity: 0;
+  transition: 0.3s;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.my_certificates_page .certificates_content .box_content.active {
+  display: block;
+  animation: fadeInUp 1s both;
+  -webkit-animation: fadeInUp 1s both;
+}
+.my_certificates_page .certificates_content .certificate_box:not(:last-of-type) {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #F1F1F1;
+  margin-bottom: 30px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design {
+  position: relative;
+  border-radius: 13px;
+  overflow: hidden;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one {
+  background: #FAFAFA;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head {
+  position: relative;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head img {
+  width: 100%;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text {
+  position: absolute;
+  top: 0;
+  color: #fff;
+  right: 0;
+  left: 0;
+  text-align: center;
+  padding-top: 10px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text h4 {
+  font-size: 46px;
+  margin-bottom: 2px;
+  font-family: "bahij_semiBold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text span {
+  background: #be7914;
+  background: linear-gradient(180deg, #be7914 0%, #f0cf46 100%);
+  padding: 3px 30px;
+  border-radius: 50px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert {
+  padding: 0 80px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert .title {
+  color: #111;
+  font-family: "bahij_semiBold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert .name {
+  position: relative;
+  color: #111;
+  font-size: 49px;
+  display: inline-block;
+  margin: 15px 0 20px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert .name:after {
+  position: absolute;
+  content: "";
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #F3C563;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert p {
+  color: #303030;
+  font-size: 14px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert {
+  width: 56%;
+  margin: 0 auto 60px;
+  display: flex;
+  justify-content: space-between;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .signature .name_trainer {
+  font-size: 14px;
+  margin: 0;
+  padding-top: 6px;
+  border-top: 1px solid #ffc107;
+  margin-top: 6px;
+  font-family: "bahij_Bold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .barcode img {
+  width: 83px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .barcode span {
+  display: block;
+  color: #111;
+  font-family: "bahij_Bold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .shapes_cert img {
+  position: absolute;
+  bottom: 0;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .shapes_cert img:nth-of-type(1) {
+  left: 0;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .shapes_cert img:nth-of-type(2) {
+  right: 0;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two {
+  min-height: 483px;
+  background-image: url(../img/certificates/bg_2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px 25px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner {
+  border: 1px solid #707070;
+  height: 100%;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 24px 30px 0;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .logo {
+  max-width: 25%;
+  flex: 25%;
+  text-align: center;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .logo img {
+  width: 118px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .logo span {
+  display: block;
+  color: #111;
+  font-family: "bahij_Bold";
+  margin-top: 8px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .text {
+  max-width: 50%;
+  flex: 50%;
+  text-align: center;
+  font-family: "bahij_semiBold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .text h4 {
+  color: #C99A2E;
+  font-size: 46px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .text span {
+  color: #111;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .content_cert {
+  padding: 0 60px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .content_cert .name {
+  position: relative;
+  color: #111;
+  font-size: 49px;
+  display: inline-block;
+  margin: 10px 0 20px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .content_cert .name:after {
+  position: absolute;
+  content: "";
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #F3C563;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .content_cert p {
+  color: #303030;
+  font-size: 14px;
+  line-height: 27px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert {
+  margin: 0 185px 15px 59px;
+  display: flex;
+  justify-content: space-between;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert .signature .name_trainer {
+  font-size: 14px;
+  margin: 0;
+  padding-top: 6px;
+  border-top: 1px solid #ffc107;
+  margin-top: 6px;
+  font-family: "bahij_Bold";
+  text-align: center;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert .barcode {
+  text-align: center;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert .barcode img {
+  width: 83px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert .barcode span {
+  display: block;
+  color: #111;
+  font-family: "bahij_Bold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .shapes_cert img {
+  position: absolute;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .shapes_cert img:nth-of-type(1) {
+  left: auto;
+  right: 0;
+  bottom: 0;
+  height: 270px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .shapes_cert img:nth-of-type(2) {
+  right: auto;
+  left: 0;
+  top: 0;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three {
+  min-height: 483px;
+  background: #f9f9f9;
+  background: linear-gradient(3deg, #f9f9f9 0%, #f1f1f1 32%, #cfcfcf 100%);
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .head {
+  position: relative;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .head img {
+  width: 100%;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .head .text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 47px;
+  font-family: "bahij_semiBold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .head .text h4 {
+  color: #F4DE8B;
+  font-size: 46px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .content_cert {
+  padding: 0 60px;
+  color: #111;
+  font-family: "bahij_semiBold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .content_cert .name {
+  position: relative;
+  font-size: 32px;
+  display: inline-block;
+  margin: 10px 0 20px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .content_cert p {
+  color: #303030;
+  font-family: Bahij_Light, sans-serif;
+  font-size: 14px;
+  line-height: 27px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .footer_cert {
+  margin: 0 60px 35px;
+  display: flex;
+  justify-content: space-between;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .footer_cert .signature .name_trainer {
+  font-size: 14px;
+  margin: 0;
+  padding-top: 6px;
+  border-top: 1px solid #ffc107;
+  margin-top: 6px;
+  font-family: "bahij_Bold";
+  text-align: center;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .footer_cert .barcode {
+  text-align: center;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .footer_cert .barcode img {
+  width: 83px;
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .footer_cert .barcode span {
+  display: block;
+  color: #111;
+  font-family: "bahij_Bold";
+}
+.my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .border_line {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  border: 1px solid #CF8E22;
+  margin: 14px 17px;
+  width: calc(100% - 32px);
+  height: calc(100% - 28px);
+}
+.my_certificates_page .certificates_content .certificate_box .download_cert {
+  text-align: center;
+  margin-top: 23px;
+}
+.my_certificates_page .certificates_content .certificate_box .download_cert .main-btn {
+  padding: 12px 30px;
+  font-family: "bahij_semiBold";
+}
+.my_certificates_page .certificates_content .certificate_box .download_cert .main-btn i {
+  margin-inline-end: 5px;
+}
+
+.body-profile .nav-tabs li.active a, .body-profile .nav-tabs li:hover a {
+  background: linear-gradient(270deg, #0054a5 0%, #0099ff 100%);
+  color: #fff;
+}
+
+.body-profile .body-tab-pro {
+  padding: 0 30px;
+}
+.body-profile .body-tab-pro .box_content {
+  display: none;
+  opacity: 0;
+  transition: 0.3s;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.body-profile .body-tab-pro .box_content.active {
+  display: block;
+  animation: fadeInUp 1s both;
+  -webkit-animation: fadeInUp 1s both;
+}
+
+/*--------------------------------------------------------------
+# End profile page
+--------------------------------------------------------------*/
 .payment_page {
   padding: 50px 0;
 }
@@ -3121,7 +3482,8 @@ section {
 }
 .payment_page .payment-body .form_payment .main-btn {
   border: 0;
-  padding: 15px 40px;
+  padding: 16px 80px;
+  font-family: "bahij_Bold";
 }
 .payment_page .payment-body .image img {
   width: 100%;
@@ -3158,6 +3520,256 @@ section {
 }
 .survey_page .modal_form .form-group .custom_checkbox input:checked ~ .checkmark {
   background-color: #3498DB !important;
+}
+
+.exam_page {
+  padding: 100px 0 70px;
+}
+.exam_page .container_exam {
+  box-shadow: 0px 3px 26px rgba(184, 179, 179, 0.16);
+  border-radius: 13px;
+  background-color: #fff;
+  padding: 50px 120px;
+}
+.exam_page .container_exam .header_exam {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(112, 112, 112, 0.31);
+}
+.exam_page .container_exam .header_exam .degree {
+  color: #0278B0;
+  font-size: 15px;
+  font-family: "bahij_Bold";
+  max-width: 25%;
+  flex: 25%;
+}
+.exam_page .container_exam .header_exam .title {
+  font-size: 20px;
+  font-family: "bahij_Bold";
+  color: #111;
+  max-width: 50%;
+  flex: 50%;
+  text-align: center;
+  margin: 0;
+}
+.exam_page .container_exam .header_exam .time {
+  max-width: 25%;
+  flex: 25%;
+  text-align: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.exam_page .container_exam .header_exam .time img {
+  margin-inline-end: 12px;
+}
+.exam_page .container_exam .header_exam .time span {
+  font-family: "bahij_Bold";
+  color: #0278B0;
+  margin-top: 2px;
+  display: inline-block;
+}
+.exam_page .container_exam .questions_content {
+  padding: 40px 0 20px;
+}
+.exam_page .container_exam .questions_content .btn-wrapp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.exam_page .container_exam .questions_content .btn-wrapp .controls_slider {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0 22px;
+}
+.exam_page .container_exam .questions_content .btn-wrapp .must_answer {
+  padding-inline-start: 25px;
+}
+.exam_page .container_exam .questions_content .btn-wrapp button {
+  border: 0;
+  padding: 8px 36px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  font-family: "bahij_semiBold";
+}
+.exam_page .container_exam .questions_content .btn-wrapp #next i {
+  margin-inline-end: 6px;
+}
+.exam_page .container_exam .questions_content .btn-wrapp #prev i {
+  margin-inline-start: 6px;
+}
+.exam_page .container_exam .questions_content .btn-wrapp .note {
+  font-size: 20px;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.exam_page .container_exam .questions_content .btn-wrapp .note.red {
+  color: #E41F1F;
+}
+.exam_page .container_exam .questions_content .btn-wrapp .note.show {
+  opacity: 1;
+  visibility: visible;
+  animation: vibrate 0.3s linear;
+}
+
+@keyframes vibrate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(7deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-7deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.question_single {
+  display: none;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.question_single.active {
+  display: block;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+.question_single .question_text {
+  display: flex;
+  align-items: center;
+}
+.question_single .question_text h6 {
+  margin: 0;
+  color: #383839;
+  font-family: "bahij_semiBold";
+  max-width: 80%;
+  flex: 80%;
+  line-height: 28px;
+}
+.question_single .question_text span {
+  color: #0278B0;
+  font-family: "bahij_Bold";
+  max-width: 20%;
+  flex: 20%;
+  text-align: end;
+}
+.question_single .chooses_questions {
+  padding-top: 25px;
+  padding-inline-start: 25px;
+}
+.question_single .chooses_questions label {
+  position: relative;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0 13px;
+  cursor: pointer;
+}
+.question_single .chooses_questions label:not(:last-of-type) {
+  margin-bottom: 17px;
+}
+.question_single .chooses_questions label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+.question_single .chooses_questions label input:checked ~ .checkmark {
+  background-color: #383839;
+  border-color: #383839;
+  color: #fff;
+}
+.question_single .chooses_questions label .checkmark {
+  min-width: 24px;
+  border: 1px solid #111;
+  height: 24px;
+  color: #383839;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.question_single .chooses_questions label:hover {
+  color: #3498DB;
+}
+
+.result_exam_page .questions_content {
+  padding: 0;
+}
+.result_exam_page .questions_content .heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.result_exam_page .questions_content .heading h5 {
+  font-size: 25px;
+  color: #0278B0;
+  margin-bottom: 30px;
+  font-family: "bahij_Bold";
+}
+.result_exam_page .questions_content .heading p {
+  color: #0278B0;
+  font-size: 18px;
+}
+.result_exam_page .questions_content .heading p span {
+  display: inline-block;
+  margin-inline-start: 5px;
+}
+.result_exam_page .question_single {
+  display: block;
+  border: 1px solid #008EF0;
+  padding: 32px 34px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.result_exam_page .question_single label {
+  pointer-events: none;
+}
+.result_exam_page .question_single label input.true ~ .checkmark {
+  background-color: #43FF00;
+  border-color: #43FF00;
+  color: #fff;
+}
+.result_exam_page .question_single label input.false ~ .checkmark {
+  background-color: #FF0000;
+  border-color: #FF0000;
+  color: #fff;
+}
+.result_exam_page .result_exam {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  color: #3498DB;
+  font-family: "bahij_Bold";
+  align-items: center;
+}
+.result_exam_page .result_exam h6 {
+  color: #111;
+  font-size: 25px;
+  margin: 0;
+}
+.result_exam_page .result_exam span {
+  margin-inline-start: 5px;
 }
 
 /*--------------------------------------------------------------
@@ -3401,10 +4013,13 @@ section {
   border-radius: 50px;
 }
 .main-btn.main {
-  background: linear-gradient(270deg, #0054a5 0%, #0099ff 100%);
+  background: linear-gradient(to right, #0054a5, #0099ff, #0054a5, #0099ff) !important;
+  color: #fff !important;
+  background-size: 300% 100% !important;
+  transition: all 0.4s ease-in-out;
 }
 .main-btn.main:hover {
-  background: linear-gradient(90deg, #0054a5 0%, #0099ff 100%);
+  background-position: 100% 0 !important;
   color: #fff;
 }
 .main-btn.trans {
@@ -3804,6 +4419,14 @@ section {
   .payment_page .payment-body .image {
     display: none;
   }
+
+  .my_certificates_page .certificates_content .box_content {
+    padding: 50px 30px;
+  }
+
+  .exam_page .container_exam {
+    padding: 50px 40px;
+  }
 }
 @media (max-width: 767.98px) {
   .courses_section .list_control li:not(:last-of-type) {
@@ -3880,6 +4503,66 @@ section {
   .payment_page .tabs-li ul li {
     padding: 20px 11px 10px;
     font-size: 14px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .shapes_cert img {
+    width: 92px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert {
+    width: auto;
+    margin: 0 30px 80px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert {
+    padding: 0 20px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text h4 {
+    font-size: 28px;
+    margin-bottom: 2px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text span {
+    padding: 1px 30px;
+    font-size: 11px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .shapes_cert img {
+    height: 150px !important;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .text {
+    max-width: 75%;
+    flex: 75%;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .content_cert {
+    padding: 0 20px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert {
+    margin: 0 45px 15px 15px;
+  }
+
+  .my_certificates_page .tabs-li ul {
+    display: block;
+  }
+  .my_certificates_page .tabs-li ul li {
+    border-radius: 0;
+    border-bottom: 1px solid #fff;
+  }
+
+  .exam_page .container_exam .header_exam .degree {
+    max-width: 50%;
+    flex: 50%;
+    order: 2;
+  }
+  .exam_page .container_exam .header_exam .title {
+    max-width: 100%;
+    flex: 100%;
+    margin-bottom: 20px;
+  }
+  .exam_page .container_exam .header_exam .time {
+    max-width: 50%;
+    flex: 50%;
+    order: 3;
   }
 }
 @media (max-width: 575.98px) {
@@ -4038,6 +4721,119 @@ section {
 
   .payment_page .tabs-li ul li img {
     width: 36px;
+  }
+
+  .my_certificates_page .certificates_content .box_content {
+    padding: 50px 10px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .content_cert .name {
+    font-size: 24px;
+    margin: 8px 0 15px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert {
+    margin: 0 10px 80px;
+    gap: 0 20px;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .signature img {
+    width: 79px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .signature .name_trainer {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .footer_cert .barcode span {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_one .head .text {
+    display: none;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two {
+    padding: 10px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head {
+    padding: 20px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .logo {
+    max-width: 100%;
+    flex: 100%;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .head .text {
+    max-width: 100%;
+    flex: 100%;
+    margin-top: 20px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .content_cert .name {
+    font-size: 28px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .inner .footer_cert {
+    margin: 0 15px 15px;
+    gap: 0 29px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_two .shapes_cert img {
+    height: 100px !important;
+  }
+
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .head .text {
+    margin-top: 22px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .head .text h4 {
+    font-size: 21px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .content_cert {
+    padding: 0 30px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .content_cert .name {
+    font-size: 26px;
+    margin: 6px 0 19px;
+  }
+  .my_certificates_page .certificates_content .certificate_box .certificate_design.design_three .inner .footer_cert {
+    margin: 0 30px 40px;
+    gap: 0 30px;
+  }
+
+  .exam_page .container_exam {
+    padding: 50px 20px;
+  }
+  .exam_page .container_exam .questions_content .btn-wrapp {
+    display: block;
+    text-align: center;
+  }
+  .exam_page .container_exam .questions_content .btn-wrapp .must_answer {
+    padding-inline-start: 0;
+    margin-bottom: 10px;
+  }
+
+  .question_single .question_text {
+    display: block;
+  }
+  .question_single .question_text h6 {
+    max-width: 100%;
+    flex: 100%;
+  }
+  .question_single .question_text span {
+    max-width: 100%;
+    flex: 100%;
+    text-align: start;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .question_single .chooses_questions {
+    padding-inline-start: 10px;
+  }
+
+  .result_exam_page .question_single {
+    padding: 32px 14px;
+  }
+
+  .payment_page .payment-body .form_payment .main-btn {
+    padding: 16px 40px;
   }
 }
 /*--------------------------------------------------------------

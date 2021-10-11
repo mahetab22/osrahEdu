@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 
@@ -359,6 +361,10 @@
 <script src="{{url('/')}}/public/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{url('/')}}/public/admin/dist/js/adminlte.js"></script>
+<!-- InputMask -->
+<script src="{{url('/')}}/public/admin/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+<!-- bootstrap color picker -->
+<script src="{{url('/')}}/public/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('/')}}/public/admin/dist/js/demo.js"></script>

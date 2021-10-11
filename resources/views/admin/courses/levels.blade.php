@@ -15,8 +15,9 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
+              <li class="breadcrumb-item"></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/courses">@lang('site.courses')</a></li>
-              <li class="breadcrumb-item active">@lang('site.levels')</li>
+              <li class="active">@lang('site.levels')</li>
             </ol>
           </div>
         </div>
@@ -74,51 +75,51 @@
                       </td>
                   </tr>
                   <div id="update-level{{$i}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">@lang('site.new')</h4> 
-            </div> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">@lang('site.new')</h4>
+            </div>
             <form method="post" action="{{url('/')}}/admin/levels/update/{{$level->id}}">
             @csrf
-            <div class="modal-body"> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">@lang('site.arabic title')</label> 
-                            <input type="text" class="form-control" name="title_ar"id="field-1"value="{{$level->title_ar}}" placeholder="@lang('site.arabic title')"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">@lang('site.english title')</label> 
-                            <input type="text" class="form-control" name="title_en"id="field-2" value="{{$level->title_en}}" placeholder="@lang('site.english title')"> 
-                        </div> 
-                    </div> 
-                </div> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">@lang('site.arabic description')</label> 
-                            <textarea row="3" type="text" name="desc_ar"class="form-control" id="field-3" >{{$level->description_ar}}</textarea> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-4" class="control-label">@lang('site.english description')</label> 
-                            <textarea row="3" type="text" name="desc_en"class="form-control" id="field-4" >{{$level->description_en}}</textarea> 
-                        </div> 
-                    </div> 
-                </div> 
-                
-            </div> 
-            <div class="modal-footer"> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button> 
-                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button> 
-            </div> 
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">@lang('site.arabic title')</label>
+                            <input type="text" class="form-control" name="title_ar"id="field-1"value="{{$level->title_ar}}" placeholder="@lang('site.arabic title')">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">@lang('site.english title')</label>
+                            <input type="text" class="form-control" name="title_en"id="field-2" value="{{$level->title_en}}" placeholder="@lang('site.english title')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">@lang('site.arabic description')</label>
+                            <textarea row="3" type="text" name="desc_ar"class="form-control" id="field-3" >{{$level->description_ar}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-4" class="control-label">@lang('site.english description')</label>
+                            <textarea row="3" type="text" name="desc_en"class="form-control" id="field-4" >{{$level->description_en}}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+            </div>
             </form>
-        </div> 
+        </div>
     </div>
 </div><!-- /.modal -->
                 @endforeach
@@ -136,51 +137,51 @@
     <!-- /.content -->
 </div>
 <div id="add-level" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">@lang('site.new')</h4> 
-            </div> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">@lang('site.new')</h4>
+            </div>
             <form method="post" action="{{url('/')}}/admin/levels/create/{{$course->id}}">
             @csrf
-            <div class="modal-body"> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">@lang('site.arabic title')</label> 
-                            <input type="text" class="form-control"required name="title_ar"id="field-1" placeholder="@lang('site.arabic title')"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">@lang('site.english title')</label> 
-                            <input type="text" class="form-control" name="title_en"id="field-2" placeholder="@lang('site.english title')"> 
-                        </div> 
-                    </div> 
-                </div> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">@lang('site.arabic description')</label> 
-                            <textarea row="3" type="text"required name="desc_ar"class="form-control" id="field-3" ></textarea> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-4" class="control-label">@lang('site.english description')</label> 
-                            <textarea row="3" type="text" name="desc_en"class="form-control" id="field-4" ></textarea> 
-                        </div> 
-                    </div> 
-                </div> 
-                
-            </div> 
-            <div class="modal-footer"> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button> 
-                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button> 
-            </div> 
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">@lang('site.arabic title')</label>
+                            <input type="text" class="form-control"required name="title_ar"id="field-1" placeholder="@lang('site.arabic title')">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">@lang('site.english title')</label>
+                            <input type="text" class="form-control" name="title_en"id="field-2" placeholder="@lang('site.english title')">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">@lang('site.arabic description')</label>
+                            <textarea row="3" type="text"required name="desc_ar"class="form-control" id="field-3" ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-4" class="control-label">@lang('site.english description')</label>
+                            <textarea row="3" type="text" name="desc_en"class="form-control" id="field-4" ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+            </div>
             </form>
-        </div> 
+        </div>
     </div>
 </div><!-- /.modal -->
 @endsection

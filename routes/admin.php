@@ -88,6 +88,8 @@ Route::group(['prefix' => 'admin',
         Route::post('/{id}/questions/store','ExamQuestionsController@store');
         Route::get('/{id}/questions/{question_id}/edit','ExamQuestionsController@edit');
         Route::post('/{id}/questions/{question_id}/update','ExamQuestionsController@update');
+        Route::get('/{id}/questions/{question_id}/destroy','ExamQuestionsController@destroy');
+        Route::get('/{id}/questions/delete_all','ExamQuestionsController@delete_all');
     });
 
 

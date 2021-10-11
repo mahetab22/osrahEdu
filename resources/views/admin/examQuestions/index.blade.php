@@ -15,7 +15,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.exam questions')</li>
+              <li class="breadcrumb-item"></li>
+              <li>{{ $exam->title }}</li>
             </ol>
           </div>
         </div>
@@ -30,7 +31,8 @@
 
           <div class="card">
             <div class="card-header">
-            <a class="btn bg-gradient-primary text-white" href="{{url('/admin/exam/'. $exam_id .'/questions/create')}}">@lang('site.create new question')</a>
+            <a class="btn bg-gradient-primary text-white" href="{{url('/admin/exam/'. $exam->id .'/questions/create')}}">@lang('site.create new question')</a>
+            <button class="btn bg-gradient-primary text-white delete_all"> {{ __('site.Delete All Selected') }}</button>
             <h3 class="card-title">@lang('site.exam questions')</h3>
             </div>
             <!-- /.card-header -->
@@ -72,7 +74,7 @@
                     <td>
                         <div class="row">
                             <div class="col-md-6">
-                                <a class="edit btn bg-gradient-primary m-1" href="{{ url('/admin/exam/'.$exam_id.'/questions/'.$question->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
+                                <a class="edit btn bg-gradient-primary m-1" href="{{ url('/admin/exam/'.$exam->id.'/questions/'.$question->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
                             </div>
                             <div class="col-md-6">
                                 <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $question->id }}"><i class="fa fa-trash text-white"></i></a>
@@ -120,9 +122,10 @@
     $('.delete').on('click',function(e){
       id = $(this).attr('data-delete-id');
         e.preventDefault();
+        var url = "questions/" + id + "/destroy" ;
         Swal.fire({
           title: "@lang('site.alert_confirm_message')",
-          text: "@lang('site.alert_irreversible_message')",
+          text: "@lang('site.alert_question_delete')",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -132,10 +135,10 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                type:'POST',
+                type:'GET',
                 dataType: 'json',
                 data:{ id:id, _method: 'DELETE', _token:"{{ csrf_token() }}" },
-                url: "{!! url('admin/exams/' ) !!}" + "/" + id,
+                url: url ,
                 success:function(data){
                     Swal.fire({
                         position: 'center',
@@ -145,7 +148,7 @@
                         timer: 1500,
                     })
                     if(data['err'] == 0){
-                        $('table tr').filter("[data-row-id='" + value + "']").remove();
+                        $('table tr').filter("[data-row-id='" + id + "']").remove();
                     }
                 },
                 error:function(data){
@@ -167,7 +170,6 @@ $('#master').on('click', function(e) {
 });
 
 $('.delete_all').on('click', function(e) {
-
 
     var allVals = [];
     $(".sub_chk:checked").each(function() {
@@ -197,8 +199,8 @@ $('.delete_all').on('click', function(e) {
                 }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{!! url('admin/exam/delete_all' ) !!}",
-                        type: 'POST',
+                        url: "{!! url('admin/exam/'.$exam->id.'/questions/delete_all' ) !!}",
+                        type: 'GET',
                         data: { ids: allVals, _token:"{{ csrf_token() }}" },
                         success: function (data) {
                             console.log(data);

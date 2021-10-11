@@ -15,8 +15,9 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
+              <li class="breadcrumb-item"></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/courses">@lang('site.courses')</a></li>
-              <li class="breadcrumb-item active">@lang('site.apps')</li>
+              <li class="active">@lang('site.apps')</li>
             </ol>
           </div>
         </div>
@@ -87,9 +88,9 @@
                                                 <input type="text" class="form-control" name="title"id="field-1"value="{{$app->title}}" placeholder="@lang('site.title')">
                                             </div>
                                         </div>
-                                    
+
                                     </div>
-                                    <div class="col-md-12">      
+                                    <div class="col-md-12">
                                         <div class="col-md-12">
                                             <div class="input-group">
                                                 <div class="custom-file">
@@ -111,11 +112,11 @@
                             </div>
                         </div>
                  </div><!-- /.modal -->
-                    
+
                     @endforeach
-               
-               
-               
+
+
+
                 </tbody>
               </table>
             </div>

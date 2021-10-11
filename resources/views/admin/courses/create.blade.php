@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ url('admin/courses') }}">@lang('site.course')</a></li>
-                        <li class="breadcrumb-item active">@Lang('site.create new course')</li>
+                        <li class="breadcrumb-item"></li>
+                        <li class="active">@Lang('site.create new course')</li>
                     </ol>
                 </div>
             </div>
@@ -45,7 +46,7 @@
                                         <select class="form-control @error('service') {{  'is-invalid'  }} @enderror" id="inputName1" name="service" value="{{ old('service') }}" placeholder="@lang('site.service arabic title')" required>
                                             <option value="" disabled selected>-- @lang('site.choose service') --</option>
                                             @foreach ($services as $service)
-                                            <option value="{{ $service->id }}" > {{ app()->getLocale() == 'ar' ? $service->title_ar : $service->title_en }} </option>
+                                            <option value="{{ $service->id }}" {{ $service->id == old('service') ? 'selected' : ''}}> {{ app()->getLocale() == 'ar' ? $service->title_ar : $service->title_en }} </option>
                                             @endforeach
                                         </select>
                                         @error('service')
@@ -66,20 +67,22 @@
                                                 <span class="input-group-text" id="">@lang('site.choose image')</span>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 mt-2">
+                                            <img src="" id="profile-img-tag" width="200px" />
+                                        </div>
                                         @error('logo')
                                             <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                         @enderror
                                     </div>
                                 </div>
 
-
                                 <div class="form-group row">
                                     <label for="inputSupervisor" class="col-sm-2 control-label">@lang('site.supervisor')</label>
                                     <div class="col-sm-10">
                                         <select class="form-control @error('supervisor_id') {{  'is-invalid'  }} @enderror" id="inputSupervisor" name="supervisor_id[]" multiple required>
                                             <option value="" disabled selected>-- @lang('site.choose supervisor') --</option>
-                                            @foreach ( $supervisors as $supervisor)
-                                                <option value="{{ $supervisor->id }}">{{ $supervisor->name }}</option>
+                                            @foreach ( $supervisors as $i => $supervisor)
+                                                    <option value="{{ $supervisor->id }}" {{ (collect(old('supervisor_id'))->contains($supervisor->id)) ? 'selected' : ''}}>{{ $supervisor->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('supervisor_id')
@@ -286,14 +289,13 @@
                     <!-- Horizontal Form -->
                     <div class="card card-info">
                         <div class="card-body">
-
                             <div class="form-group row">
                                 <label for="inputtype1" class="col-sm-2 control-label">@lang('site.course type')</label>
                                 <div class="col-sm-10">
                                     <select class="form-control @error('type') {{  'is-invalid'  }} @enderror" id="inputType1" name="type" value="{{ old('type') }}" placeholder="@lang('site.service arabic title')">
                                         <option value="" disabled selected>-- @lang('site.choose type') --</option>
-                                        <option value="0">@lang('site.course online')</option>
-                                        <option value="1">@lang('site.course offline')</option>
+                                        <option value="0" {{ old('type') == 0 ? 'selected' : '' }}>@lang('site.course online')</option>
+                                        <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>@lang('site.course offline')</option>
                                     </select>
                                     @error('type')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
@@ -404,7 +406,16 @@
 <script>
     $('.offline').hide();
     $('.online').hide();
-
+    $(document).ready(function() {
+        var valueSelected = $("#inputType1 option:selected").val();
+        if(valueSelected == 0){
+            $('.online').show();
+            $('.offline').hide();
+        }else{
+            $('.offline').show();
+            $('.online').hide();
+        }
+    });
     $('#inputType1').on('change',function(){
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
@@ -422,6 +433,22 @@
     $('#role').on('change',function(){
         console.log('test');
         $(this).removeClass('is-invalid');
+    });
+
+    //Display New Image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            console.log(reader);
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#exampleInputFile").change(function(){
+        console.log('test');
+        readURL(this);
     });
 </script>
 @endsection

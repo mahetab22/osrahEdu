@@ -15,8 +15,9 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
+              <li class="breadcrumb-item"></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/teachers">@lang('site.teachers')</a></li>
-              <li class="breadcrumb-item active">@lang('site.teacher subscriptions')</li>
+              <li class="active">@lang('site.teacher subscriptions')</li>
             </ol>
           </div>
         </div>
@@ -47,13 +48,12 @@
                     </tr>
                 </thead>
                 <tbody>
-
                 @foreach($subscriptions as $i => $subscription)
                 <tr data-row-id='{{ $subscription->id }}'>
                     {{--  <td><input type="checkbox" name="teachers[]" class="sub_chk" data-id="{{$subscription->id}}"></td>  --}}
                     <td>{{ $i + 1 }}</td>
-                    <td>{{ app()->getLocale() == 'ar' ? $subscription->course->title_ar : $subscription->course->title_en }}</td>
-                    <td>{{ app()->getLocale() == 'ar' ? $subscription->course->description_ar : $subscription->course->description_en }}</td>
+                    <td>{{ app()->getLocale() == 'ar' ? $subscription->course->title_ar ?? '' : $subscription->course->title_en ?? '' }}</td>
+                    <td>{{ app()->getLocale() == 'ar' ? $subscription->course->description_ar ?? '' : $subscription->course->description_en ?? ''}}</td>
 
                     <td>
                         <div class="row">
@@ -61,7 +61,7 @@
                                 <a class="edit btn bg-gradient-primary" href="{{ url('/admin/teachers/'.$teacher->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
                             </div>  --}}
                             <div class="col-md-6">
-                                <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $subscription->id }}"><i class="fa fa-trash text-white"></i></a>
+                                <a class="delete btn bg-gradient-danger m-1" href="javascript:void(0)" data-delete-id="{{ $subscription->id ?? ''}}"><i class="fa fa-trash text-white"></i></a>
                             </div>
                         </div>
                     </td>

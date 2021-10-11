@@ -247,6 +247,7 @@ return [
     'updated_successfully' => 'Data updated successfully',
     'deleted_successfully' => 'Data deleted successfully',
 
+    'warning'=>'Warning',
     'added_failed' => 'failed to add data',
     'updated_failed' => 'failed to update data',
     'deleted_failed' => 'failed to delete data',
@@ -439,9 +440,13 @@ return [
     'teacher arabic educational max'=>'Maximum length of arabic educational is 100 character',
     'teacher english educational max'=>'Maximum length of english educational is 100 character',
     'teacher service required'=>'Service field is required',
+    'teacher arabic profile required'=>'Educational field is required',
     'teacher arabic skill1 required'=>'Arabic skill1 field is required',
     'teacher english skill1 required'=>'English skill1 field is required',
-    'teacher arabic profile required'=>'Educational field is required',
+    'teacher arabic skill2 required'=>'Arabic skill2 field is required',
+    'teacher english skill2 required'=>'English skill2 field is required',
+    'teacher arabic skill3 required'=>'Arabic skill3 field is required',
+    'teacher english skill3 required'=>'English skill3 field is required',
 
     'teacher arabic skill1 max'=>'Maximum length of arabic skill1 is 250 character',
     'teacher arabic skill2 max'=>'Maximum length of arabic skill2 is 250 character',
@@ -515,7 +520,7 @@ return [
     'image mimes'=>'Image must be one of these extensions: jpg,png,jpeg',
     'pdf required'=>'Book file field is required',
     'pdf mimes'=>'File must be pdf',
-    'pdf max'=>'Maximum pdf size is 10000',
+    'pdf max'=>'Maximum pdf size is 10 MB',
     'book title required'=>'Book title field is required',
     'book descrpiotion required'=>'Book descriotion field is required',
     'newsEmail'=>'News email',
@@ -697,4 +702,23 @@ return [
     'all'=>'All',
     'online'=>'Online',
     'offline'=>'Offline',
+    // ----------- Breadcrumb Validation -----------
+    'breadcrumb arabic title required'=>'Arabic title field is required',
+    'breadcrumb arabic title max'=>'Maximum length of arabic title is 100 characters',
+    'breadcrumb english title required'=>'English title field is required',
+    'breadcrumb english title max'=>'Maximum length of english title is 100 characters',
+    'breadcrumb link url required'=>'Link url field is required',
+    'breadcrumb image required'=>'Image field is reuqired',
+    'breadcrumb image image'=>'File uploaded must be Image',
+    'breadcrumb image mimes'=>'File extension must be png,jpeg,jpg',
+    // ----------- Breadcrumb Alert -----------
+     'breadcrumb added successfully'=>'Image added successfully',
+    'breadcrumb updated successfully'=>'Image updated  successfully',
+    // ----------- Survey -----------
+    'survey'=>'Survey',
+    'course rate'=>'Course rate',
+    'teacher rate'=>'Teacher rate',
+    'site rate'=>'Site rate',
+    
+    
     ];

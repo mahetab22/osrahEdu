@@ -15,7 +15,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.exams')</li>
+              <li class="breadcrumb-item"></li>
+              <li class="active">@lang('site.exams')</li>
             </ol>
           </div>
         </div>
@@ -190,9 +191,7 @@ $('.delete_all').on('click', function(e) {
 
 
 });
-</script>
-//var id = $(this).attr('data-delete-id');
-<script type="text/javascript">
+
     $('.delete').on('click',function(e){
       id = $(this).attr('data-delete-id');
       console.log(id);

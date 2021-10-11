@@ -14,8 +14,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/exams/'.$exam_id.'/questions') }}">@lang('site.breadcrumbs')</a></li>
-                        <li class="breadcrumb-item active">@Lang('site.create new question')</li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/exam/'.$exam_id.'/questions') }}">{{  App\Exam::find($exam_id)->title }}</a></li>
+                        <li class="breadcrumb-item"></li>
+                        <li class="active">@Lang('site.create new question')</li>
                     </ol>
                 </div>
             </div>
@@ -44,16 +45,16 @@
                                 <div id="Question">
                                     <div  class="col-md-12 newQuestion">
                                         <div class="form-group row">
-                                            <div class="col-sm-6 row">
-                                                <label for="inputMCQ" class="col-sm-4 control-label">@lang('site.exam question mcq')</label>
-                                                <div class="col-sm-8">
+                                            <div class="col-sm-6 clearfix">
+                                                <div class="icheck-primary d-inline">
                                                     <input type="radio" id="inputMCQ" name="q_type" value="0" {{  old('q_type') == 0 ? 'checked' : '' }}>
+                                                    <label for="inputMCQ">@lang('site.exam question mcq')</label>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6 row">
-                                                <label for="inputCorrection" class="col-sm-4 control-label">@lang('site.exam question correct')</label>
-                                                <div class="col-sm-8">
-                                                    <input type="radio" id="inputCorrection" name="q_type" value="1" {{  old('q_type') == 1 ? 'checked' : '' }}>
+                                            <div class="col-sm-6 clearfix">
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="radio" id="radioSuccess3" class="" name="q_type" value="1" {{  old('q_type') == 1 ? 'checked' : '' }}>
+                                                    <label for="radioSuccess3" class="">@lang('site.exam question correct')</label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
@@ -74,7 +75,7 @@
                                         <div class="row">
                                             <div class="col-sm-12 row mcq">
                                                 <div class="form-group col-sm-6 row">
-                                                    <input type="radio" class="col-md-1 mt-2" value="1" name="co" {{  old('co') == 1 ? 'checked' : '' }}>
+                                                    <input type="radio" class="col-md-1 mt-2 icheck-primary" value="1"name="co" {{  old('co') == 1 ? 'checked' : '' }}>
                                                     <label for="inputAnswer1" class="col-sm-3 control-label">@lang('site.exam answer1')</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control @error('a.0') {{  'is-invalid'  }} @enderror" id="inputAnswer1" name="a[]" value="{{ old('a.0') }}" placeholder="@lang('site.exam answer1')">
@@ -84,7 +85,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-6 row">
-                                                    <input type="radio" class="col-md-1 mt-2" value="2" name="co" {{  old('co') == 2 ? 'checked' : '' }}>
+                                                    <input type="radio" class="col-md-1 mt-2 icheck-primary" value="2" name="co" {{  old('co') == 2 ? 'checked' : '' }}>
                                                     <label for="inputAnswer2" class="col-sm-3 control-label">@lang('site.exam answer2')</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control @error('a.1') {{  'is-invalid'  }} @enderror" id="inputAnswer2" name="a[]" value="{{ old('a.1') }}" placeholder="@lang('site.exam answer2')">
@@ -94,7 +95,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-6 row question3">
-                                                    <input type="radio" class="col-md-1 mt-2" value="3" name="co" {{  old('co') == 3 ? 'checked' : '' }}>
+                                                    <input type="radio" class="col-md-1 mt-2 icheck-primary" value="3" name="co" {{  old('co') == 3 ? 'checked' : '' }}>
                                                     <label for="inputAnswer3" class="col-sm-3 control-label">@lang('site.exam answer3')</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control @error('a.2') {{  'is-invalid'  }} @enderror" id="inputAnswer3" name="a[]" value="{{ old('a.2') }}" placeholder="@lang('site.exam answer3')">
@@ -104,7 +105,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-6 row question4">
-                                                    <input type="radio" class="col-md-1 mt-2" value ="4" name="co" {{  old('co') == 4 ? 'checked' : '' }}>
+                                                    <input type="radio" class="col-md-1 mt-2 icheck-primary" value ="4" name="co" {{  old('co') == 4 ? 'checked' : '' }}>
                                                     <label for="inputAnswer4" class="col-sm-3 control-label">@lang('site.exam answer4')</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control @error('a.3') {{  'is-invalid'  }} @enderror" id="inputAnswer4" name="a[]" value="{{ old('a.3') }}" placeholder="@lang('site.exam answer4')">
@@ -164,7 +165,7 @@
         switch (content_val) {
             case '0':
                 $('.mcq').append(`<div class="form-group col-sm-6 row question3">
-                    <input type="radio" class="col-md-1 mt-2" value="3" name="co" {{  old('co') == 3 ? 'checked' : '' }}>
+                    <input type="radio" class="col-md-1 mt-2 icheck-primary" value="3" name="co" {{  old('co') == 3 ? 'checked' : '' }}>
                     <label for="inputAnswer3" class="col-sm-3 control-label">@lang('site.exam answer3')</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control @error('a.2') {{  'is-invalid'  }} @enderror" id="inputAnswer3" name="a[]" value="{{ old('a.3') }}" placeholder="@lang('site.exam answer3')">
@@ -174,7 +175,7 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-6 row question4">
-                    <input type="radio" class="col-md-1 mt-2" value ="4" name="co" {{  old('co') == 4 ? 'checked' : '' }}>
+                    <input type="radio" class="col-md-1 mt-2 icheck-primary" value ="4" name="co" {{  old('co') == 4 ? 'checked' : '' }}>
                     <label for="inputAnswer4" class="col-sm-3 control-label">@lang('site.exam answer4')</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control @error('a.3') {{  'is-invalid'  }} @enderror" id="inputAnswer4" name="a[]" value="{{ old('a.4') }}" placeholder="@lang('site.exam answer4')">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Answer;
+use App\Exam;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ExamQuestionRequest;
 use App\Question;
@@ -20,7 +21,7 @@ class ExamQuestionsController extends Controller
         //
         $input=[
             'questions' => Question::where('exam_id',$id)->get(),
-            'exam_id' => $id
+            'exam' => Exam::find($id),
         ];
 
         return view('admin.examQuestions.index',$input);
@@ -60,7 +61,7 @@ class ExamQuestionsController extends Controller
         $x = $request->q_type == 0 ? 4 : 2 ;
         for($i = 1 ; $i <= $x ; $i++){
             $answer = new Answer();
-            $answer->answer = $request->a[$i];
+            $answer->answer = $request->a[$i - 1];
             $answer->true = $i == $request->co ? 1 : 0 ;
             $answer->question_id = $question->id;
             $answer->save();
@@ -160,8 +161,64 @@ class ExamQuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $question_id)
     {
         //
+        $question = Question::find($question_id);
+        $answers = Answer::where('question_id',$question->id)->get();
+        try{
+            if(!is_null($answers)){
+                foreach($answers as $answer){
+                    $answer->delete();
+                }
+            $question->delete();
+            }
+        } catch(Exception $e) {
+            return  response()->json([ 'err'=>'1',
+                'alert'=>[
+                    'icon'=>'error',
+                    'title'=>__('site.alert_failed'),
+                    'text'=>__('site.error in delete'),
+                ]]);
+        }
+
+        return  response()->json(['err'=>'0',
+            'alert'=>[
+                'icon'=>'success',
+                'title'=>__('site.done'),
+                'text'=>__('site.question deleted successfully'),
+            ]]);
+    }
+
+    public function delete_all(Request $request){
+        try{
+            if (is_array($request->ids)){
+                Question::destroy($request->ids);
+                $answers = Answer::whereIn('question_id',$request->ids)->get();
+                foreach($answers as $answer){
+                    $answer->delete();
+                }
+            }else{
+                $question = Question::find($request->ids);
+                $answers = Answer::where('question_id',$request->ids)->get();
+                foreach($answers as $answer){
+                    $answer->delete();
+                }
+                $question->delete();
+            }
+            return response()->json(['err'=>'0','alert' =>[
+                'icon'=>'success',
+                'title'=>__('site.alert_success'),
+                'text'=>__('site.deleted_successfully')
+                ]]);
+
+        } catch(Exception $e) {
+
+            return response()->json(['err'=>'1','alert' =>[
+                'icon'=>'error',
+                'title'=>__('site.alert_failed'),
+                'text'=>__('site.deleted_failed')
+                ]]);
+        }
     }
 }

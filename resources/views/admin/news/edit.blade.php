@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/news') }}">@lang('site.news')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.create new')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.create new')</li>
                     </ol>
                 </div>
             </div>
@@ -52,7 +53,7 @@
                                     @enderror
                                 </div>
                             </div>
-                          
+
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 control-label">@lang('site.title')</label>
                                 <div class="col-sm-10">

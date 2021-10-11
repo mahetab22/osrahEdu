@@ -10,12 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Lang('site.create new exam')</h1>
+                    <h1>@Lang('site.edit exam')</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/exams') }}">@lang('site.exams')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.create new exam')</li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/exams') }}">@lang('site.exams')</a></li>
+                        <li class="breadcrumb-item"></li>
+                        <li class="active">@Lang('site.edit exam')</li>
                     </ol>
                 </div>
             </div>
@@ -45,6 +46,9 @@
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="">@lang('site.choose image')</span>
                                             </div>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <img src="{{url('/')}}/{{$exam->logo}}" id="profile-img-tag" width="200px" />
                                         </div>
                                         @error('logo')
                                             <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
@@ -76,16 +80,22 @@
                                 <div class="form-group row">
                                     <label for="inputContent" class="col-sm-3 control-label">@lang('site.exam content')</label>
                                     <div class="col-md-3">
-                                        <label for="inputContent1" class="col-sm-9 control-label">@lang('site.course')</label>
-                                        <input type="radio" name="content" class="form-control col-md-3" id="inputContent1" value="0" {{ $exam->content == 0 ? 'checked' : '' }}>
+                                        <div class="icheck-primary-2 d-inline">
+                                            <input type="radio" name="content" id="inputContent1" value="0" {{ $exam->content == 0 ? 'checked' : '' }}>
+                                            <label for="inputContent1">@lang('site.course')</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="inputContent2" class="col-sm-9 control-label">@lang('site.level')</label>
-                                        <input type="radio" name="content" class="form-control col-md-3" id="inputContent2" value="1" {{ $exam->content == 1 ? 'checked' : '' }}>
+                                        <div class="icheck-primary-2 d-inline">
+                                            <input type="radio" name="content" id="inputContent2" value="1" {{ $exam->content == 1 ? 'checked' : '' }}>
+                                            <label for="inputContent2">@lang('site.level')</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="inputContent3" class="col-sm-9 control-label">@lang('site.lesson')</label>
-                                        <input type="radio" name="content" class="form-control col-md-3" id="inputContent3" value="2" {{ $exam->content == 2 ? 'checked' : '' }}>
+                                        <div class="icheck-primary-2 d-inline">
+                                            <input type="radio" name="content" id="inputContent3" value="2" {{ $exam->content == 2 ? 'checked' : '' }}>
+                                            <label for="inputContent3">@lang('site.lesson')</label>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -161,6 +171,23 @@
 @endsection
 @section('script')
 <script>
+    //Display New Image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            console.log(reader);
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#exampleInputFile").change(function(){
+        console.log('test');
+        readURL(this);
+    });
+
+
     //Getting All Sections Contetnt Courses And Levels And Lessons On Edit
     if($('[name="content"]').is(':checked')) {
         var content_val =$('input[name=content]:checked').val();

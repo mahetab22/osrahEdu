@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+<link rel="stylesheet" href="{{url('/')}}/public/src_website/assets/css/style_2.css">
+@endsection
+
 @section('content')
 <?php
     $imagePreview=json_encode(url('/').'/public/storage/'.Auth::user()->avatar);
@@ -7,7 +11,7 @@
         <!-- Start Profile3-inner -->
         <section class="profile3-inner body-inner">
             <div class="container">
-                <div class="col-md-2 col-xs-12"></div>
+              <div class="row justify-content-center">
                 <div class="col-md-8 col-xs-12">
                     <div class="profile-details-inner">
                         <div class="profile-image">
@@ -44,32 +48,34 @@
                         <div class="body-profile">
                             <div class="header-tab-pro">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#profile1">الملف الشخصي</a></li>
+                                    <li class="active muo_tab" data-content="profile1" ><a>الملف الشخصي</a></li>
                                     @if(Auth::user()->s == 1)
-                                    <li><a data-toggle="tab" href="#profile2">الدورات <span class="badge">{{ count(Auth::user()->supervisorcourses) }}</span></a></li>
-                                    <li><a data-toggle="tab" href="#profile8">الاختبارات <span class="badge">{{ count(Auth::user()->supervisorexams) }}</span></a></li>
-                                    <li><a data-toggle="tab" href="#profile3">إضافة دورات</a></li>
-                                    <li><a data-toggle="tab" href="#profile9">إضافة اختبارات</a></li>
+                                    <li class="muo_tab" data-content="profile2"><a>الدورات <span class="badge">{{ count(Auth::user()->supervisorcourses) }}</span></a></li>
+                                    <li class="muo_tab" data-content="profile8"><a>الاختبارات <span class="badge">{{ count(Auth::user()->supervisorexams) }}</span></a></li>
+                                    <li class="muo_tab" data-content="profile3"><a>إضافة دورات</a></li>
+                                    <li class="muo_tab" data-content="profile9"><a>إضافة اختبارات</a></li>
                                     
-                                    @if(!empty(Auth::user()->supervisorcourses[0]) and !empty(Auth::user()->supervisorcourses[0]->course->comments->where('commentORmassage',1)[0]))
-                                    <li><a data-toggle="tab" href="#profile5">أسئلة تم الرد عليها</a></li>
+                                    @if(!empty(Auth::user()->supervisorcourses[0]) and Auth::user()->supervisorcourses[0]->course and !empty(Auth::user()->supervisorcourses[0]->course->comments->where('commentORmassage',1)[0]))
+                                    <li class="muo_tab" data-content="profile5"><a>أسئلة تم الرد عليها</a></li>
+                                    @endif
                                     @endif
                                     <?php $rep = 0; ?>
                                     @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                    @if($supervisorcourse->course)
                                      @foreach($supervisorcourse->course->comments->where('commentORmassage',1) as $comment)
                                       @if(empty($comment->replay) and $rep==0)
                                       <?php $rep = 1; ?>
-                                         <li><a data-toggle="tab" href="#profile4">أسئلة لم يتم الرد عليها</a></li>
+                                         <li class="muo_tab" data-content="profile4"><a>أسئلة لم يتم الرد عليها</a></li>
                                       @endif
                                     @endforeach
-                                    @endforeach
                                     @endif
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="body-tab-pro">
                                 <div class="tab-content">
                                     <!-- tab1 -->
-                                    <div id="profile1" class="tab-pane fade in active">
+                                    <div id="profile1" class="box_content active">
                                         <div class="details-contact">
                                             <div class="block-item">
                                                 <div class="label-title">
@@ -79,14 +85,7 @@
                                                     <span>{{ Auth::user()->name }}</span>
                                                 </div>
                                             </div>
-{{--                                             <div class="block-item">
-                                                <div class="label-title">
-                                                    <span>الاسم الاخير</span>
-                                                </div>
-                                                <div class="label-details">
-                                                    <span>احمد</span>
-                                                </div>
-                                            </div> --}}
+
                                             <div class="block-item">
                                                 <div class="label-title">
                                                     <span>المؤهل</span>
@@ -132,10 +131,11 @@
                                         <a href="{{ url('/') }}/editsuperprofile/{{ Auth::user()->id }}" class="btn btn-gray">تعديل البيانات</a>
                                     </div>
                                     <!-- tab2 -->
-                                    <div id="profile2" class="tab-pane fade">
+                                    <div id="profile2" class="box_content">
                                         <div class="allcourse">
                                             <ul>
                                                 @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                                @if($supervisorcourse->course)
                                                     <li class="active">
                                                         <a href="{{ url('/') }}/mycourse/{{ $supervisorcourse->course->id }}"><i class="far fa-play-circle"></i>{{ $supervisorcourse->course->title_ar }}<span></span></a>
                                                         <div class="all-buttons">
@@ -148,13 +148,14 @@
                                                              @endif
                                                         </div>
                                                     </li>
+                                                    @endif
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </div>
                                     
                                     <!-- tab8 -->
-                                    <div id="profile8" class="tab-pane fade">
+                                    <div id="profile8" class="box_content">
                                         <div class="allcourse">
                                             <ul>
                                                 @foreach(Auth::user()->supervisorexams as $supervisorexam)
@@ -177,14 +178,14 @@
                                         </div>
                                     </div>
                                     <!-- tab3 -->
-                                    <div id="profile3" class="tab-pane fade">
+                                    <div id="profile3" class="box_content">
                                         <div class="form-contact">
                                             <form action="{{ route('addcourse')}}"  method="POST" role="form"  enctype="multipart/form-data">
                                                 @csrf 
                                                <!-- <input name="service_id" value="{{ $supervisor_info->service_id }}" hidden>  -->
                                                 <div id="vehicleFieldsWrapper" >    
                                                     <div class="vehicleFields"> 
-
+                                                        <div class="row">
                                                                 <div class="col-md-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>لوجو للكورس</label>
@@ -340,45 +341,20 @@
                                                                 <input type="text" class="form-control" name="whats_link" placeholder="لينك الاتساب"  />
                                                             </div>
                                                         </div>
-
-                                                        {{--                                                         <div class="col-xs-12 padding">
-                                                                                                                    <div class="customer_records">
-                                                                                                                        <div class="col-md-6 col-xs-12">
-                                                                                                                            <div class="form-group ">
-                                                                                                                                <label>اسم الدرس</label>
-                                                                                                                                <input type="text" class="form-control" name="lesson-name" placeholder="اسم الدرس" required />
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        <div class="col-md-6 col-xs-12">
-                                                                                                                            <div class="form-group">
-                                                                                                                                <label>رفع الفيديو</label>
-                                                                                                                                <div class="input-group">
-                                                                                                                                    <label class="input-group-btn">
-                                                                                                                                        <span class="btn btn-primary">
-                                                                                                                                            <i class="fa fa-upload"></i> <input type="file" style="display: none;" multiple>
-                                                                                                                                        </span>
-                                                                                                                                    </label>
-                                                                                                                                    <input type="text" class="form-control" placeholder="رفع الفيديو" readonly>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        <a class="extra-fields-customer">اضافة درس اخر</a>
-                                                                                                                      </div>
-                                                                                                                      <div class="customer_records_dynamic"></div>
-                                                                                                                </div> --}}
+                                                        <div class="col-xs-12">
+                                                            <div class="form-group">
+                                                                <input type="submit" class="nextPage" value="اضافة" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-group">
-{{--                                                         <a  class="nextPage requ" id="addVehicle"><i class="fa fa-plus"></i> إضافة كورس اخر</a> --}}
-                                                        <input type="submit" class="nextPage" value="اضافة" />
-                                                    </div>
-                                                </div>
+                                                
                                             </form>
                                         </div>
                                     </div>
 
-    <div id="profile9" class="tab-pane fade">
+                                    <div id="profile9" class="box_content">
                                         <div class="form-contact">
                                             <form action="{{ route('addtonewpublicexam')}}"  method="POST" role="form"  enctype="multipart/form-data">
                                                 @csrf 
@@ -386,19 +362,19 @@
                                                 <div id="vehicleFieldsWrapper" >    
                                                     <div class="vehicleFields"> 
 
-                                                                <div class="col-md-6 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <label>لوجو الاختبار</label>
-                                                                        <div class="input-group">
-                                                                            <label class="input-group-btn">
-                                                                                <span class="btn btn-primary">
-                                                                                    <i class="fa fa-upload"></i> <input type="file" style="display: none;" name="logo" multiple>
-                                                                                </span>
-                                                                            </label>
-                                                                            <input type="text" class="form-control" placeholder="لوجو الاختبار " readonly>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>                                                           
+                                                        <div class="col-md-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>لوجو الاختبار</label>
+                                                                <div class="input-group">
+                                                                    <label class="input-group-btn">
+                                                                        <span class="btn btn-primary">
+                                                                            <i class="fa fa-upload"></i> <input type="file" style="display: none;" name="logo" multiple>
+                                                                        </span>
+                                                                    </label>
+                                                                    <input type="text" class="form-control" placeholder="لوجو الاختبار " readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                           
                                                         <div class="col-md-6 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>اسم الاختبار </label>
@@ -407,113 +383,124 @@
                                                         </div>
    
                                                         <div class="col-md-12 col-xs-12">
-                                         <div class="text3">                                          
-                                         <input name="publicexam" value="1" hidden="" />
-                                         <input name="course_id" class="pathinput" hidden=""/>
-                                         </div>
-                                        <div class="form-group">
-                                         <input type="radio" name="Qtype" id="first" value="first" >اختيار من متعدد
-                                         <label></label>
-                                         <input type="radio" name="Qtype" id="secound" value="secound">صح - خطأ
-                                       </div>                                      
-                                <div class="first">
-                                    <div class="add-section">
-                                        <span class="col-xs-12">
-                                            <p class="form-group">                                                
-                                                <label>السؤال</label>
-                                                <input type="text" name="question" value="" class="form-control" >
-                                            </p>
-                                        </span>
-                                        <span class="col-xs-12 padding">
-                                            <span class="col-md-11 col-xs-10">
-                                                <p class="form-group">
-                                                    <label>الإجابة  الأولي</label>
-                                                    <input type="text" name="answers[]" value="" class="form-control" >
-                                                </p>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2">
-                                                <label class="exam-ch">
-                                                    <input type="radio" name="checkboxs[]" value="0">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                                        </span>
-                                        <span class="col-xs-12 padding">
-                                            <span class="col-md-11 col-xs-10">
-                                                <p class="form-group">
-                                                    <label> الإجابة  الثانيه</label>
-                                                    <input type="text" name="answers[]" value="" class="form-control" >
-                                                </p>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2">
-                                                <label class="exam-ch">
-                                                    <input type="radio" name="checkboxs[]" value="1">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                                        </span>
-                                        <span class="col-xs-12 padding">
-                                            <span class="col-md-11 col-xs-10">
-                                                <p class="form-group">
-                                                    <label> الإجابة  الثالثة</label>
-                                                    <input type="text" name="answers[]" value="" class="form-control" >
-                                                </p>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2">
-                                                <label class="exam-ch">
-                                                    <input type="radio"  name="checkboxs[]" value="2">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                                        </span>
-                                        <span class="col-xs-12 padding">
-                                            <span class="col-md-11 col-xs-10">
-                                                <p class="form-group">
-                                                    <label> الإجابة  الرابعة</label>
-                                                    <input type="text" name="answers[]" value="" class="form-control" >
-                                                </p>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2">
-                                                <label class="exam-ch">
-                                                    <input type="radio"  name="checkboxs[]" value="3">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div  class="secound">
-                                    <div class="add-section truefalse">
-                                        <span class="col-xs-12 padding">
-                                            <span class="col-md-10 col-xs-8">
-                                                <p class="form-group">
-                                                    <label>السؤال</label>
-                                                    <input type="text" name="questionn" value="" class="form-control" >
-                                                </p>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2 false">
-                                                <label class="exam-ch">
-                                                    <input type="radio" name="checck" value="0">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2 true">
-                                                <label class="exam-ch">
-                                                    <input type="radio" name="checck" value="1">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>                                            
-                                        </span>
+                                                            <div class="text3">                                          
+                                                            <input name="publicexam" value="1" hidden="" />
+                                                            <input name="course_id" class="pathinput" hidden=""/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="radio" name="Qtype" id="first" value="first" >اختيار من متعدد
+                                                                <label></label>
+                                                                <input type="radio" name="Qtype" id="secound" value="secound">صح - خطأ
+                                                            </div>                                      
+                                                            <div class="first">
+                                                                <div class="add-section">
+                                                                    <div class="row">
+                                                                        <span class="col-12">
+                                                                            <p class="form-group">                                                
+                                                                                <label>السؤال</label>
+                                                                                <input type="text" name="question" value="" class="form-control" >
+                                                                            </p>
+                                                                        </span>
+                                                                        <span class="col-12 padding">
+                                                                            <div class="row">
+                                                                                <span class="col-md-11 col-10">
+                                                                                    <p class="form-group">
+                                                                                        <label>الإجابة  الأولي</label>
+                                                                                        <input type="text" name="answers[]" value="" class="form-control" >
+                                                                                    </p>
+                                                                                </span>
+                                                                                <span class="col-md-1 col-2">
+                                                                                    <label class="exam-ch">
+                                                                                        <input type="radio" name="checkboxs[]" value="0">
+                                                                                        <span class="checkmark-exam"></span>
+                                                                                    </label>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                        <span class="col-12 padding">
+                                                                            <div class="row">
+                                                                                <span class="col-md-11 col-10">
+                                                                                    <p class="form-group">
+                                                                                        <label> الإجابة  الثانيه</label>
+                                                                                        <input type="text" name="answers[]" value="" class="form-control" >
+                                                                                    </p>
+                                                                                </span>
+                                                                                <span class="col-md-1 col-2">
+                                                                                    <label class="exam-ch">
+                                                                                        <input type="radio" name="checkboxs[]" value="1">
+                                                                                        <span class="checkmark-exam"></span>
+                                                                                    </label>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                        <span class="col-12 padding">
+                                                                            <div class="row">
+                                                                                <span class="col-md-11 col-10">
+                                                                                    <p class="form-group">
+                                                                                        <label> الإجابة  الثالثة</label>
+                                                                                        <input type="text" name="answers[]" value="" class="form-control" >
+                                                                                    </p>
+                                                                                </span>
+                                                                                <span class="col-md-1 col-2">
+                                                                                    <label class="exam-ch">
+                                                                                        <input type="radio"  name="checkboxs[]" value="2">
+                                                                                        <span class="checkmark-exam"></span>
+                                                                                    </label>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                        <span class="col-12 padding">
+                                                                            <div class="row">
+                                                                                <span class="col-md-11 col-10">
+                                                                                    <p class="form-group">
+                                                                                        <label> الإجابة  الرابعة</label>
+                                                                                        <input type="text" name="answers[]" value="" class="form-control" >
+                                                                                    </p>
+                                                                                </span>
+                                                                                <span class="col-md-1 col-2">
+                                                                                    <label class="exam-ch">
+                                                                                        <input type="radio"  name="checkboxs[]" value="3">
+                                                                                        <span class="checkmark-exam"></span>
+                                                                                    </label>
+                                                                                </span>
+                                                                            </div>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div  class="secound">
+                                                                <div class="add-section truefalse">
+                                                                    <span class="col-xs-12 padding">
+                                                                        <div class="row">
+                                                                            <span class="col-md-10 col-8">
+                                                                                <p class="form-group">
+                                                                                    <label>السؤال</label>
+                                                                                    <input type="text" name="questionn" value="" class="form-control" >
+                                                                                </p>
+                                                                            </span>
+                                                                            <span class="col-md-1 col-2 false">
+                                                                                <label class="exam-ch">
+                                                                                    <input type="radio" name="checck" value="0">
+                                                                                    <span class="checkmark-exam"></span>
+                                                                                </label>
+                                                                            </span>
+                                                                            <span class="col-md-1 col-2 true">
+                                                                                <label class="exam-ch">
+                                                                                    <input type="radio" name="checck" value="1">
+                                                                                    <span class="checkmark-exam"></span>
+                                                                                </label>
+                                                                            </span>  
+                                                                        </div>                                           
+                                                                    </span>
 
-                                    </div>
-                                </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
    
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <div class="form-group">
-{{--                                                         <a  class="nextPage requ" id="addVehicle"><i class="fa fa-plus"></i> إضافة كورس اخر</a> --}}
                                                         <input type="submit" class="nextPage" value="إضافة" />
                                                     </div>
                                                 </div>
@@ -522,9 +509,10 @@
                                     </div>
 
                                     <!-- tab4 -->
-                                    <div id="profile4" class="tab-pane fade">
+                                    <div id="profile4" class="box_content">
                                         <div class="replay-text">
                                      @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                     @if($supervisorcourse->course)
                                          @foreach($supervisorcourse->course->comments->where('commentORmassage',0) as $comment)
                                             @if(empty($comment->replay))
                                             <div class="block">
@@ -543,14 +531,16 @@
                                             </div>
                                             @endif
                                          @endforeach
+                                         @endif
                                         @endforeach
                                         </div>
                                     </div>
 
                                     <!-- tab5 -->
-                                    <div id="profile5" class="tab-pane fade">
+                                    <div id="profile5" class="box_content">
                                         <div class="replay-text">
                                      @foreach(Auth::user()->supervisorcourses as $supervisorcourse)
+                                     @if($supervisorcourse->course)
                                          @foreach($supervisorcourse->course->comments->where('commentORmassage',1) as $comment)
                                             @if(!empty($comment->replay))
                                             <div class="block">
@@ -569,6 +559,7 @@
                                             </div>
                                             @endif
                                          @endforeach
+                                         @endif
                                         @endforeach
                                         </div>
                                     </div>
@@ -577,7 +568,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-xs-12"></div>
+            </div>
             </div>
         </section>
         <!-- End Profile3-inner -->
@@ -772,7 +763,7 @@
 @endsection
 
 @section('script')
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  --}}
         <script>
              var ct = 1;
                 function new_link()
@@ -798,14 +789,15 @@
                 $('#lightgallery').lightGallery();
             });
         </script>
- 							<script type="text/javascript">
-							$('.drug').click(function(){
-							var path = $(this).attr('path');
-							$('#c-profile').css('display','block');
-							$('.pathinput').val(path);
-							$('.path').text(path);
-							});
-							</script>
+
+        <script type="text/javascript">
+            $('.drug').click(function(){
+            var path = $(this).attr('path');
+            $('#c-profile').css('display','block');
+            $('.pathinput').val(path);
+            $('.path').text(path);
+            });
+        </script>
    
   <script>   
  

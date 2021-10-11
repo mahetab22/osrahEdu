@@ -18,7 +18,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.users')</li>
+              <li class="breadcrumb-item"></li>
+              <li class="active">@lang('site.users')</li>
             </ol>
           </div>
         </div>
@@ -40,8 +41,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="master"></th>
-                        <th>ID</th>
+                        <th style="width:50px"><input type="checkbox" id="master"></th>
+                        <th style="width:50px">ID</th>
                         <th>@lang('site.image')</th>
                         <th>@lang('site.name')</th>
                         <th>@lang('site.email')</th>
@@ -57,7 +58,7 @@
                     <tr data-row-id='{{ $user->id }}'>
                         <td><input type="checkbox" name="users[]" class="sub_chk" data-id="{{$user->id}}"></td>
                         <td>{{$i+1}}</td>
-                        <td><img src="{{url('/')}}/public/{{$user->avatar}}" width="100px"/></td>
+                        <td><img src="{{url('/')}}/{{$user->avatar ?? 'public/storage/users/default.jpeg'}}" width="100px"/></td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->phone}}</td>

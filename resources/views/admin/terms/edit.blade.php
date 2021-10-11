@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
-<link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.css">
-
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.css">
 @endsection
 @section('content')
 
@@ -17,7 +17,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/terms') }}">@lang('site.terms and condition')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.edit terms')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.edit terms')</li>
                     </ol>
                 </div>
             </div>
@@ -108,11 +109,20 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
+<!-- jQuery -->
+<script src="{{url('/')}}/public/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="{{url('/')}}/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{url('/')}}/public/admin/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{url('/')}}/public/admin/dist/js/demo.js"></script>
+<!-- Summernote -->
 <script src="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Popper -->
 <script src="{{url('/')}}/public/admin/plugins/popper/popper.js"></script>
+<!-- Popper MAp -->
 <script src="{{url('/')}}/public/admin/plugins/popper/popper.js.map"></script>
-{{--  <script src="https://unpkg.com/@popperjs/core@2"></script>  --}}
-
 <script>
     $(function () {
       // Summernote

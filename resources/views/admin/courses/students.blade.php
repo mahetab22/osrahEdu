@@ -18,8 +18,9 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
+              <li class="breadcrumb-item"></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/courses">@lang('site.courses')</a></li>
-              <li class="breadcrumb-item active">@lang('site.students')</li>
+              <li class="active">@lang('site.students')</li>
             </ol>
           </div>
         </div>
@@ -35,7 +36,7 @@
           <div class="card">
             <div class="card-header">
             <button class="btn bg-gradient-primary text-white delete_all"> {{ __('site.Delete All Selected') }}</button>
-            <button class="btn bg-gradient-primary text-white attend_all"> {{ __('site.Attend All Selected') }}</button>  
+            <button class="btn bg-gradient-primary text-white attend_all"> {{ __('site.Attend All Selected') }}</button>
             <h3 class="card-title">@lang('site.students')</h3>
             </div>
             <!-- /.card-header -->

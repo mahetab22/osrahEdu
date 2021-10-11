@@ -33,7 +33,7 @@ class BreadcrumbController extends Controller
     {
         //
 
-        return view('admin.Breadcrumb.create');
+        return view('admin.breadcrumb.create');
     }
 
     /**
@@ -100,7 +100,7 @@ class BreadcrumbController extends Controller
             'breadcrumb' => Breadcrumb::find($id)
         ];
 
-        return view('admin.Breadcrumb.edit',$input);
+        return view('admin.breadcrumb.edit',$input);
     }
 
     /**

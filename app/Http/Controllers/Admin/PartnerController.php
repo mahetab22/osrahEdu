@@ -134,5 +134,20 @@ class PartnerController extends Controller
     public function destroy($id)
     {
         //
+        $partner = Partnnner::find($id);
+        if(!is_null($partner)){
+            $partner->delete();
+            return response()->json(['err'=>'0','alert' =>[
+                'icon'=>'success',
+                'title'=>__('site.alert_success'),
+                'text'=>__('site.deleted_successfully')
+                ]]);
+        }else{
+            return response()->json(['err'=>'1','alert' =>[
+                'icon'=>'error',
+                'title'=>__('site.alert_failed'),
+                'text'=>__('site.deleted_failed')
+                ]]);
+        }
     }
 }

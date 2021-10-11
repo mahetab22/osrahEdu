@@ -3,6 +3,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.css">
 @endsection
+
+
 @section('content')
    {{-- @if(isset($course->whats_link))
     <div class="wahtt">

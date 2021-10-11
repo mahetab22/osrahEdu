@@ -28,8 +28,8 @@ class InfoRequest extends FormRequest
     {
             if($request->key_word == 'basic'){
                 return [
-                    'logo'=>'required|image|mimes:jpg,png,jpeg',
-                    'favicon'=>'required|image|mimes:jpg,png,jpeg',
+                    'logo'=>'nullable|image|mimes:jpg,png,jpeg',
+                    'favicon'=>'nullable|image|mimes:jpg,png,jpeg',
                     'name_ar'=>'required|string|max:100',
                     'name_en'=>'nullable|string|max:100',
                     'name2_ar'=>'nullable|string|max:100',
