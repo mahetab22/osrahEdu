@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('style')
-<link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.css">
-
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.css">
 @endsection
 @section('content')
 
@@ -12,12 +12,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>@Lang('site.add new terms')</h1>
+                    <h1>@Lang('site.add new term')</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/terms') }}">@lang('site.terms and condition')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.add new terms')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.add new term')</li>
                     </ol>
                 </div>
             </div>
@@ -66,7 +67,7 @@
                                         <textarea class="textarea" id="inputDesc1" name="terms_ar" placeholder="{{ __('site.terms arabic description') }}"
                                                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;"></textarea>
                                     </div>
-                                    @error('term_ar')
+                                    @error('terms_ar')
                                     <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror
                                 </div>
@@ -107,11 +108,20 @@
   <!-- /.content-wrapper -->
 @endsection
 @section('script')
+<!-- jQuery -->
+<script src="{{url('/')}}/public/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="{{url('/')}}/public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{url('/')}}/public/admin/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{url('/')}}/public/admin/dist/js/demo.js"></script>
+<!-- Summernote -->
 <script src="{{url('/')}}/public/admin/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Popper -->
 <script src="{{url('/')}}/public/admin/plugins/popper/popper.js"></script>
+<!-- Popper MAp -->
 <script src="{{url('/')}}/public/admin/plugins/popper/popper.js.map"></script>
-{{--  <script src="https://unpkg.com/@popperjs/core@2"></script>  --}}
-
 <script>
     $(function () {
       // Summernote

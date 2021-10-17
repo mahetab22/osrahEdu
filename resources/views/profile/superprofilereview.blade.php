@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+<link rel="stylesheet" href="{{url('/')}}/public/src_website/assets/css/style_2.css">
+@endsection
+
 @section('content')
 <?php
     $imagePreview=json_encode(url('/').'/public/storage/'.$user->avatar);

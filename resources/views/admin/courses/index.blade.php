@@ -18,7 +18,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.courses')</li>
+              <li class="breadcrumb-item"></li>
+              <li class="active">@lang('site.courses')</li>
             </ol>
           </div>
         </div>
@@ -68,7 +69,7 @@
                         <td>
                         <div class="container">
                             <div class="row">
-                                
+
                                 <div class="col-md-2">
                                     <a class="edit btn bg-gradient-primary" href="{{ url('/admin/courses/'.$course->id.'/edit') }}"><i class="fa fa-edit text-white"></i></a>
                                 </div>

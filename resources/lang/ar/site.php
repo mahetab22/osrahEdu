@@ -45,6 +45,7 @@ return [
     'updated_successfully' => 'تم تعديل البيانات بنجاح',
     'deleted_successfully' => 'تم حذف البيانات بنجاح',
 
+    'warning'=>'تحذير',
     'added_failed' => 'فشل فى عملية التسجيل',
     'updated_failed' => 'فشل فى عملية التعديل',
     'deleted_failed' => 'فشل فى عملية الحذف',
@@ -98,6 +99,7 @@ return [
     'Specialized_Services' => 'الخدمات التخصصية',
     'Our_team' => 'فريقنا',
     'Contact_Us' => 'تواصل معنا',
+
     'about' => ' من نحن',
     'Ready_to_start_learning_now' => 'جاهز لتبدأ بالتعلم الآن ؟',
     'Our_Vision' => 'رؤيتنا',
@@ -293,7 +295,7 @@ return [
     'visitors' => 'الزوار',
      'coaches'=>'المدربين',
      'students'=>'الطلاب',
-     'alert_confirm_message'=>'هل أنت متأكد',
+     'alert_confirm_message'=>'هل أنت متأكد؟',
      'alert_irreversible_message'=>'لن تستطيع العوده',
      'alert_delete'=>'أمسح',
      'alert_cancel'=>'إلغاء',
@@ -412,6 +414,7 @@ return [
     'added successfully'=>'تمت الاضافة بنجاح',
     'google map'=>'رابط خريطة جوجل',
     'address name'=>'عنوان الموقع',
+    'sponsor'=>'الرعاة',
     // ----------- Courses Validation -----------
     'supervisor required'=>'يجب إختيار المدرب',
     'course logo required'=>'لوجو الدورة مطلوب',
@@ -452,6 +455,17 @@ return [
     "arabic description"=>"الوصف باللغة العربية",
     "english description"=>"الوصف باللغة الأنجليزية",
     "close"=>"غلق",
+    'contactType'=>'نوع الاتصال',
+    'contact'=>'اتصل بنا',
+    'messages'=>'الرسائل',
+    'details'=>'التفاصيل',
+    'news'=>'الاخبار',
+    'short_desc'=>'وصف قصير للاخبار',
+    'newsEmail'=>'بريد الاخبار',
+    'comment'=>'تعليق',
+    'job'=>'وظيفة',
+    'said_about_us'=>'قالوا عنا',
+    'rate'=>'تقييم',
     // ----------- END ANON  -----------
     // ----------- Lessons  ------------
     'lessons'=>'الدروس',
@@ -499,9 +513,13 @@ return [
     'teacher arabic educational max'=>'أقصى طول للمؤهل التعليمى للمدرب باللغة العربية هو 100 حرف',
     'teacher english educational max'=>'أقصى طول للمؤهل التعليمى للمدرب باللغة الانجليزية هو 100 حرف',
     'teacher service required'=>'حقل الخدمة مطلوب',
-    'teacher arabic skill1 required'=>'حقل مهارة 1 باللغة العربية مطلوب',
-    'teacher english skill1 required'=>'حقل مهارة 1 باللغة الانجليزية مطلوب',
     'teacher arabic profile required'=>'حقل المؤهل مطلوب',
+    'teacher arabic skill1 required'=>'حقل مهارة 1 باللغة العربية مطلوب',
+    'teacher english skill required'=>'حقل مهارة 1 باللغة الانجليزية مطلوب',
+    'teacher arabic skill2 required'=>'حقل مهارة 2 باللغة العربية مطلوب',
+    'teacher english skill2 required'=>'حقل مهارة 2 باللغة الانجليزية مطلوب',
+    'teacher arabic skill3 required'=>'حقل مهارة 3 باللغة العربية مطلوب',
+    'teacher english skill3 required'=>'حقل مهارة 3 باللغة الانجليزية مطلوب',
 
     'teacher arabic skill1 max'=>'أقصى عدد يمكن ادخاله لوصف المهارة 1 باللغة العربية هو 250 حرف',
     'teacher arabic skill2 max'=>'أقصى عدد يمكن ادخاله لوصف المهارة 2 باللغة العربية هو 250 حرف',
@@ -526,21 +544,66 @@ return [
     // ----------- Exams -----------
     'exams'=>'الإمتحانات',
     'create new exam'=>'إضافة إمتحان جديد',
+    'edit exam'=>'تعديل الامتحان',
     'exam logo'=>'لوجو الامتحان',
     'exam code'=>'كود الامتحان',
     'exam title'=>'عنوان الامتحان',
     'exam user'=>'المدرب',
+    'exam level'=>'الوحدة',
     'exam lesson'=>'الدرس',
     'exam view'=>'عدد الممتحنين',
     'exam content'=>'محتوى الامتحان',
     'exam question mcq'=>'سؤال اختيارى',
     'exam question correct'=>'سؤال صح و خطأ',
     'exam questions'=>'اسئلة الامتحان',
-    'exam question'=>'سؤال',
+    'exam question'=>'السؤال',
     'exam answer1'=>'الاجابة الاولى',
     'exam answer2'=>'الاجابة الثانية',
     'exam answer3'=>'الاجابة الثالثة',
     'exam answer4'=>'الاجابة الرابعة',
+    // ----------- Exams Validation -----------
+    'exam title required'=>'حقل عنوان الامتحان مطلوب',
+    'exam title string'=>'حقل عنوان الامتحان يجب ان يكون حروفاً',
+    'exam title max'=>'أقصى عدد من الحروف يمكن ادخاله لعنوان الامتحان هو 100 حرف',
+    'exam code required'=>'حقل كود الامتحان مطلوب',
+    'exam code numeric'=>'حقل كود الامتحان يجب انا يكون رقماً',
+    'exam code max'=>'كود الامتحان لا يمكن ان يزيد عن 10000',
+    'exam course required'=>'يجب اختيار الدورة',
+    'exam level numeric'=>'يجب ان يكون رقماً',
+    'exam lesson numeric'=>'يجب ان يكون رقماً',
+    'exam code digits_between'=>'الكود يجب ان يكون بين 1 الى 8 ارقام',
+    // ----------- Exams Alert -----------
+    'alert_exam_delete'=>'هل أنت متأكد ؟ لن تكون قادر على استعادة هذه البيانات مرة اخرى و بيانات الاسئلة الخاصة بالامتحان',
+    'error in delete'=>'يوجد مشكلة فى الحذف يرجى المحاولة مرة اخرى!',
+    'exam deleted successfully'=>'تم مسح الامتحان و البيانات المرتبطة به بنجاح!',
+    // ----------- Exam Questions -----------
+    'exam questions' => 'اسئلة الامتحان',
+    'question title' => 'عنوان السؤال',
+    'question type' => 'نوع السؤال',
+    'question solution' => 'حل السؤال',
+    'edit exam question' => 'تعديل السؤال',
+    // ----------- Exam Questions Validation -----------
+    'exam question required'=>'حقل السؤال مطلوب',
+    'exam question max'=>'السؤال لا يمكن ان يكون اكبر من 1000 حرف',
+    'exam question type required'=>'حقل نوع السؤال مطلوب',
+    'exam question correct answer required'=>'يجب اختيار الاجابة الصحيحة',
+    'exam question correct answer numeric'=>'يجب اختيار احد الاجابات الموجودة فقط',
+    'exam question first answer required'=>'حقل الاجابة الاولى مطلوب',
+    'exam question first answer max'=>'حقل الاجابة الاولى لا يمكن ان يزيد عن 1000 حرف',
+    'exam question second answer required'=>'حقل الاجابة الثانية مطلوب',
+    'exam question second answer max'=>'حقل الاجابة الثانية لا يمكن ان يزيد عن 1000 حرف',
+    'exam question third answer required'=>'حقل الاجابة الثالثة مطلوب',
+    'exam question third answer max'=>'حقل الاجابة الثالثة لا يمكن ان يزيد عن 1000 حرف',
+    'exam question fourth answer required'=>'حقل الاجابة الرابعة مطلوب',
+    'exam question fourth answer max'=>'حقل الاجابة الرابعة لا يمكن ان يزيد عن 1000 حرف',
+    'exam question first answer'=>'الاجابة الاولى',
+    'exam question second answer'=>'الاجابة الثانية',
+    'exam question third answer'=>'الاجابة الثالثة',
+    'exam question fourth answer'=>'الاجابة الرابعة',
+    // ----------- Exam Questions Alert -----------
+    'alert_question_delete'=>'!لن تكون قادر على استعادة هذه البيانات مرة اخرى',
+    'question_failed_add'=>'فشل فى عملية الإضافة يرجى المحاولة مرة اخرى!',
+    'question deleted successfully'=>'تم مسح السؤال و البيانات المرتبطة به بنجاح!',
     // ----------- News -----------
     'news'=>'الأخبار',
     'add new news'=>'إضافة خبر جديد',
@@ -558,7 +621,7 @@ return [
     'image mimes'=>'امتداد الصورة يجب ان يكون: jpg,png,jpeg',
     'pdf required'=>'ملف الكتاب مطلوب',
     'pdf mimes'=>'ملف المطلوب يجب ان يكون pdf',
-    'pdf max'=>'اقصى حجم للكتاب هو 10000 كيلوبايت',
+    'pdf max'=>'اقصى حجم للكتاب هو 10 ميجابايت',
     'book title required'=>'حقل عنوان الكتاب مطلوب',
     'book descrpiotion required'=>'حقل وصف الكتاب مطلوب',
     'newsEmail'=>'النشرة البريدية',
@@ -706,7 +769,7 @@ return [
     'partner added successfully'=>'تم إضافة الشريك بنجاح',
     'partner updated successfully'=>'تم تعديل الشريك بنجاح',
 
-  
+
 
     //-------------count attending course,--------------
     'count attending'=>'عدد مرات الحضور',
@@ -715,7 +778,7 @@ return [
     'no students checked'=>'لم يتم اختيار اى طالب',
     'alert_attend'=>'تحضير',
     'whatsapp'=>'واتساب',
-    'telegram'=>'تليجرام',    
+    'telegram'=>'تليجرام',
     'activities'=>'الأنشطة',
     'activity'=>'نشاط',
     'applications'=>'التطبيقات',
@@ -749,4 +812,11 @@ return [
     // ----------- Breadcrumb Alert -----------
     'breadcrumb added successfully'=>'تم إضافة صورة الصفحة بنجاح',
     'breadcrumb updated successfully'=>'تم تعديل صورة الصفحة بنجاح',
+    // ----------- Survey -----------
+    'survey'=>'الإستبيانات',
+    'course rate'=>'تقييم الكدورة',
+    'teacher rate'=>'تقييم المدرس',
+    'site rate'=>'تقييم الموقع',
+    
+
 ];

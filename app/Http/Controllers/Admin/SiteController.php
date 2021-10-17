@@ -49,7 +49,7 @@ class SiteController extends Controller
             $info->whatsapp_male =$request->whatsapp_male;
             $info->whatsapp_female =$request->whatsapp_female;
         }elseif($request->key_word == 'social'){
-            $info->fb = $request->fw;
+            $info->fb = $request->fb;
             $info->tw = $request->tw;
             $info->inst = $request->insta;
             $info->google = $request->google;
@@ -70,7 +70,7 @@ class SiteController extends Controller
             $info->goal3_en = $request->goal3_en ?? $request->goal3_ar;
             $info->script1 = $request->script1;
             $info->script2 = $request->script2;
-            $info->year = $request->year;
+            $info->start_year = $request->year;
         }
         $info->save();
 

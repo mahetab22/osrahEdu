@@ -30,7 +30,7 @@ class LibraryRequest extends FormRequest
         {
             return [
                 'image'=>'required|image|mimes:jpg,png,jpeg',
-                'pdf'=>'required|mimetypes:application/pdf||max:10000',
+                'pdf'=>'required|mimetypes:application/pdf|max:10240',
                 'title'=>'required|string|max:100',
                 'short_desc'=>'required',
             ];
@@ -40,7 +40,7 @@ class LibraryRequest extends FormRequest
         {
             return [
                 'image'=>'nullable|image|mimes:jpg,png,jpeg',
-                'pdf'=>'nullable|mimetypes:application/pdf||max:10000',
+                'pdf'=>'nullable|mimetypes:application/pdf|max:10240',
                 'title'=>'required|string|max:100',
                 'short_desc'=>'required',
             ];

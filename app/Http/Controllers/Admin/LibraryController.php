@@ -57,14 +57,21 @@ class LibraryController extends Controller
             $image->move(public_path().'/storage/books/images', $imageName);
             $book->image = 'public/storage/books/images/'. $imageName;
         }
-
-        if ($request->hasFile('pdf')) {
-            $pdf = $request->file('pdf');
+    
+        $pdf = $request->file('pdf');
+        // if($pdf->getClientSize() <= 10240){
             $pdf->extension();
             $pdfName = time() . rand(10, 10000) . '.' . $pdf->extension();
             $pdf->move(public_path().'/storage/books/pdf', $pdfName);
             $book->pdf = 'public/storage/books/pdf/'. $pdfName;
-        }
+        // }else{
+        //     return redirect('admin/library')->with([
+        //         'alert'=>[
+        //             'icon'=>'warning',
+        //             'title'=>__('site.warning'),
+        //             'text'=>__('site.pdf max'),
+        //         ]]);  
+        // }
 
         $book->save();
 
@@ -109,7 +116,7 @@ class LibraryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LibraryRequest $request, $id)
     {
         //
         $book = Library::find($id);
@@ -134,10 +141,19 @@ class LibraryController extends Controller
               unlink($filename);
             }
             $pdf = $request->file('pdf');
-            $pdf->extension();
-            $pdfName = time() . rand(10, 10000) . '.' . $pdf->extension();
-            $pdf->move(public_path().'/storage/books/pdf', $pdfName);
-            $book->pdf = 'public/storage/books/pdf/'. $pdfName;
+            // if($pdf->getClientSize() <= 10240){
+                $pdf->extension();
+                $pdfName = time() . rand(10, 10000) . '.' . $pdf->extension();
+                $pdf->move(public_path().'/storage/books/pdf', $pdfName);
+                $book->pdf = 'public/storage/books/pdf/'. $pdfName;
+            // }else{
+            //     return redirect('admin/library')->with([
+            //         'alert'=>[
+            //             'icon'=>'warning',
+            //             'title'=>__('site.warning'),
+            //             'text'=>__('site.pdf max'),
+            //         ]]);  
+            // }
         }
 
         $book->save();
