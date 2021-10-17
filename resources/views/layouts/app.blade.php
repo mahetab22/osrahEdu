@@ -294,11 +294,6 @@
 
 
 
-    <form method="get" action="{{ route('search') }}">
-                                <input type="search" name="search" required class="search-box" placeholder="@lang("site.search")" />
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-
     <!--======================== start search popup =============================-->
     <div class="search-popup search-popup__default">
         <div class="search-popup__overlay search-toggler"></div>
