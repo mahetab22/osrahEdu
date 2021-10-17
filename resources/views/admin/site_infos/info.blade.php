@@ -16,7 +16,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">@Lang('site.site info')</li>
+                        <li class="breadcrumb-item"></li>
+                        <li class="active">@Lang('site.site info')</li>
                     </ol>
                 </div>
             </div>
@@ -205,7 +206,7 @@
                             <div class="form-group row">
                                 <label for="inputInsta" class="col-sm-2 control-label">@lang('site.info instagram')</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('insta') {{  'is-invalid'  }} @enderror" id="inputInsta" name="insta" value="{{ $info->insta }}" placeholder="@lang('site.info instagram')">
+                                    <input type="text" class="form-control @error('insta') {{  'is-invalid'  }} @enderror" id="inputInsta" name="insta" value="{{ $info->inst }}" placeholder="@lang('site.info instagram')">
                                     @error('insta')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror

@@ -62,19 +62,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 ">
-                    <div class="row_nav row">
-                        <div class="col-sm-6">
+                    <div class="row_nav row align-items-center">
+                        <div class="col-sm-3 col-4">
                             <a href="{{url('/')}}" class="logo">
                                 <img src="{{url('/')}}/{{$info->logo}}" alt="img">
                             </a>
                         </div>
                        
-                        <div class="col-sm-6 flex_end vission d-sm-flex d-none">
+                        <div class="col-sm-9 col-8 flex_end vission">
                         @if(!auth::check())
                             <div class="btns">
-                                <a href="{{url('/')}}/login" class="main-btn main">@lang('site.login')</a>
-                                <a href="{{ route('registerStudent') }}" class="main-btn main"> @lang("site.Join_student")</a>
-                                <a href="{{ route('registerSupervisor') }}" class="main-btn main">@lang("site.Join_teacher")</a>
+                                <a href="{{url('/')}}/login" class="main-btn main">
+                                    <i class="fal fa-user"></i>
+                                    <span>@lang('site.login')</span>
+                                </a>
+                                <a href="{{ route('registerStudent') }}" class="main-btn sec"> 
+                                    <i class="fal fa-sign-in"></i>
+                                <span>@lang("site.Join_student")</span>    
+                                </a>
+                                <a href="{{ route('registerSupervisor') }}" class="main-btn sec">
+                                    <i class="fal fa-sign-in"></i>
+                                <span> @lang("site.Join_teacher")</span>   
+                                </a>
                           
                             </div>
                         @else
@@ -83,11 +92,11 @@
                                    <a href="{{url('/')}}/admin" class="main-btn main">@lang('site.main')</a>
                                    @elseif(Auth::user()->role_id == 4 )
     							          
-    							            <a href="{{ route('profile') }}"class="main-btn main"><i class="fa fa-briefcase"></i>@lang("site.profile")</a>
+    							            <a href="{{ route('profile') }}"class="main-btn sec"><i class="fa fa-briefcase"></i>@lang("site.profile")</a>
     							         
                                  @elseif(Auth::user()->role_id == 3)
                                             
-							                 <a href="{{ route('supervprofile') }}" class="main-btn main"><i class="fa fa-briefcase"></i>@lang("site.profile")</a>
+							                 <a href="{{ route('supervprofile') }}" class="main-btn sec"><i class="fa fa-briefcase"></i>@lang("site.profile")</a>
 							                
                                    @endif
                                    <a href="{{ route('Logout') }}" onclick="event.preventDefault();
@@ -97,7 +106,7 @@
                                         </form>
                          </div>
                         @endif
-                            <img src="{{url('/')}}/public/src_website/assets/img/vission.png" alt="img">
+                            <img src="{{url('/')}}/public/src_website/assets/img/vission.png" alt="img" class="d-md-block d-none">
                         </div>
                     </div>
                 </div>
@@ -122,7 +131,7 @@
                     </ul>
                 </div>
                 <div class="col-3 d-flex d-lg-none">
-                    <div class="navbar-toggler" id="nav-icon1">
+                    <div id="nav-icon1">
                         <div>
                             <span class="one"></span>
                             <span class="two"></span>
@@ -132,7 +141,7 @@
                 </div>
                 <div class="col-lg-5 col-9 flex_end icons">
                     <span class="cart_icon"><i class="fal fa-shopping-cart"></i></span>
-                    <span class="icon_search d-sm-flex d-none"><i class="fal fa-search"></i></span>
+                    <span class="icon_search"><i class="fal fa-search"></i></span>
                 </div>
             </div>
         </div>

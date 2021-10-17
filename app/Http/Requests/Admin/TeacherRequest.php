@@ -74,8 +74,9 @@ class TeacherRequest extends FormRequest
 
             'curriculum_ar.required'=>__('site.teacher arabic profile required'),
             'skill1_ar.required'=>__('site.teacher arabic skill1 required'),
-            'skill2_ar.max'=>__('site.teacher arabic skill1 max'),
-            'skill2_ar.max'=>__('site.teacher arabic skill1 max'),
+            'skill2_ar.required'=>__('site.teacher arabic skill2 required'),
+            'skill1_ar.max'=>__('site.teacher arabic skill1 max'),
+            'skill2_ar.max'=>__('site.teacher arabic skill2 max'),
             'skill1_en.required'=>__('site.teacher english skill1 required'), //When using multilanguage add in migrate first
             'skill2_en.max'=>__('site.teacher english skill1 max'), //When using multilanguage add in migrate first
             'skill2_en.max'=>__('site.teacher english skill1 max'), //When using multilanguage add in migrate first
@@ -83,7 +84,6 @@ class TeacherRequest extends FormRequest
     }
 
     protected function failedValidation(Validator $validator) {
-        dd($validator);
         throw new HttpResponseException(redirect()->back()->withErrors($validator->errors())->withInput());
     }
 }

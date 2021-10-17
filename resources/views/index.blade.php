@@ -55,11 +55,11 @@
                             <p class="desc">{{$course->description}}</p>
                             <div class="details">
                                 <div class="item">
-                                    <span>مدة الدوره :</span>
+                                    <span>{{ __('site.coursfe duration') }} :</span>
                                     <span class="value">{{$course->duration}}<i class="fal fa-clock"></i></span>
                                 </div>
                                 <div class="item">
-                                    <span>تاريخ الدورة :</span>
+                                    <span>{{ __('site.course date') }} :</span>
                                     <span class="value">{{$course->created_at->year}}/{{$course->created_at->month}}/{{$course->created_at->day}}<i class="fal fa-calendar-alt"></i></span>
                                 </div>
                             </div>
@@ -73,8 +73,8 @@
                             <div class="teacher">
                                 <div class="img"><img src="{{url('/')}}/public/src_website/assets/img/person.png" alt="img"></div>
                                 <div class="text">
-                                    <h5>{{$course->supervisorcourses->first()->supervisor->supervisorinfo->name}}</h5>
-                                    <h6>{{$course->supervisorcourses->first()->supervisor->supervisorinfo->Educational}}</h6>
+                                    <h5>{{$course->supervisorcourses->first()->supervisor->supervisorinfo->name ?? ''}}</h5>
+                                    <h6>{{$course->supervisorcourses->first()->supervisor->supervisorinfo->Educational ?? ''}}</h6>
                                 </div>
                             </div>
                             <div class="icon_video">

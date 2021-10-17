@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
 namespace App\Http\Controllers\Admin;
-use App\HTTP\Controllers\Controller;
+
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UsersRequest;
 use Illuminate\Http\Request;
 use App\Department;
@@ -58,7 +58,7 @@ class userController extends Controller
             $image->extension();
             $imageName = time() . rand(10, 10000) . '.' . $image->extension();
             $image->move(public_path().'/storage/users', $imageName);
-            $user->avatar = 'storage/users/'. $imageName;
+            $user->avatar = 'public/storage/users/'. $imageName;
         }
         $user->save();
 
@@ -99,7 +99,7 @@ class userController extends Controller
             $image->extension();
             $imageName = time() . rand(10, 10000) . '.' . $image->extension();
             $image->move(public_path().'/storage/users', $imageName);
-            $user->avatar = 'storage/users/'. $imageName;
+            $user->avatar = 'public/storage/users/'. $imageName;
         }
         $user->save();
 

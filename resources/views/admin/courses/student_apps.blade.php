@@ -15,9 +15,10 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
+              <li class="breadcrumb-item"></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/courses">@lang('site.courses')</a></li>
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin/activities/{{$app->course->id}}">@lang('site.apps')</a></li>
-              <li class="breadcrumb-item active">{{$app->title}} </li>
+              <li class="active">{{$app->title}} </li>
             </ol>
           </div>
         </div>
@@ -58,13 +59,13 @@
                       <td><a href="{{url('/')}}/public/{{$app->app}}" download><i class="fa fa-download"></i></a></td>
                       <td>{{$app->notes}}</td>
                       <td>
-                       
+
                       </td>
                   </tr>
                     @endforeach
-               
-               
-               
+
+
+
                 </tbody>
               </table>
             </div>

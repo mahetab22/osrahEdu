@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('/admin/users') }}">@lang('site.users')</a></li>
-                    <li class="breadcrumb-item active">@lang('site.update user information') {{ $user->name }}</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@lang('site.update user information') {{ $user->name }}</li>
                     </ol>
                 </div>
             </div>
@@ -47,6 +48,9 @@
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="">@lang('site.choose image')</span>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <img src="{{url('/')}}/{{$user->avatar}}" id="profile-img-tag" width="200px" />
                                     </div>
                                     <span class="text-secondary"><small>-@lang('site.image not change').</small></span>
                                     @error('avatar')
@@ -160,6 +164,22 @@
 @endsection
 @section('script')
 <script>
+    //Display New Image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            console.log(reader);
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#exampleInputFile").change(function(){
+        console.log('test');
+        readURL(this);
+    });
+
     $('#role').on('change',function(){
         console.log('test');
         $(this).removeClass('is-invalid');

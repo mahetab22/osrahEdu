@@ -1,0 +1,254 @@
+.exam_page {
+    padding: 100px 0 70px;
+    .container_exam {
+        box-shadow: 0px 3px 26px rgba($color: #B8B3B3, $alpha: 0.16);
+        border-radius: 13px;
+        background-color: #fff;
+        padding: 50px 120px;
+        .header_exam {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 35px;
+            border-bottom: 1px solid rgba($color: #707070, $alpha: 0.31);
+            .degree {
+                color: #0278B0;
+                font-size: 15px;
+                font-family: $Bold;
+                max-width: 25%;
+                flex: 25%;
+            }
+            .title {
+                font-size: 20px;
+                font-family: $Bold;
+                color: #111;
+                max-width: 50%;
+                flex: 50%;
+                text-align: center;
+                margin: 0;
+            }
+            .time {
+                max-width: 25%;
+                flex: 25%;
+                text-align: end;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                img {
+                    margin-inline-end: 12px;
+                }
+                span {
+                    font-family: $Bold;
+                    color: #0278B0;
+                    margin-top: 2px;
+                    display: inline-block;
+                }
+            }
+        }
+        .questions_content {
+            padding: 40px 0 20px;
+            .btn-wrapp {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 30px;
+                .controls_slider {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 0 22px;
+                }
+                .must_answer {
+                    padding-inline-start: 25px;
+                }
+            }
+            .btn-wrapp button {
+                border: 0;
+                padding: 8px 36px;
+                display: flex;
+                align-items: center;
+                transition: 0.3s;
+                font-family: $semiBold;
+            }
+            .btn-wrapp #next i {
+                margin-inline-end: 6px;
+            }
+            .btn-wrapp #prev i {
+                margin-inline-start: 6px;
+            }
+            .btn-wrapp .note {
+                font-size: 20px;
+                margin: 0;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.3s;
+                &.red {
+                    color: #E41F1F;
+                }
+            }
+            .btn-wrapp .note.show {
+                opacity: 1;
+                visibility: visible;
+                animation: vibrate 0.3s linear;
+            }
+        }
+    }
+}
+
+@keyframes vibrate {
+    0% {
+        transform: rotate( 0deg);
+    }
+    25% {
+        transform: rotate( 7deg);
+    }
+    50% {
+        transform: rotate( 0deg);
+    }
+    75% {
+        transform: rotate( -7deg);
+    }
+    100% {
+        transform: rotate( 0deg);
+    }
+}
+
+.question_single {
+    display: none;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    &.active {
+        display: block;
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+    }
+    .question_text {
+        display: flex;
+        align-items: center;
+        h6 {
+            margin: 0;
+            color: #383839;
+            font-family: $semiBold;
+            max-width: 80%;
+            flex: 80%;
+            line-height: 28px;
+        }
+        span {
+            color: #0278B0;
+            font-family: $Bold;
+            max-width: 20%;
+            flex: 20%;
+            text-align: end;
+        }
+    }
+    .chooses_questions {
+        padding-top: 25px;
+        padding-inline-start: 25px;
+        label {
+            position: relative;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0 13px;
+            cursor: pointer;
+            &:not(:last-of-type) {
+                margin-bottom: 17px;
+            }
+            input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 0;
+                &:checked~.checkmark {
+                    background-color: #383839;
+                    border-color: #383839;
+                    color: #fff;
+                }
+            }
+            .checkmark {
+                min-width: 24px;
+                border: 1px solid #111;
+                height: 24px;
+                color: #383839;
+                border-radius: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            &:hover {
+                color: $mainColor;
+            }
+        }
+    }
+}
+
+.result_exam_page {
+    .questions_content {
+        padding: 0;
+        .heading {
+            text-align: center;
+            margin-bottom: 32px;
+            h5 {
+                font-size: 25px;
+                color: #0278B0;
+                margin-bottom: 30px;
+                font-family: $Bold;
+            }
+            p {
+                color: #0278B0;
+                font-size: 18px;
+                span {
+                    display: inline-block;
+                    margin-inline-start: 5px;
+                }
+            }
+        }
+    }
+    .question_single {
+        display: block;
+        border: 1px solid #008EF0;
+        padding: 32px 34px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        label {
+            pointer-events: none;
+            input {
+                &.true~.checkmark {
+                    background-color: #43FF00;
+                    border-color: #43FF00;
+                    color: #fff;
+                }
+                &.false~.checkmark {
+                    background-color: #FF0000;
+                    border-color: #FF0000;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .result_exam {
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+        color: $mainColor;
+        font-family: $Bold;
+        align-items: center;
+        h6 {
+            color: #111;
+            font-size: 25px;
+            margin: 0;
+        }
+        span {
+            margin-inline-start: 5px;
+        }
+    }
+}

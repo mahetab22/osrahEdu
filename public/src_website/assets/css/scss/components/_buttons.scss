@@ -7,9 +7,12 @@
     display: inline-block;
     border-radius: 50px;
     &.main {
-        background: linear-gradient(270deg, rgba(0, 84, 165, 1) 0%, rgba(0, 153, 255, 1) 100%);
+        background: linear-gradient(to right, #0054a5, #0099ff, #0054a5, #0099ff) !important;
+        color: #fff !important;
+        background-size: 300% 100% !important;
+        transition: all .4s ease-in-out;
         &:hover {
-            background: linear-gradient(90deg, rgba(0, 84, 165, 1) 0%, rgba(0, 153, 255, 1) 100%);
+            background-position: 100% 0 !important;
             color: #fff;
         }
     }

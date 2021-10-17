@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/said/about/us') }}">@lang('site.said_about_us')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.create new')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.create new')</li>
                     </ol>
                 </div>
             </div>
@@ -47,7 +48,7 @@
                                             <span class="input-group-text" id="">@lang('site.choose image')</span>
                                         </div>
                                     </div>
-                                    
+
                                     @error('logo')
                                         <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
                                     @enderror

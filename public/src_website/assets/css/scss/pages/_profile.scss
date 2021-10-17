@@ -1,3 +1,7 @@
+/*--------------------------------------------------------------
+# Start profile page
+--------------------------------------------------------------*/
+
 .profile_nav {
     .profile_list {
         ul {
@@ -82,3 +86,382 @@
         }
     }
 }
+
+.my_certificates_page {
+    padding: 100px 0 90px;
+    .tabs-li ul {
+        display: flex;
+        justify-content: center;
+        li {
+            text-align: center;
+            margin: 0 20px;
+            padding: 20px 40px 10px;
+            border: 1px solid #F1F1F1;
+            color: #0278B0;
+            border-radius: 13px 13px 0 0;
+            background-color: #F1F1F1;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            top: 1px;
+            &.active {
+                border-bottom: 1px solid #fff;
+                background-color: #fff;
+            }
+        }
+    }
+    .certificates_content {
+        .box_content {
+            padding: 50px 175px;
+            box-shadow: 0px 3px 26px rgba($color: #B8B3B3, $alpha: 0.16);
+            border-radius: 13px;
+            border: 1px solid #E1E1E1;
+            display: none;
+            opacity: 0;
+            transition: .3s;
+            @include start_FadeInUp;
+            &.active {
+                display: block;
+                @include animation_FadeInUp;
+            }
+        }
+        .certificate_box {
+            &:not(:last-of-type) {
+                padding-bottom: 50px;
+                border-bottom: 1px solid #F1F1F1;
+                margin-bottom: 30px;
+            }
+            .certificate_design {
+                position: relative;
+                border-radius: 13px;
+                overflow: hidden;
+                &.design_one {
+                    background: #FAFAFA;
+                    .head {
+                        position: relative;
+                        img {
+                            width: 100%;
+                        }
+                        .text {
+                            position: absolute;
+                            top: 0;
+                            color: #fff;
+                            right: 0;
+                            left: 0;
+                            text-align: center;
+                            padding-top: 10px;
+                            h4 {
+                                font-size: 46px;
+                                margin-bottom: 2px;
+                                font-family: $semiBold;
+                            }
+                            span {
+                                background: rgb(190, 121, 20);
+                                background: linear-gradient( 180deg, rgba(190, 121, 20, 1) 0%, rgba(240, 207, 70, 1) 100%);
+                                padding: 3px 30px;
+                                border-radius: 50px;
+                            }
+                        }
+                    }
+                    .content_cert {
+                        padding: 0 80px;
+                        .title {
+                            color: #111;
+                            font-family: $semiBold;
+                        }
+                        .name {
+                            position: relative;
+                            color: #111;
+                            font-size: 49px;
+                            display: inline-block;
+                            margin: 15px 0 20px;
+                            &:after {
+                                position: absolute;
+                                content: "";
+                                bottom: -5px;
+                                left: 0;
+                                width: 100%;
+                                height: 1px;
+                                background-color: #F3C563;
+                            }
+                        }
+                        p {
+                            color: #303030;
+                            font-size: 14px;
+                        }
+                    }
+                    .footer_cert {
+                        width: 56%;
+                        margin: 0 auto 60px;
+                        display: flex;
+                        justify-content: space-between;
+                        .signature {
+                            .name_trainer {
+                                font-size: 14px;
+                                margin: 0;
+                                padding-top: 6px;
+                                border-top: 1px solid #ffc107;
+                                margin-top: 6px;
+                                font-family: $Bold;
+                            }
+                        }
+                        .barcode {
+                            img {
+                                width: 83px;
+                            }
+                            span {
+                                display: block;
+                                color: #111;
+                                font-family: $Bold;
+                            }
+                        }
+                    }
+                    .shapes_cert {
+                        img {
+                            position: absolute;
+                            bottom: 0;
+                            &:nth-of-type(1) {
+                                left: 0;
+                            }
+                            &:nth-of-type(2) {
+                                right: 0;
+                            }
+                        }
+                    }
+                }
+                &.design_two {
+                    min-height: 483px;
+                    background-image: url(../img/certificates/bg_2.png);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    padding: 20px 25px;
+                    .inner {
+                        border: 1px solid #707070;
+                        height: 100%;
+                        .head {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            padding: 24px 30px 0;
+                            .logo {
+                                max-width: 25%;
+                                flex: 25%;
+                                text-align: center;
+                                img {
+                                    width: 118px;
+                                }
+                                span {
+                                    display: block;
+                                    color: #111;
+                                    font-family: $Bold;
+                                    margin-top: 8px;
+                                }
+                            }
+                            .text {
+                                max-width: 50%;
+                                flex: 50%;
+                                text-align: center;
+                                font-family: $semiBold;
+                                h4 {
+                                    color: #C99A2E;
+                                    font-size: 46px;
+                                }
+                                span {
+                                    color: #111;
+                                }
+                            }
+                        }
+                        .content_cert {
+                            padding: 0 60px;
+                            .name {
+                                position: relative;
+                                color: #111;
+                                font-size: 49px;
+                                display: inline-block;
+                                margin: 10px 0 20px;
+                                &:after {
+                                    position: absolute;
+                                    content: "";
+                                    bottom: -5px;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 1px;
+                                    background-color: #F3C563;
+                                }
+                            }
+                            p {
+                                color: #303030;
+                                font-size: 14px;
+                                line-height: 27px;
+                            }
+                        }
+                        .footer_cert {
+                            margin: 0 185px 15px 59px;
+                            display: flex;
+                            justify-content: space-between;
+                            .signature {
+                                .name_trainer {
+                                    font-size: 14px;
+                                    margin: 0;
+                                    padding-top: 6px;
+                                    border-top: 1px solid #ffc107;
+                                    margin-top: 6px;
+                                    font-family: $Bold;
+                                    text-align: center;
+                                }
+                            }
+                            .barcode {
+                                text-align: center;
+                                img {
+                                    width: 83px;
+                                }
+                                span {
+                                    display: block;
+                                    color: #111;
+                                    font-family: $Bold;
+                                }
+                            }
+                        }
+                    }
+                    .shapes_cert {
+                        img {
+                            position: absolute;
+                            &:nth-of-type(1) {
+                                left: auto;
+                                right: 0;
+                                bottom: 0;
+                                height: 270px;
+                            }
+                            &:nth-of-type(2) {
+                                right: auto;
+                                left: 0;
+                                top: 0;
+                            }
+                        }
+                    }
+                }
+                &.design_three {
+                    min-height: 483px;
+                    background: rgb(249, 249, 249);
+                    background: linear-gradient(3deg, rgba(249, 249, 249, 1) 0%, rgba(241, 241, 241, 1) 32%, rgba(207, 207, 207, 1) 100%);
+                    .inner {
+                        .head {
+                            position: relative;
+                            img {
+                                width: 100%;
+                            }
+                            .text {
+                                position: absolute;
+                                top: 0;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                margin-top: 47px;
+                                font-family: $semiBold;
+                                h4 {
+                                    color: #F4DE8B;
+                                    font-size: 46px;
+                                }
+                            }
+                        }
+                        .content_cert {
+                            padding: 0 60px;
+                            color: #111;
+                            font-family: $semiBold;
+                            .name {
+                                position: relative;
+                                font-size: 32px;
+                                display: inline-block;
+                                margin: 10px 0 20px;
+                            }
+                            p {
+                                color: #303030;
+                                font-family: Bahij_Light, sans-serif;
+                                font-size: 14px;
+                                line-height: 27px;
+                            }
+                        }
+                        .footer_cert {
+                            margin: 0 60px 35px;
+                            display: flex;
+                            justify-content: space-between;
+                            .signature {
+                                .name_trainer {
+                                    font-size: 14px;
+                                    margin: 0;
+                                    padding-top: 6px;
+                                    border-top: 1px solid #ffc107;
+                                    margin-top: 6px;
+                                    font-family: $Bold;
+                                    text-align: center;
+                                }
+                            }
+                            .barcode {
+                                text-align: center;
+                                img {
+                                    width: 83px;
+                                }
+                                span {
+                                    display: block;
+                                    color: #111;
+                                    font-family: $Bold;
+                                }
+                            }
+                        }
+                    }
+                    .border_line {
+                        position: absolute;
+                        top: 0;
+                        left: 0px;
+                        border: 1px solid #CF8E22;
+                        margin: 14px 17px;
+                        width: calc(100% - 32px);
+                        height: calc(100% - 28px);
+                    }
+                }
+            }
+            .download_cert {
+                text-align: center;
+                margin-top: 23px;
+                .main-btn {
+                    padding: 12px 30px;
+                    font-family: $semiBold;
+                    i {
+                        margin-inline-end: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.body-profile .nav-tabs {
+    li {
+        &.active,
+        &:hover {
+            a {
+                background: linear-gradient( 270deg, #0054a5 0%, #0099ff 100%);
+                color: #fff;
+            }
+        }
+    }
+}
+
+.body-profile .body-tab-pro {
+    padding: 0 30px;
+    .box_content {
+        display: none;
+        opacity: 0;
+        transition: .3s;
+        @include start_FadeInUp;
+        &.active {
+            display: block;
+            @include animation_FadeInUp;
+        }
+    }
+}
+
+
+/*--------------------------------------------------------------
+# End profile page
+--------------------------------------------------------------*/

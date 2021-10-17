@@ -10,6 +10,7 @@
     }
 </style>
     @endsection
+
 @section('content')
 
 

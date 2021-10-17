@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 namespace App\Http\Controllers\Admin;
-use App\HTTP\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsRequest;
 use Illuminate\Http\Request;
 
 Use Alert;
 Use Visitor;
-use App\new_Email;
+use App\New_email;
 use Session;
 use DB;
 use Validator;
@@ -25,7 +25,7 @@ class newsEmailController extends Controller
     {
         //
         $input = [
-            'news' => new_Email::get(),
+            'news' => New_email::get(),
            
           ];
 
@@ -53,7 +53,7 @@ class newsEmailController extends Controller
     public function store(Request $request)
     {
         //
-        $news=new new_Email;
+        $news=new New_email;
         $news->email=$request['email'];
         $news->save();
 
@@ -109,7 +109,7 @@ class newsEmailController extends Controller
     public function destroy($id)
     {
         //
-        $new=new_Email::find($id);
+        $new=New_email::find($id);
         if(!is_null($new)){
             $new->delete();
             return response()->json(['err'=>'0','alert' =>[
@@ -130,9 +130,9 @@ class newsEmailController extends Controller
 
         try{
             if (is_array($request->ids)){
-                News::destroy($request->ids);
+                New_email::destroy($request->ids);
             }else{
-                $new=News::find($request->ids);
+                $new=New_email::find($request->ids);
                 $new->delete();
             }
             return response()->json(['err'=>'0','alert' =>[

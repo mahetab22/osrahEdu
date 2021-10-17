@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/teachers') }}">@lang('site.teachers')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.create new teacher')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.create new teacher')</li>
                     </ol>
                 </div>
             </div>
@@ -39,32 +40,13 @@
                 <!-- form start -->
 
                         <div class="card-body">
-                            {{--
-                            <div class="form-group row">
-                                <label for="exampleInputFile" class="col-sm-2 control-label">@lang('site.avatar')</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" name="avatar" class="custom-file-input @error('avatar') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">@lang('site.choose image')</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="">@lang('site.choose image')</span>
-                                        </div>
-                                    </div>
-                                    @error('avatar')
-                                        <div class="text-danger"><small class="font-weight-bold">{{ $message }}</small></div>
-                                    @enderror
-                                </div>
-                            </div>
-                            --}}
                             <div class="form-group row">
                                 <label for="inputUser1" class="col-sm-2 control-label">@lang('site.teacher username')</label>
                                 <div class="col-sm-10">
                                     <select class="form-control @error('user_id') {{  'is-invalid'  }} @enderror" id="inputUser1" name="user_id" value="{{ old('user_id') }}" placeholder="@lang('site.teacher username')" required>
                                         <option value="" disabled selected>-- @lang('site.choose user') --</option>
                                         @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" > {{ $user->name  }} </option>
+                                            <option value="{{ $user->id }}" {{ $user->id == old('user_id') ? 'selected' : ''}}> {{ $user->name  }} </option>
                                         @endforeach
                                     </select>
                                     @error('user_id')
@@ -109,7 +91,7 @@
                                     <select class="form-control @error('service_id') {{  'is-invalid'  }} @enderror" id="inputService1" name="service_id" value="{{ old('service_id') }}" placeholder="@lang('site.service')" required>
                                         <option value="" disabled selected>-- @lang('site.choose service') --</option>
                                         @foreach ($services as $service)
-                                        <option value="{{ $service->id }}" > {{ app()->getLocale() ? $service->title_ar : $service->title_en  }} </option>
+                                            <option value="{{ $service->id }}" {{ $service->id == old('service_id') ? 'selected' : ''}}> {{ app()->getLocale() ? $service->title_ar : $service->title_en  }} </option>
                                         @endforeach
                                     </select>
                                     @error('service_id')

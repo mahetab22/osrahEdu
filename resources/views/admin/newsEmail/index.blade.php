@@ -15,7 +15,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('/')}}/admin">@lang('site.admin_panel')</a></li>
-              <li class="breadcrumb-item active">@lang('site.newsEmail')</li>
+              <li class="breadcrumb-item"></li>
+              <li class="active">@lang('site.newsEmail')</li>
             </ol>
           </div>
         </div>
@@ -48,10 +49,10 @@
                 @foreach($news as $i => $new)
                   <tr data-row-id='{{ $new->id }}'>
                       <td><input type="checkbox" name="newsEmail[]" class="sub_chk" data-id="{{$new->id}}"></td>
-                      <td>{{$new->email}}</td>                    
+                      <td>{{$new->email}}</td>
                       <td>
                           <div class="row">
-                             
+
                               <div class="col-md-6">
                                   <a class="delete btn bg-gradient-danger mr-1 ml-1" href="javascript:void(0)" data-delete-id="{{ $new->id }}"><i class="fa fa-trash text-white"></i></a>
                               </div>
@@ -73,32 +74,32 @@
     <!-- /.content -->
 </div>
 <div id="add-new" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">@lang('site.newsEmail')</h4> 
-            </div> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">@lang('site.newsEmail')</h4>
+            </div>
             <form method="post" action="{{url('/')}}/admin/newsEmail">
             @csrf
-            <div class="modal-body"> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">@lang('site.email')</label> 
-                            <input type="email" class="form-control" name="email"id="field-1" required placeholder="@lang('site.email')"> 
-                        </div> 
-                    </div> 
-                
-                </div> 
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">@lang('site.email')</label>
+                            <input type="email" class="form-control" name="email"id="field-1" required placeholder="@lang('site.email')">
+                        </div>
+                    </div>
 
-            </div> 
-            <div class="modal-footer"> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button> 
-                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button> 
-            </div> 
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+            </div>
             </form>
-        </div> 
+        </div>
     </div>
 </div><!-- /.modal -->
 @endsection

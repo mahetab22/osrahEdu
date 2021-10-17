@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ url('admin/said/about/us') }}">@lang('site.said_about_us')</a></li>
-                    <li class="breadcrumb-item active">@Lang('site.create new')</li>
+                    <li class="breadcrumb-item"></li>
+                    <li class="active">@Lang('site.create new')</li>
                     </ol>
                 </div>
             </div>
