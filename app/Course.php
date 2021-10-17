@@ -132,6 +132,12 @@ class Course extends Model
     public function apps(){
         return $this->hasMany('App\ApplicationsForCourse','course_id');
     }
+    public function StudentApp(){
+        return $this->hasMany('App\StudentApp','course_id');
+    }
+    public function StudentActivity(){
+        return $this->hasMany('App\StudentActivity','course_id');
+    }
 
     public function getActivityAppCountAttribute(){
        return count($this->apps)+count($this->activties);

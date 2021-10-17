@@ -136,6 +136,25 @@ class ActivityController extends Controller
                 ]]);
         }
     }
+    public function destroy2(Request $request)
+    {
+        //
+        $activity=Activity::find($request['id']);
+         if(!is_null($activity)){
+            $activity->delete();
+            return response()->json(['err'=>'0','alert' =>[
+                'icon'=>'success',
+                'title'=>__('site.alert_success'),
+                'text'=>__('site.deleted_successfully')
+                ]]);
+        }else{
+            return response()->json(['err'=>'1','alert' =>[
+                'icon'=>'error',
+                'title'=>__('site.alert_failed'),
+                'text'=>__('site.deleted_failed')
+                ]]);
+        }
+    }
 
     public function delete_all(Request $request){
 

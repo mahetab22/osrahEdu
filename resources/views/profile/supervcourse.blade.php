@@ -4,13 +4,18 @@
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="{{url('/')}}/public/src_website/assets/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 <link rel="stylesheet" href="{{url('/')}}/public/src_website/assets/css/addition.css">
+<style>
+    .single_course_Page .info_course .content_course .list_control ul li {
+        padding: 10px 20px;
+    }
+</style>
     @endsection
 @section('content')
 
 
  <!--==================== Start library =======================-->
  <section class="single_course_Page after_login">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="lessons-card-show">
@@ -513,34 +518,170 @@
                             </div>
                         </div>
                    @endforeach
-                        <div class="some_features mt-30">
-                            <div class="item_slide">
-                                <div class="head_item">
-                                    <h6 class="m-0">
-                                        <img src="{{url('/')}}/public/src_website/assets/img/icons/online-learning.svg" alt="">
-                                        <span>حضور الدورة</span>
-                                    </h6>
-                                    <i class="transition fal fa-chevron-down"></i>
-                                </div>
-                                @if($course->online==1)
-                                <div class="slide_content">
-                                    <div class="barcode_content">
-            
-                                        <p> قم بمسج الباركود لتسجيل الحضور فالدورة</p>
-                                        <div class="form-group">
-                                            <label for="barcode_2" class="custom_checkbox input_custom_m">
-        
-                                                <div class="text">
-                                                    {{$qr}}
-                                                </div>
-                                          
-                                            </label>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                                @endif
+                   <div class="item_slide another_style">
+                            <div class="head_item">
+                                <h6 class="m-0">التطبيقات</h6>
+                                <i class="transition fal fa-chevron-down"></i>
                             </div>
+                            <div class="slide_content">
+                                <!--========= Note: add class (link_lesson) and (<a href="#"></a>) tag if this lesson is avilable ========-->
+                                @foreach($course->apps as $app)
+                          
+                               @if(!empty($app->app))
+                               <a class="deleteApp btn bg-gradient-danger " href="javascript:void(0)" data-delete-id="{{ $app->id }}">
+                                       <i class="fa fa-times"></i>
+                                </a>
+                                <a href="{{url('/')}}/public/{{$app->app}}" download class="content_item link_lesson">
+                                    <div class="name_lesson">
+                                        <span class="icon">
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                                <g>
+                                                    <g>
+                                                        <path d="M507.156,121.024l-22.113-22.112c-3.129-3.13-7.29-4.853-11.715-4.853s-8.587,1.723-11.715,4.853l-0.912,0.913V84.974
+                                                            c0-18.566-15.105-33.671-33.671-33.671H33.671C15.105,51.304,0,66.408,0,84.974v342.052c0,18.566,15.105,33.671,33.671,33.671
+                                                            H427.03c18.566,0,33.671-15.105,33.671-33.671V190.911l46.455-46.455C513.615,137.997,513.615,127.485,507.156,121.024z
+                                                            M444.667,427.026c0,9.725-7.912,17.637-17.637,17.637H33.671c-9.725,0-17.637-7.912-17.637-17.637V84.974
+                                                            c0-9.725,7.912-17.637,17.637-17.637H427.03c9.725,0,17.637,7.912,17.637,17.637v30.885l-35.274,35.274v-40.505
+                                                            c0-3.557-2.344-6.689-5.758-7.692c-3.414-1-7.078,0.365-9.002,3.357l-31.737,49.369l-31.737-49.369
+                                                            c-1.923-2.992-5.589-4.357-9.002-3.357c-3.413,1.003-5.758,4.135-5.758,7.692v85.513c0,4.427,3.589,8.017,8.017,8.017
+                                                            s8.017-3.589,8.017-8.017v-58.217l23.72,36.899c1.475,2.294,4.016,3.681,6.744,3.681c2.728,0,5.269-1.387,6.744-3.681
+                                                            l23.72-36.899v29.242L244.133,316.394h-47.988c-4.427,0-8.017,3.589-8.017,8.017s3.589,8.017,8.017,8.017h36.439l-24.443,52.377
+                                                            h-80.407c-4.427,0-8.017,3.589-8.017,8.017s3.589,8.017,8.017,8.017h85.513c0.001,0,0.001,0,0.002,0
+                                                            c1.147,0,2.304-0.246,3.387-0.753l64.135-29.93c0.847-0.396,1.618-0.935,2.279-1.596l36.132-36.132h65.09
+                                                            c4.427,0,8.017-3.589,8.017-8.017s-3.589-8.017-8.017-8.017h-49.057l109.45-109.449V427.026z M248.323,336.618l21.128,21.128
+                                                            l-39.615,18.487L248.323,336.618z M281.658,347.278l-22.867-22.867l188.884-188.884l22.868,22.868L281.658,347.278z
+                                                            M495.819,133.118l-13.939,13.939l-22.868-22.868l13.939-13.939c0.208-0.207,0.547-0.207,0.756,0l22.112,22.111
+                                                            C496.026,132.571,496.026,132.91,495.819,133.118z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M110.632,188.124H67.341v-26.723h34.74c4.427,0,8.017-3.589,8.017-8.017s-3.589-8.017-8.017-8.017h-34.74v-26.723h43.291
+                                                            c4.427,0,8.017-3.589,8.017-8.017s-3.589-8.017-8.017-8.017H59.325c-4.427,0-8.017,3.589-8.017,8.017v85.513
+                                                            c0,4.427,3.589,8.017,8.017,8.017h51.308c4.427,0,8.017-3.589,8.017-8.017S115.06,188.124,110.632,188.124z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M210.956,191.133l-30.199-37.749l30.199-37.749c2.765-3.457,2.205-8.502-1.252-11.268
+                                                            c-3.457-2.766-8.503-2.205-11.268,1.252l-27.945,34.933l-27.946-34.931c-2.766-3.458-7.813-4.019-11.268-1.252
+                                                            c-3.457,2.765-4.018,7.811-1.252,11.268l30.199,37.749l-30.199,37.749c-2.765,3.456-2.204,8.5,1.253,11.266
+                                                            c1.478,1.182,3.246,1.757,5.003,1.757c2.352,0,4.682-1.03,6.265-3.009l27.946-34.931l27.946,34.931
+                                                            c1.583,1.98,3.913,3.009,6.265,3.009c1.756,0,3.525-0.575,5.003-1.757C213.161,199.636,213.722,194.591,210.956,191.133z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M306.623,194.57l-15.041-75.202c-1.941-9.709-10.537-16.756-20.44-16.756h-13.174c-9.901,0-18.498,7.047-20.439,16.756
+                                                            l-15.041,75.202c-0.868,4.341,1.948,8.564,6.289,9.433c4.341,0.867,8.564-1.948,9.433-6.289l3.842-19.209h45.004l3.842,19.209
+                                                            c0.762,3.811,4.11,6.447,7.853,6.447c0.521,0,1.05-0.051,1.581-0.157C304.675,203.134,307.491,198.911,306.623,194.57z
+                                                            M245.261,162.47l7.992-39.959c0.447-2.24,2.431-3.866,4.715-3.866h13.174c2.285,0,4.269,1.626,4.717,3.866l7.992,39.959H245.261z
+                                                            "/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M76.427,230.881c-13.851,0-25.119,11.268-25.119,25.119c0,13.851,11.268,25.119,25.119,25.119
+                                                            s25.119-11.268,25.119-25.119C101.547,242.149,90.278,230.881,76.427,230.881z M76.427,265.086c-5.01,0-9.086-4.076-9.086-9.086
+                                                            c0-5.01,4.076-9.086,9.086-9.086c5.01,0,9.086,4.076,9.086,9.086C85.513,261.01,81.437,265.086,76.427,265.086z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M76.427,299.291c-13.851,0-25.119,11.268-25.119,25.119s11.268,25.119,25.119,25.119s25.119-11.268,25.119-25.119
+                                                            S90.278,299.291,76.427,299.291z M76.427,333.496c-5.01,0-9.086-4.076-9.086-9.086s4.076-9.086,9.086-9.086
+                                                            c5.01,0,9.086,4.076,9.086,9.086S81.437,333.496,76.427,333.496z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M76.427,367.701c-13.851,0-25.119,11.268-25.119,25.119c0,13.851,11.268,25.119,25.119,25.119
+                                                            s25.119-11.268,25.119-25.119C101.547,378.97,90.278,367.701,76.427,367.701z M76.427,401.906c-5.01,0-9.086-4.076-9.086-9.086
+                                                            c0-5.01,4.076-9.086,9.086-9.086c5.01,0,9.086,4.076,9.086,9.086C85.513,397.831,81.437,401.906,76.427,401.906z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M264.556,247.983H127.735c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h136.821
+                                                            c4.427,0,8.017-3.589,8.017-8.017C272.572,251.573,268.983,247.983,264.556,247.983z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <g>
+                                                        <path d="M161.94,316.394h-34.205c-4.427,0-8.017,3.589-8.017,8.017s3.589,8.017,8.017,8.017h34.205
+                                                            c4.427,0,8.017-3.589,8.017-8.017S166.367,316.394,161.94,316.394z"/>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                <g>
+                                                </g>
+                                                </svg>
+    
+                                        </span>
+                                        <h6 class="m-0 text-ellipsis">{{$app->title}}</h6>
+                                    </div>
+                                    <span class="icon_lesson"><i class="fa fa-download"></i></span>
+                                  </a>
+                              @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="item_slide another_style">
+                            <div class="head_item">
+                                <h6 class="m-0">الأنشطة</h6>
+                                <i class="transition fal fa-chevron-down"></i>
+                            </div>
+                            <div class="slide_content">
+                                <!--========= Note: add class (link_lesson) and (<a href="#"></a>) tag if this lesson is avilable ========-->
+                                @foreach($course->activties as $activity)
+                          
+                               @if(!empty($activity->acivity))
+                               <div class="Acitivit{{$activity->id}}">
+                               <a class="deleteAct btn bg-gradient-danger " href="javascript:void(0)" data-delete-id="{{ $activity->id }}">
+                                       <i class="fa fa-times"></i>
+                                </a>
+                                <a href="{{url('/')}}/public/{{$activity->acivity}}" download class="content_item link_lesson">
+                                    <div class="name_lesson">
+                                      
+                                        <h6 class="m-0 text-ellipsis">{{$activity->title}}</h6>
+                                    </div>
+                                    <span class="icon_lesson"><i class="fa fa-download"></i></span>
+                                  </a>
+                                </div>
+                              @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="some_features mt-30">
+                            
                             <div class="item_slide">
                                 <div class="head_item">
                                     <h6 class="m-0">
@@ -603,12 +744,8 @@
                             @endif
                             <div class="rate_course">
                                 <div class="rate_box">  
-                                @if(\Carbon\Carbon::now()->format('Y-m-d') > $course->to_date)
-                                    <a href="{{url('/')}}/survey/{{$course->id}}" class="text-white">تقييم الدورة</a>     
-                                @else
-                                    <h6 class="m-0">تقييم الدورة</h6>
-                                @endif
-                              
+                            
+                                    <h6 class="m-0">تقييم الدورة</h6>                              
                                     <div class="stars">
                                        
                                         @for($i=0;$i<$course->rate ;$i++)
@@ -619,10 +756,6 @@
                                         @endfor
                                     </div>
                                 </div>
-                                @if(\Carbon\Carbon::now()->format('Y-m-d') <= $course->to_date)
-                                
-                                <p class="hint">يفعل هذا الخيار بعد الانتهاء من الدورة</p>
-                                @endif
                                 <div class="all-buttons">
                        <a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#add_link">@lang("site.add_link")</a>
                         <a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#add_certificate">@lang("site.add_certificate") </a>
@@ -634,6 +767,9 @@
                         <a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#discounts">@lang("site.Add code for discounts")</a>
                         <a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#remove">حذف - وحدة / درس / إختبار</a>
                         <!--<a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#addcertificate">إضافة شهادة إتمام الدورة</a>-->
+                        <a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#add-app">اضافة تطبيق</a>
+                        <a class="btn btn-primary text-white col-12 m-1" data-toggle="modal" data-target="#add-test">اضافة نشاط</a>
+
                     </div>
                             </div>
                         </div>
@@ -649,73 +785,316 @@
                         <div class="content_course">
                             <div class="list_control box_shadow">
                                 <ul>
-                                    <li class="muo_tab active" data-content="course_files">جلسات زووم للدوره</li>
-                                    <li class="muo_tab" data-content="course_test">تطبيق علي المحاضرة</li>
-                                    <li class="muo_tab" data-content="course_activities">نشاط علي المحاضرة</li>
+                                @if(!empty($course->streamings_zoom[0]))
+                                    <li class="muo_tab active" data-content="course_files">جلسات زووم  المتاحة</li>
+                                @endif
+                                  
+                                    <li class="muo_tab" data-content="answer">@lang("site.Discussions") </li>
+                             @if(0)
+                            @if(!empty($course->streamings))
+                                <li class="muo_tab" data-content="Sessions">@lang("site.Available Sessions")</li>
+                            @endif
+                            @endif
+                            <li class="muo_tab" data-content="availablecode">@lang("site.Available code")</li>
+                            <li class="muo_tab" data-content="Unavailable">@lang("site.Unavailable code") </li>
+                            <li class="muo_tab" data-content="apps">التطبيقات</li>
+
+                            <li class="muo_tab" data-content="activities">الأنشطة </li>
+                            <li class="muo_tab" data-content="certificates">@lang("site.add certificate") </li>
+                            @if(!empty($course->discounts[0]))
+                                <li class="muo_tab" data-content="discountcode">@lang("site.discount code")</li>
+                            @endif
+
+                            <a class="main-btn main text-white " data-toggle="modal" data-target="#add-q"><span>@lang("site.Add a question")</span></a>
                                 </ul>
                             </div>
                             <div class="main_content">
                                 <div class="box_content active" id="course_files">
                                   @if(!empty($streamings))   
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">@lang("site.class_id")</th>
-                                        <th scope="col">@lang("site.supervisor")</th>
-                                        <th scope="col">@lang("site.start_time")</th>
-                                        <th scope="col">@lang("site.duration")</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($streamings as $streaming)
-                                        <tr>
-                                            <th scope="row">{{$streaming->class_id}}</th>
-                                            <td>{{$streaming->supervisor->name}}</td>
-                                            <td>{{$streaming->start_time}}</td>
-                                            <td>{{$streaming->duration}}</td>
-                                            <td class="actions">
-                                                <a href="{{$streaming->join_url}}" class="on-default btn btn-default drug" path="{{$streaming->class_id}}" type="submit">دخول الاجتماع</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                               @else
-                                     <h3>لا يوجد جلاسات حاليا</h3>
-                               @endif
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">@lang("site.class_id")</th>
+                                                <th scope="col">@lang("site.supervisor")</th>
+                                                <th scope="col">@lang("site.start_time")</th>
+                                                <th scope="col">@lang("site.duration")</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($streamings as $streaming)
+                                                <tr>
+                                                    <th scope="row">{{$streaming->class_id}}</th>
+                                                    <td>{{$streaming->supervisor->name}}</td>
+                                                    <td>{{$streaming->start_time}}</td>
+                                                    <td>{{$streaming->duration}}</td>
+                                                    <td class="actions">
+                                                        <a href="{{$streaming->join_url}}" class="on-default btn btn-default drug" path="{{$streaming->class_id}}" type="submit">دخول الاجتماع</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    @else
+                                            <h3>لا يوجد جلاسات حاليا</h3>
+                                    @endif
                                 </div>
-                                <div class="box_content" id="course_test">
-                                @foreach($course->apps as $j=>$app)
-                                <?php $ap=\App\StudentApp::where('student_id',auth::user()->id)->where('app_id',$app->id)->first();?>
+                                <div class="box_content" id="answer">
+                                        @foreach($course->comments->where('commentORmassage',0) as $comment)
+                                            <div class="qu-block">
+                                                <h3>{{ $comment->user->name }} &nbsp;:&nbsp; {{ $comment->title }}</h3>
+                                                <p>
+                                                    {{ $comment->comment }}
+                                                </p>
+                                                @if(!empty($comment->replay))
+                                                    <h3>
+                                                        @lang("site.The coach responded") &nbsp;:&nbsp;  {{ $comment->replay }}
+                                                    </h3>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                 </div>
+                                 
+                                 <div class="box_content" id="Sessions">
+                                        <div class="qu-block">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">@lang("site.class_id")</th>
+                                                    <th scope="col">@lang("site.supervisor")</th>
+                                                    <th scope="col">@lang("site.start_time")</th>
+                                                    <th scope="col">@lang("site.dawnload")</th>
+                                                    <th scope="col">@lang("site.add attendee")</th>
+                                                    <th scope="col">@lang("site.cancel - modifay")</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($course->streamings as $streaming)
+                                                    <tr>
+                                                        <th scope="row">{{$streaming->class_id}}</th>
+                                                        <td>{{$streaming->supervisor->name}}</td>
+                                                        <td>{{$streaming->start_time}}</td>
+                                                        <td><a href="{{$streaming->recording_url}}"
+                                                            >@lang("site.recording")<span><i class="fa fa-tv"></i></span></a></td>
+                                                        <td class="actions">
+                                                            <a data-toggle="modal" data-target="#addattendeestreamingby" class="on-default btn btn-default drug" path="{{$streaming->class_id}}" type="submit"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+                                                        </td>
+                                                        <td class="actions">
+                                                            <a data-toggle="modal" data-target="#cancelstreamingby" class="on-default btn btn-default drug" path="{{$streaming->class_id}}" type="submit"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                            <a data-toggle="modal" data-target="#modifaystreamingby" class="on-default btn btn-default drug" path="{{$streaming->class_id}}" type="submit"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
 
-                                    <div class="file_item">
-                                        <h6 class="m-0">{{$app->title}}  @if(isset($ap)) <i class="fal fa-check" style="color:green"></i> @endif</h6>
-                                        <a href="{{url('/')}}/public/{{$app->app}}"download class="main-btn main">
-                                            <i class="fas fa-download"></i>
-                                            <span>تحميل النشاط</span>
-                                        </a>
-                                       
-                                    </div>
-                                    @endforeach
-                                </div>
-                                <div class="box_content" id="course_activities">
-                                    @foreach($course->activties as $i=>$activity)
-                                    <?php $act=\App\StudentActivity::where('student_id',auth::user()->id)->where('activity_id',$activity->id)->first();?>
-                                    <div class="file_item">
-                                        <h6 class="m-0">{{$activity->title}} @if(isset($act)) <i class="fal fa-check" style="color:green"></i> @endif</h6>
-                                        <div class="btns">
-                                            <a href="{{url('/')}}/public/{{$activity->acivity}}" download class="main-btn main">
-                                                <i class="fas fa-download"></i>
-                                                <span>تحميل النشاط</span>
-                                            </a>
-                                            
-                                           
-                    
+
+
+
+                                                </tbody>
+                                            </table>
+
+
                                         </div>
+                                  </div>
+                                  <div class="box_content" id="availablecode">
+                                            <div class="qu-block">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">@lang("site.code")</th>
+                                                        <th scope="col">@lang("site.action")</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($course->examcodes as $examcode)
+                                                        @if($examcode->used == 0)
+                                                            <tr>
+                                                                <th scope="row">{{$examcode->id}}</th>
+                                                                <td>{{$examcode->code}}</td>
+                                                                <td class="actions">
+                                                                    <a href="{{ url('/') }}/examcode/{{$examcode->id}}/update" class="on-default btn btn-default" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                                                                    <a href="{{ url('/') }}/examcode/{{$examcode->id}}/delete" class="on-default btn btn-default" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                   </div>
+                                   <div class="box_content" id="Unavailable">
+                                        <div class="qu-block">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">@lang("site.code")</th>
+                                                    <th scope="col">@lang("site.Name Student")</th>
+                                                    <th scope="col">@lang("site.delete")</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($course->examcodes as $examcode)
+                                                    @if($examcode->used == 1)
+                                                        <tr>
+                                                            <th scope="row">{{$examcode->id}}</th>
+                                                            <td>{{$examcode->code}}</td>
+                                                            @if(!empty($examcode->user))
+                                                                <td>{{$examcode->user->name}}</td>
+                                                            @else
+                                                                <td>الطالب لم يستخدمه بعد</td>
+                                                            @endif
+                                                            <td class="actions">
+                                                                <a href="{{ url('/') }}/examcode/{{$examcode->id}}/delete" class="on-default btn btn-default" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                   </div>
+                                   <div class="box_content" id="certificates">
+                                            <div class="qu-block">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">@lang("site.Name Student")</th>
+                                                        <th scope="col">@lang("site.completion")</th>
+                                                        <th scope="col">@lang("site.show/hiddin certificate")</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($course->subscriptioncourses as $subscriptioncourse)
+
+                                                        <tr>
+                                                            <th scope="row">{{$subscriptioncourse->user->id}}</th>
+                                                            <td>{{ $subscriptioncourse->user->name }}</td>
+                                                            <td>
+                                                                <div class="bar-complete">
+
+                                                                    @php
+                                                                        $countlessons = 0;
+                                                                        $i=0;
+                                                                        $countlessons=(count($subscriptioncourse->user->stulessons->where('course_id',$course->id))/$countlessonns)*100;
+                                                                    @endphp
+                                                                    @for($i = 0;$i < $countlessons; $i=$i+5)
+                                                                    @endfor
+
+                                                                    <h5>@lang("site.completion") {{ $i }} &nbsp; %</h5>
+                                                                </div>
+                                                            </td>
+                                                            <td class="actions">
+                                                                <?php $certificat = DB::table('certificates')->where('user_id',$subscriptioncourse->user_id)->where('course_id',$course->id)->first(); ?>
+                                                                @if(!empty($certificat) and $certificat->view == 1)
+                                                                    <a href="{{ url('/') }}/hiddencertificate?course_id={{ $course->id }}&user_id={{ $subscriptioncourse->user->id }}" class="on-default btn btn-default" type="submit" title="إخفاء"><i class="fas fa-eye-slash"></i></a>
+                                                                @else
+                                                                    <a href="{{ url('/') }}/addcertificate?course_id={{ $course->id }}&user_id={{ $subscriptioncourse->user->id }}" class="on-default btn btn-default" type="submit" title="اظهار"><i class="fas fa-eye"></i></a>
+                                                                @endif
+                                                            </td>
+
+                                                        </tr>
+
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                     </div>
-                                    
-                                    @endforeach
-                                </div>
+                                    <div class="box_content" id="apps">
+                                            <div class="qu-block">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">@lang("site.Name Student")</th>
+                                                        <th scope="col">التطبيق</th>
+                                                        <th scope="col">تطبيق الطالب</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($course->StudentApp as $app)
+
+                                                        <tr>
+                                                            <th scope="row">{{$app->id}}</th>
+                                                            <td>{{ $app->student->name }}</td>
+                                                            <td>
+                                                               {{$app->App->title}}
+                                                            </td>
+                                                            <td>{{$app->notes}}</td>
+                                                            <td class="actions">
+                                                                    <a href="{{ url('/') }}/public/{{$app->app}}" class="on-default btn btn-default" type="submit" title="download"><i class="fas fa-download"></i></a>
+                                                            </td>
+
+                                                        </tr>
+
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                    <div class="box_content" id="activities">
+                                            <div class="qu-block">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">@lang("site.Name Student")</th>
+                                                        <th scope="col">النشاط</th>
+                                                        <th scope="col">نشاط الطالب</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($course->StudentActivity as $act)
+
+                                                        <tr>
+                                                            <th scope="row">{{$activity->id}}</th>
+                                                            <td>{{ $activity->student->name }}</td>
+                                                            <td>
+                                                               {{$activity->Activity->title}}
+                                                            </td>
+                                                            <td>{{$activity->notes}}</td>
+                                                            <td class="actions">
+                                                                    <a href="{{ url('/') }}/public/{{$activity->activity}}" class="on-default btn btn-default" type="submit" title="download"><i class="fas fa-download"></i></a>
+                                                              
+                                                            </td>
+
+                                                        </tr>
+
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                    <div class="box_content" id="discountcode">
+                                    <div class="qu-block">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">@lang("site.code")</th>
+                                                <th scope="col">@lang("site.amount by sar")</th>
+                                                <th scope="col">@lang("site.num_of_used")</th>
+                                                <th scope="col">@lang("site.delete")</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($course->discounts as $index=>$discount)
+                                                <tr>
+                                                    <th scope="row">{{$index + 1}}</th>
+                                                    <td>{{$discount->code}}</td>
+                                                    <td>{{$discount->amount}}</td>
+                                                    <td>{{$discount->num_of_used}}</td>
+                                                    <td class="actions">
+                                                        <a href="{{ url('/') }}/discountcode/{{$discount->id}}/delete" class="on-default btn btn-default" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -730,7 +1109,7 @@
 
 <!--- model link---->
 
-<div id="add_link" class="modal fade" role="dialog">
+   <div id="add_link" class="modal fade" role="dialog">
        <div class="modal-dialog">
            <!-- Modal content-->
            <div class="modal-content">
@@ -757,7 +1136,79 @@
            </div>
        </div>
    </div>
+   <div id="add-app" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">إضافة تطبيق جديد</h4>
+                </div>
+                <form method="post" action="{{route('add_app')}}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="course_id" value="{{$course->id}}"/>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">@lang('site.title')</label>
+                                <input type="text" class="form-control" name="title"id="field-1" placeholder="@lang('site.title')">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                    <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <div id="add-test" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">إضافة نشاط جديد</h4>
+                </div>
+                <form method="post" action="{{route('add_activity')}}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="course_id" value="{{$course->id}}"/>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">@lang('site.title')</label>
+                                <input type="text" class="form-control" name="title"id="field-1" placeholder="@lang('site.title')">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                    <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+                </div>
+                </form>
+            </div>
+        </div>
+     </div><!-- /.modal -->
     <!-- Modal -->
     <div id="add-q" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -1886,6 +2337,8 @@
 @endsection
 @section('script')
 <script src="{{url('/')}}/public/src_website/assets/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script>
         $(document).ready(function () {
             $(".text").hide();
@@ -1982,5 +2435,89 @@
             }
             document.getElementById("myTextt").value = randomstring;
         }
+    </script>
+<script type="text/javascript">
+    $('.deleteAct').on('click',function(e){
+      id = $(this).attr('data-delete-id');
+      console.log(id);
+        e.preventDefault();
+        Swal.fire({
+          title: "@lang('site.alert_confirm_message')",
+          text: "@lang('site.alert_irreversible_message')",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: "@lang('site.alert_delete')",
+          cancelButtonText: "@lang('site.alert_cancel')"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                type:'POST',
+                dataType: 'json',
+                data:{ id:id, _method: 'DELETE', _token:"{{ csrf_token() }}" },
+                url: "{{route('del_activity' )}}",
+                success:function(data){
+                    Swal.fire({
+                        position: 'center',
+                        icon: data['alert']['icon'],
+                        title: data['alert']['title'],
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    if(data['err'] == 0){
+                    location.reload();
+                    }
+                },
+                error:function(data){
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        }
+    });
+});
+</script>
+<script>
+$('.deleteApp').on('click',function(e){
+      id = $(this).attr('data-delete-id');
+      console.log(id);
+        e.preventDefault();
+        Swal.fire({
+          title: "@lang('site.alert_confirm_message')",
+          text: "@lang('site.alert_irreversible_message')",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: "@lang('site.alert_delete')",
+          cancelButtonText: "@lang('site.alert_cancel')"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                type:'POST',
+                dataType: 'json',
+                data:{ id:id, _method: 'DELETE', _token:"{{ csrf_token() }}" },
+                url: "{{ route('del_app' ) }}" ,
+                success:function(data){
+                    Swal.fire({
+                        position: 'center',
+                        icon: data['alert']['icon'],
+                        title: data['alert']['title'],
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    if(data['err'] == 0){
+                    location.reload();
+                    }
+                },
+                error:function(data){
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        }
+    });
+});
     </script>
 @endsection

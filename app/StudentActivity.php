@@ -12,7 +12,7 @@ class StudentActivity extends Model
         return $this->belongsTo('App\User','student_id');
     }
 
-    public function activity(){
+    public function Activity(){
         return $this->belongsTo('App\Activity','activity_id');
     }
 }

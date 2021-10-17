@@ -11,7 +11,7 @@ class StudentApp extends Model
         return $this->belongsTo('App\User','student_id');
     }
 
-    public function app(){
+    public function App(){
         return $this->belongsTo('App\ApplicationsForCourse','app_id');
     }
 }

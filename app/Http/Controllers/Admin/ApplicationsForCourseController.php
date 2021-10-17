@@ -40,6 +40,7 @@ class ApplicationsForCourseController extends Controller
     public function store(Request $request)
     {
         //
+        
         $app=new ApplicationsForCourse;
         $app->course_id=$request['course_id'];
         $app->title=$request['title'];
@@ -50,6 +51,7 @@ class ApplicationsForCourseController extends Controller
             $image->move(public_path().'/storage/app', $imageName);
             $app->app = 'storage/app/'. $imageName;
         }
+
         $app->save();
         return redirect()->back()->with([
             'alert'=>[
@@ -120,7 +122,26 @@ class ApplicationsForCourseController extends Controller
     {
         //
         $app=ApplicationsForCourse::find($id);
-         if(!is_null($app)){
+        if(!is_null($app)){
+            $app->delete();
+            return response()->json(['err'=>'0','alert' =>[
+                'icon'=>'success',
+                'title'=>__('site.alert_success'),
+                'text'=>__('site.deleted_successfully')
+                ]]);
+        }else{
+            return response()->json(['err'=>'1','alert' =>[
+                'icon'=>'error',
+                'title'=>__('site.alert_failed'),
+                'text'=>__('site.deleted_failed')
+                ]]);
+        }
+    }
+    public function destroy2(Request $request)
+    {
+        //
+        $app=ApplicationsForCourse::find($request['id']);
+        if(!is_null($app)){
             $app->delete();
             return response()->json(['err'=>'0','alert' =>[
                 'icon'=>'success',

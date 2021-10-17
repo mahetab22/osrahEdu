@@ -133,6 +133,10 @@ Route::group(
 	'prefix' => LaravelLocalization::setLocale(),
 	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'HttpsProtocol' ]
 ], function(){ //...
+    Route::post('/apps/create','Admin\ApplicationsForCourseController@store')->name('add_app');
+    Route::post('activities/create','Admin\ActivityController@store')->name('add_activity');
+    Route::delete('activities/delete','Admin\ActivityController@destroy2')->name('del_activity');
+    Route::delete('apps/delete','Admin\ApplicationsForCourseController@destroy2')->name('del_app');
 
 Auth::routes();
 Route::get('get/course/exam/{id}','examCourseController@get_student_exam')->name('get_student_exam')->middleware('auth');
