@@ -274,7 +274,7 @@
                                   </a>
                               @endif
                               @if($lesson->exam)
-                              <a href="{{route('get_student_exam',$lesson->exam->id)}}" class="content_item link_lesson">
+                              <a href="{{ url('/') }}/editexamcourseby/{{ $lesson->exam->id }}" class="content_item link_lesson">
                                     <div class="name_lesson">
                                     <span class="icon">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -395,7 +395,7 @@
                                 </a>
                               @endif
                               @if($level->exam)
-                              <a href="{{route('get_student_exam',$level->exam->id)}}" class="content_item link_lesson">
+                              <a href="{{ url('/') }}/editexamcourseby/{{ $level->exam->id }}" class="content_item link_lesson">
                                     <div class="name_lesson">
                                     <span class="icon">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -736,7 +736,7 @@
                             @endif
                             @if($course->exam)
                             <div class="text-center mt-20">
-                                <a href="#" class="main-btn main">
+                                <a href="{{ url('/') }}/editexamcourseby/{{ $course->exam->id }}" class="main-btn main">
                                     <img src="{{url('/')}}/{{$course->exam->logo}}" alt="">
                                     <span>{{$course->exam->title}}</span>
                                 </a>

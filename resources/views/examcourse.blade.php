@@ -5,189 +5,112 @@
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 @endsection
 @section('content')
-
-        <!-- Start Title -->
-        <section class="title-s" style="background-image: url({{ asset('public/src_website/images/111.jpg') }})">
-                <div class="container">
-                    <h2>  @lang("site.Test Center")</h2>
-                    <ul>
-                        <li>
-                            <a href="{{ route('/') }}">
-                               @lang("site.Main")
-                            </a>
-                        </li>
-                        <li>
-                            <span>
-                                @lang("site.Test Center")
-                            </span>
-                        </li>
-                    </ul>
+    <!--==================== Start exam page =======================-->
+    <section class="exam_page ">
+        <div class="container">
+            <div class="container_exam">
+                <div class="header_exam">
+                    <h5 class="title">اجب عن الاسئلة الأتية</h5>
+                
                 </div>
-            </section>
-        <!-- End Title -->
-
-        @if(!empty($ExamStuAch[0]) and !empty($StuExam))
-        <!-- Start Ex-inner<input type="checkbox" name="answers['+[i]+']" value="'+response.answers[i][j].id+'"> -->
-        <section class="ex-inner body-inner">
-            <div class="container">
-                <div class="col-md-3 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="exam-block editexam">
-                        <div class="col-md-12">
-        					<div class="title wow fadeInUp">
-        						<h3>@lang("site.Review the questions and answers")</h3>
-        					</div>
-				         </div>
-                         
-                        <div class="title"><p>@lang("site.The exam started at"): {{$StuExam->created_at->format('H:i:s a')}}</p> <p>@lang("site.And I finish at the hour"):{{$ExamStuAch->last()->created_at->format('H:i:s a')}}</p></div>
-                         @foreach($exam->questions as $question)
-                         @if($question->type == 0)
-                         <?php $x=0; ?>                         
-                            <div class="form-group row">
-                                <p>
-                                    {{$question->question}}
-                                </p>
-                                @foreach($question->answers as $answer)                             
-                                @if(!empty($ExamStuAch->where('answer_id',$answer->id)->first()))
-                                @if($answer->true == 1 and $x==0)
-                                <?php $x=1; ?>                                
-                                <label class="excheck correct" > {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" checked="checked" disabled />
-                                    <span class="checkmarkEx"></span>
-                                </label>
+                <form action="{{ route('postExamStudent')}}"  method="post">
+                    @csrf
+                    <input type="hidden" value="{{$exam->id}}" name="exam"/>
+                <div class="questions_content">
+                    @foreach($exam->questions as $q=>$question)
+                        <div class="question_single {{$q==0?'active':''}}">
+                            <div class="question_text">
+                                <h6>{{$question->question}}</h6>
+                            </div>
+                            <div class="chooses_questions">
+                                @if($question->type==0)
+                                    @foreach($question->answers as $a=>$answer)
+                                        <label for="choose_{{$q}}{{$a}}">
+                                            <input type="radio" value="{{$answer->id}}" class="answer_input" name="question_{{$question->id}}" id="choose_{{$q}}{{$a}}">
+                                            <span class="checkmark">{{$a+1}}</span>
+                                            <span class="text">{{$answer->answer}}</span>
+                                        </label>
+                                    @endforeach
                                 @else
-                                <label class="excheck false"> {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" checked="checked" disabled/>
-                                    <span class="checkmarkEx"></span>
+                                <label for="choose_{{$q}}1">
+                                            <input type="radio" class="answer_input" value="1" name="question_{{$question->id}}" id="choose_{{$q}}1">
+                                            <span class="checkmark">1</span>
+                                            <span class="text">صح</span>
+                                </label>
+                                <label for="choose_{{$q}}2">
+                                    <input type="radio" class="answer_input" value="0" name="question_{{$question->id}}" id="choose_{{$q}}2">
+                                    <span class="checkmark">2</span>
+                                    <span class="text">خطأ</span>
                                 </label>
                                 @endif
-                                @else
-                                @if($answer->true == 1 and $x==0)
-                                <?php $x=1; ?>
-                                <label class="excheck correct" > {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" checked="checked" disabled/>
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @else                                
-                                <label class="excheck"> {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" disabled=""/>
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @endif
-                                @endif                                
-                                @endforeach
                             </div>
-                            @else
-                            <div class="form-group row">
-                              <span class="col-md-8 col-xs-8">
-                                 <p class="form-group"> 
-                                     <input type="text" name="questionns[]" value="{{$question->question}}" class="form-control" required>
-                                 </p>
-                              </span>
-                              @if(!empty($ExamStuAch->where('question_id',$question->id)->where('sol',1)->first()))
-                                            <span class="col-md-1 col-xs-2 true">
-                                                <label class="exam-ch ">
-                                                    <input type="checkbox" name="checck[{{$question->id}}]"  checked="checked">
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span> 
-                              @else
-                                            <span class="col-md-1 col-xs-2 false">
-                                                <label class="exam-ch ">
-                                                    <input type="checkbox" name="checck[{{$question->id}}]"  checked="checked" >
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                              @endif
-                             </div>
-                            @endif
-                         @endforeach
-                         
-                         <div class="title"><h3>@lang("site.test result") : {{$StuExam->total}} %</h3></div>
+                        </div>
+                    @endforeach
+                    <div class="btn-wrapp">
+                        <div class="must_answer">
+                            <p class="note red">يجب الإجابة اولا</p>
+                        </div>
+                        <div class="controls_slider">
+                            <button type="button" class="main-btn main" id="next"><i class="fal fa-chevron-double-right"></i>التالي</button>
+                            <button type="submit" class="send-answers d-none" id="send-answers">عرض النتيجة</button>
+                            <button type="button" class="main-btn main" id="prev">السابق<i class="fal fa-chevron-double-left"></i></button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-xs-12"></div>
+               </form>
             </div>
-        </section>
-        <!-- End Ex-inner -->
-        @else
-        <!-- Start Ex-inner<input type="checkbox" name="answers['+[i]+']" value="'+response.answers[i][j].id+'"> -->
-        <section class="ex-inner body-inner">
-            <div class="container">
-                <div class="col-md-3 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="exam-block editexam">
-                        <form class="bb" action="{{ route('postpublicexam')}}"  method="post" id="formm">
-                        @csrf
-                         <div class="col-md-12">
-        					<div class="title wow fadeInUp">
-        						<h3>@lang("site.Answer the following question")</h3>
-        					</div>
-				         </div>
-                         @foreach($exam->questions as $question)
-                         @if($question->type == 0)
-                            <div class="form-group row">
-                                <p>
-                                    {{$question->question}}
-                                </p>
-                                @foreach($question->answers as $answer)
-                                <label class="excheck"> {{$answer->answer}}
-                                    <input type="radio" name="answers[{{$question->id}}]" value="{{$answer->id}}" {{ (old('answers'.$question->id) == $answer->id) ? 'checked' : '' }} required />
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @endforeach
-                            </div>
-                            @else
-                            <div class="form-group row">
-                              <span class="col-md-8 col-xs-8">
-                                 <p class="form-group"> 
-                                     <input type="text" name="questionns[]" value="{{$question->question}}" class="form-control" required>
-                                 </p>
-                              </span>
-                                            <span class="col-md-1 col-xs-2 false">
-                                                <label class="exam-ch">
-                                                    <input type="radio" name="checck[{{$question->id}}]" value="0" required />
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span>
-                                            <span class="col-md-1 col-xs-2 true">
-                                                <label class="exam-ch">
-                                                    <input type="radio" name="checck[{{$question->id}}]" value="1" required />
-                                                    <span class="checkmark-exam"></span>
-                                                </label>
-                                            </span> 
-                             </div>
-                            @endif
-                         @endforeach
 
-                            <div class="form-group">
-                                <input type="submit" id="checkBtn" value="إرسال" class="form-control btn-style" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-12"></div>
-            </div>
-        </section>
-        <!-- End Ex-inner -->
-        @endif
+        </div>
+    </section>
+    <!--==================== End exam page =======================-->
+@endsection
+@section('script')
 
-<script type="text/javascript">
-// $(document).ready(function () {
-//     $('#checkBtn').click(function(e) {
-//       checked = $(".bb input[type=radio]:checked").length;
-//       if(!checked) {
-//         Swal.fire({
-//           title: 'بيانات ناقصة!',
-//           text: 'يجب إختيار اهتمام واحد علي الأقل من الاهتمامات',
-//           icon: 'error',
-//           confirmButtonText: 'موافق'
-//         })
-//       }else{
-//         e.preventDefault();
-//            $('#formm').submit(); 
-//         }
-//     });
-// });
-</script>
+<script>
+        /* slider exam */
+        var currentIndex = 0,
+            items = $('.exam_page .container_exam .questions_content .question_single'),
+            itemAmt = items.length;
+
+        function cycleItems() {
+            if (currentIndex > itemAmt - 1) {
+                currentIndex = itemAmt - 1;
+            } else {
+                var item = $('.exam_page .container_exam .questions_content .question_single').eq(currentIndex);
+                items.hide().removeClass('active');;
+                item.css('display', 'block').addClass('active');
+            }
+        }
+
+        $('#next').click(function() {
+
+            if ($('.question_single.active .answer_input').is(':checked')) {
+                if (currentIndex < itemAmt - 2) {
+                    currentIndex += 1;
+
+                } else if (currentIndex < itemAmt - 1) {
+                    currentIndex += 1;
+                    $(this).addClass('d-none')
+                    $('#send-answers').removeClass('d-none')
+                }
+                cycleItems();
+                $('.btn-wrapp .note').removeClass('show')
+            } else {
+                $('.btn-wrapp .note').addClass('show')
+            }
+        });
+
+        $('#prev').click(function() {
+            if (currentIndex <= 0) {
+                currentIndex = 0;
+
+            } else if (currentIndex > 0) {
+                $('#next').removeClass('d-none')
+                $('#send-answers').addClass('d-none')
+                currentIndex -= 1;
+            }
+            cycleItems();
+        });
+    </script>
+
 @endsection

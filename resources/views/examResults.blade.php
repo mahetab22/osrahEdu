@@ -2,123 +2,65 @@
 
 @section('content')
 
-        
-        <!-- Start Title -->
-        <section class="title-s" style="background-image: url({{ asset('public/src_website/images/111.jpg') }})">
-                <div class="container">
-                    <h2>  @lang("site.Test Center")</h2>
-                    <ul>
-                        <li>
-                            <a href="{{ route('/') }}">
-                               @lang("site.Main")
-                            </a>
-                        </li>
-                        <li>
-                            <span>
-                                @lang("site.Test Center")
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        <!-- End Title -->
-        @if(!empty($ExamStuAch[0]) and !empty($StuExam))
-        <!-- Start Ex-inner<input type="checkbox" name="answers['+[i]+']" value="'+response.answers[i][j].id+'"> -->
-        <section class="ex-inner body-inner">
-            <div class="container">
-                <div class="col-md-3 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="exam-block">
-                        <div class="col-md-12">
-        					<div class="title wow fadeInUp">
-        						<h3>@lang("site.Review the questions and answers")</h3>
-        					</div>
-				         </div>
-                         
-                        <div class="title"><p>@lang("site.The exam started at"): {{$StuExam->created_at->format('H:i:s a')}}</p> <p>@lang("site.And I finish at the hour"):{{$ExamStuAch->last()->created_at->format('H:i:s a')}}</p></div>
-                         @foreach($exam->questions as $question)
-                         <?php $x=0; ?>                         
-                            <div class="form-group">
-                                <p>
-                                    {{$question->question}}
-                                </p>
-                                @foreach($question->answers as $answer)                             
-                                @if(!empty($ExamStuAch->where('answer_id',$answer->id)->first()))
-                                @if($answer->true == 1 and $x==0)
-                                <?php $x=1; ?>                                
-                                <label class="excheck correct" > {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" checked="checked" disabled/>
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @else
-                                <label class="excheck false"> {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" checked="checked" disabled/>
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @endif
-                                @else
-                                @if($answer->true == 1 and $x==0)
-                                <?php $x=1; ?>
-                                <label class="excheck correct" > {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" checked="checked" disabled/>
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @else                                
-                                <label class="excheck"> {{$answer->answer}}
-                                    <input type="checkbox" name="answers[{{$question->id}}]" value="{{$answer->id}}" disabled=""/>
-                                    <span class="checkmarkEx"></span>
-                                </label>
-                                @endif
-                                @endif                                
-                                @endforeach
-                            </div>
-                         @endforeach
-                         
-                         <div class="title"><h3>@lang("site.test result") : {{$StuExam->total}} %</h3></div>
+   <!--==================== Start exam page =======================-->
+   <section class="exam_page result_exam_page">
+        <div class="container">
+            <div class="container_exam">
+                <div class="questions_content">
+                    <div class="heading">
+                        <h5> {{$exam->exam->title}} مراجعة الأسئلة والإجابات</h5>
+                        <p>موعد  الاختبار <span>{{$exam->created_at}}</span></p>
+                        <!-- <p>موعد تسليم الإجابة <span>3:09:34</span></p> -->
                     </div>
-                </div>
-                <div class="col-md-3 col-xs-12"></div>
-            </div>
-        </section>
-        <!-- End Ex-inner -->
-        @else
-        <!-- Start Ex-inner<input type="checkbox" name="answers['+[i]+']" value="'+response.answers[i][j].id+'"> -->
-        <section class="ex-inner body-inner">
-            <div class="container">
-                <div class="col-md-3 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12">
-                    <div class="exam-block">
-                        <form action="{{ route('postpublicexam')}}"  method="post">
-                        @csrf
-                         <div class="col-md-12">
-        					<div class="title wow fadeInUp">
-        						<h3>@lang("site.Answer the following question")</h3>
-        					</div>
-				         </div>
-                         @foreach($exam->questions as $question)
-                            <div class="form-group">
-                                <p>
-                                    {{$question->question}}
-                                </p>
-                                @foreach($question->answers as $answer)
-                                <label class="excheck"> {{$answer->answer}}
-                                    <input type="radio" name="answers[{{$question->id}}]" value="{{$answer->id}}" />
-                                    <span class="checkmarkEx"></span>
+                    @foreach($exam->exam->questions as $q=>$question)
+                    <div class="question_single">
+                        <div class="question_text">
+                            <h6>{{$exam->exam->title}}</h6>
+                            <!-- <span class="question_degree">نقطة واحد</span> -->
+                        </div>
+                        <?php 
+                        
+                        $stQuestion=$exam->answers->where('question_id',$question->id)->first(); ?>
+                        
+                        <div class="chooses_questions">
+                            @if($question->type==0)
+                                @foreach($question->answers as $a=>$answer)
+                        
+                                <label for="choose_{{$q}}{{$a}}">
+                                    <input type="radio" class="answer_input {{$answer->true==1?'true':''}} {{$stQuestion->flag==0 && $answer->id==$stQuestion->answer_id?'false':''}}" name="question_{{$q}}" id="choose_{{$q}}{{$a}}">
+                                    <span class="checkmark">{{$a+1}}</span>
+                                    <span class="text">{{$answer->answer}}</span>
                                 </label>
                                 @endforeach
-                            </div>
-                         @endforeach
+                            @else
+    
+                                <label for="choose_{{$q}}0">
+                                    <input type="radio" class="answer_input {{$question->sol==1?'true':''}} {{$stQuestion->flag==0 && $stQuestion->sol==1?'false':''}}" name="question_{{$q}}" id="choose_{{$q}}0">
+                                    <span class="checkmark">1</span>
+                                    <span class="text">صح</span>
+                                </label>
+                                
+                                <label for="choose_{{$q}}1">
+                                    <input type="radio" class="answer_input {{$question->sol==0?'true':''}} {{$stQuestion->flag==0 && $stQuestion->sol==0?'false':''}}" name="question_{{$q}}" id="choose_{{$q}}1">
+                                    <span class="checkmark">2</span>
+                                    <span class="text">خطأ</span>
+                                </label>
+                            @endif
+                        </div>
+                    </div>
+                    @endforeach
 
-                            <div class="form-group">
-                                <input type="submit" value="إرسال" class="form-control btn-style" />
-                            </div>
-                        </form>
-                    </div>
                 </div>
-                <div class="col-md-3 col-xs-12"></div>
+                <div class="result_exam">
+                    <h6>نتيجة الاختبار :</h6>
+                    <span> {{($exam->answers->where('flag',1)->count()/$exam->exam->questions->count())*100}} %</span>
+                </div>
             </div>
-        </section>
-        <!-- End Ex-inner -->
-        @endif
+
+        </div>
+    </section>
+    <!--==================== End exam page =======================-->
+
+
 
 @endsection

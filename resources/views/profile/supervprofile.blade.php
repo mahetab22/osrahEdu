@@ -52,9 +52,9 @@
                                     @if(Auth::user()->s == 1)
 
                                     <li class="muo_tab" data-content="profile2"><a>الدورات <span class="badge">{{ count(Auth::user()->supervisorcourses) }}</span></a></li>
-                                    <li class="muo_tab" data-content="profile8"><a>الاختبارات <span class="badge">{{ count(Auth::user()->supervisorexams) }}</span></a></li>
+                                    <!-- <li class="muo_tab" data-content="profile8"><a>الاختبارات <span class="badge">{{ count(Auth::user()->supervisorexams) }}</span></a></li> -->
                                     <li class="muo_tab" data-content="profile3"><a>إضافة دورات</a></li>
-                                    <li class="muo_tab" data-content="profile9"><a>إضافة اختبارات</a></li>
+                                    <!-- <li class="muo_tab" data-content="profile9"><a>إضافة اختبارات</a></li> -->
                                     
                                     @if(!empty(Auth::user()->supervisorcourses[0]) and Auth::user()->supervisorcourses[0]->course and !empty(Auth::user()->supervisorcourses[0]->course->comments->where('commentORmassage',1)[0]))
                                     <li class="muo_tab" data-content="profile5"><a>أسئلة تم الرد عليها</a></li>

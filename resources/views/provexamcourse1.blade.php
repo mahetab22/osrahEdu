@@ -1,82 +1,139 @@
 @extends('layouts.app')
 
 @section('content')
-  <!--==================== Start exam page =======================-->
-  <section class="exam_page result_exam_page">
-        <div class="container">
-            <div class="container_exam">
-                <div class="questions_content">
-                    <div class="heading">
-                        <h5>تعديل وإضافة للاختبار</h5>
-                     
-                    </div>
-                    @foreach($exam->questions as $q=>$question)
-                    <div class="question_single">
-                        <div class="question_text">
-                            <h6>  {{$question->question}}</h6>
-                            <a  href="{{ url('/') }}/deletequestion/{{$question->id}}/delete" data-toggle="modal" data-target="#del{{$q}}" class="on-default btn btn-default" type="submit"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="chooses_questions">
-                            @if($question->type == 0)
-                            @foreach($question->answers as $i=>$answer)
-                                <label for="choose_{{$i}}">
-                                    <input type="radio" class="answer_input {{$answer->true == 1?'true':''}}" name="answers[{{$question->id}}]" id="choose_{{$i}}">
-                                    <span class="checkmark">{{$i+1}}</span>
-                                    <span class="text">{{$answer->answer}}</span>
-                                </label>
-                            @endforeach
-                            @else
-                            <label for="choose_0">
-                                    <input type="radio" class="answer_input {{$question->sol == 1?'true':''}}" name="answers[{{$question->id}}]" id="choose_0">
-                                    <span class="checkmark">1</span>
-                                    <span class="text">صح</span>
-                                </label>
-                                <label for="choose_1">
-                                    <input type="radio" class="answer_input {{$question->sol == 0?'false':''}}" name="answers[{{$question->id}}]" id="choose_1">
-                                    <span class="checkmark">2</span>
-                                    <span class="text">خطأ</span>
-                                </label>
-                            @endif
-                      
-                        </div>
-                    </div>
-                    <div id="del{{$q}}" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <div class="add-qu form-contact">
-                                        <h3>حذف السؤال {{$question->question}}</h3>
-                                        <form action="{{ url('/') }}/deletequestion/{{$question->id}}/delete"  method="get" role="form"  enctype="multipart/form-data">                        
-                                            
-                                                <input type="submit" name="submit1" class="btn btn-danger" value="حذف">
-                                                <button class="btn btn-primary" type="button" class="close" data-dismiss="modal">إلغاء</button>
-                                            
-                                        </form>
-                                        <!-- Template -->
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    @endforeach
-                   <a class="btn btn-primary text-white" data-toggle="modal" data-target="#edit-exam">إضافة سؤال</a>
-                    @if($exam->view == 1)                       
-                    <a class="btn btn-info"  href="{{ url('/') }}/exam/{{$exam->id}}/heddinexam">إخفاء من الموقع</a>
-                    @else
-                        <a class="btn btn-info"  href="{{ url('/') }}/exam/{{$exam->id}}/viewexam">نشر للموقع</a>
-                    
-                    @endif
+        
+        <!-- Start Title -->
+        <section class="title-s" style="background-image: url({{ asset('public/src_website/images/111.jpg') }})">
+                <div class="container">
+                    <h2>  @lang("site.Test Center")</h2>
+                    <ul>
+                        <li>
+                            <a href="{{ route('/') }}">
+                               @lang("site.Main")
+                            </a>
+                        </li>
+                        <li>
+                            <span>
+                                @lang("site.Test Center")
+                            </span>
+                        </li>
+                    </ul>
                 </div>
-               
-            </div>
+            </section>
+        <!-- End Title -->
 
-        </div>
-    </section>
-    <!--==================== End exam page =======================-->
-    <div id="edit-exam" class="modal fade" role="dialog">
+        <section class="ex-inner body-inner">
+            <div class="container">
+                <div class="col-md-3 col-xs-12"></div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="exam-block editexam">
+                         <div class="col-md-12">
+        					<div class="title wow fadeInUp">
+        						<h3>تعديل وإضافة للاختبار</h3>
+        					</div>
+				         </div>
+                         @foreach($exam->questions as $question)
+                         
+                            @if($question->type == 0)
+                            <div class="form-group row">
+                                <p>
+                                    {{$question->question}}
+                                </p>
+                                @foreach($question->answers as $answer)
+                                @if($answer->true == 1)
+                                <label class="excheck"> {{$answer->answer}}
+                                    <input type="radio"  checked="checked" name="answers[{{$question->id}}]" value="{{$answer->id}}" />
+                                    <span class="checkmarkEx" ></span>
+                                </label>
+
+                                @else
+                                <label class="excheck"> {{$answer->answer}}
+                                    <input type="radio" name="answers[{{$question->id}}]" value="{{$answer->id}}" />
+                                    <span class="checkmarkEx"></span>
+                                </label>
+                                @endif
+
+                                @endforeach
+
+                                <a href="{{ url('/') }}/deletequestion/{{$question->id}}/delete" class="on-default btn btn-default" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                            </div>
+                            @elseif($question->type == 1)
+                            <div class="form-group row">
+                                            <span class="col-md-8 col-xs-8">
+                                                <p class="form-group"> 
+                                                    <input type="text" name="questionn" value="{{$question->question}}" class="form-control" required>
+                                                </p>
+                                            </span>
+                                            @if($question->sol == 0)
+                                            <span class="col-md-1 col-xs-2 false">
+                                                <label class="exam-ch">
+                                                    <input type="radio" checked="checked" name="checck[{{$question->id}}]" value="0">
+                                                    <span class="checkmark-exam"></span>
+                                                </label>
+                                            </span>
+                                            <span class="col-md-1 col-xs-2 true">
+                                                <label class="exam-ch">
+                                                    <input type="radio" name="checck[{{$question->id}}]" value="1">
+                                                    <span class="checkmark-exam"></span>
+                                                </label>
+                                            </span> 
+                                            @elseif($question->sol == 1)
+                                            <span class="col-md-1 col-xs-2 false">
+                                                <label class="exam-ch">
+                                                    <input type="radio" name="checck[{{$question->id}}]" value="0">
+                                                    <span class="checkmark-exam"></span>
+                                                </label>
+                                            </span>
+                                            <span class="col-md-1 col-xs-2 true">
+                                                <label class="exam-ch">
+                                                    <input type="radio" checked="checked" name="checck[{{$question->id}}]" value="1">
+                                                    <span class="checkmark-exam"></span>
+                                                </label>
+                                            </span> 
+                                            @endif
+                                            
+
+
+                                <a  href="{{ url('/') }}/deletequestion/{{$question->id}}/delete" class="on-default btn btn-default" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                             
+                            </div>
+                            
+                            @endif
+                            <hr style="display: block;
+                                          margin-top: 0.5em;
+                                          margin-bottom: 0.5em;
+                                          margin-left: auto;
+                                          margin-right: auto;
+                                          border-style: inset;
+                                          border-width: 1px;">
+                         @endforeach
+
+                    
+
+                       <div class="form-group row all-buttons">
+                               <a class="add-btn" data-toggle="modal" data-target="#edit-exam">إضافة سؤال</a>
+                      
+                       @if($exam->view == 1)
+                       
+                               <a class="add-btn"  href="{{ url('/') }}/exam/{{$exam->id}}/heddinexam">إخفاء من الموقع</a>
+                       
+                       @else
+                       
+                               <a class="add-btn"  href="{{ url('/') }}/exam/{{$exam->id}}/viewexam">نشر للموقع</a>
+                       
+                       @endif
+                       </div>
+
+                       
+                       </div>
+                </div>
+                <div class="col-md-3 col-xs-12"></div>
+            </div>
+        </section>
+
+        <div id="edit-exam" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -103,7 +160,7 @@
                                                 <input type="text" name="question" value="" class="form-control" >
                                             </p>
                                         </span>
-                                        <span class="col-xs-12 row padding">
+                                        <span class="col-xs-12 padding">
                                             <span class="col-md-11 col-xs-10">
                                                 <p class="form-group">
                                                     <label>الأجابة الأولي</label>
@@ -117,7 +174,7 @@
                                                 </label>
                                             </span>
                                         </span>
-                                        <span class="col-xs-12 row padding">
+                                        <span class="col-xs-12 padding">
                                             <span class="col-md-11 col-xs-10">
                                                 <p class="form-group">
                                                     <label>الأجابة الثانية</label>
@@ -131,7 +188,7 @@
                                                 </label>
                                             </span>
                                         </span>
-                                        <span class="col-xs-12 row padding">
+                                        <span class="col-xs-12 padding">
                                             <span class="col-md-11 col-xs-10">
                                                 <p class="form-group">
                                                     <label>الأجابة الثالثة</label>
@@ -146,7 +203,7 @@
                                             </span>
                                         </span>
                                         
-                                        <span class="col-xs-12 row padding">
+                                        <span class="col-xs-12 padding">
                                             <span class="col-md-11 col-xs-10">
                                                 <p class="form-group">
                                                     <label>الإجابة الرابعة</label>
@@ -165,7 +222,7 @@
                                 
                                  <div  class="secound">
                                     <div class="add-section truefalse">
-                                        <span class="col-xs-12 row padding">
+                                        <span class="col-xs-12 padding">
                                             <span class="col-md-10 col-xs-8">
                                                 <p class="form-group">
                                                     <label>السؤال</label>
@@ -174,14 +231,12 @@
                                             </span>
                                             <span class="col-md-1 col-xs-2 false">
                                                 <label class="exam-ch">
-                                                    false
                                                     <input type="radio" name="checck" value="0">
                                                     <span class="checkmark-exam"></span>
                                                 </label>
                                             </span>
                                             <span class="col-md-1 col-xs-2 true">
                                                 <label class="exam-ch">
-                                                    true
                                                     <input type="radio" name="checck" value="1">
                                                     <span class="checkmark-exam"></span>
                                                 </label>
@@ -191,8 +246,7 @@
                                     </div>
                                 </div>  
                                 <p>
-                                    <input type="submit" name="submit1" class="btn btn-success" value="إضافة">
-                                  
+                                    <input type="submit" name="submit1" class="btn-style" value="إضافة">
                                 </p>
                             </form>
                             <!-- Template -->
@@ -201,9 +255,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
+        </div> 
 @endsection
 @section('script')
 

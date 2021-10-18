@@ -234,7 +234,12 @@
                                   </a>
                               @endif
                               @if($lesson->exam)
-                              <a href="{{route('get_student_exam',$lesson->exam->id)}}" class="content_item link_lesson">
+                                @if($lesson->exam->code == Null)
+                                <a href="{{route('get_student_exam',$lesson->exam->id)}}" class="content_item link_lesson">
+                                @else
+                                <a data-toggle="modal" data-target="#exam{{$lesson->exam->id}}" class="content_item link_lesson">
+                             
+                                @endif
                                     <div class="name_lesson">
                                     <span class="icon">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -353,6 +358,7 @@
                                     </div>
                                     <span class="icon_lesson"><i class="far fa-check"></i></span>
                                 </a>
+                                  
                               @endif
                               @if($level->exam)
                               <a href="{{route('get_student_exam',$level->exam->id)}}" class="content_item link_lesson">
@@ -560,7 +566,11 @@
                             @endif
                             @if($course->exam)
                             <div class="text-center mt-20">
-                                <a href="#" class="main-btn main">
+                               @if($course->exam->code==null)
+                                <a href="{{route('get_student_exam',$course->exam->id)}}" class="main-btn main">
+                                @else
+                                <a data-toggle="modal" data-target="#exam{{$course->exam->id}}" class="main-btn main">
+                                @endif
                                     <img src="{{url('/')}}/{{$course->exam->logo}}" alt="">
                                     <span>{{$course->exam->title}}</span>
                                 </a>
@@ -693,6 +703,72 @@
                         </div>
                     </div>
                 </div>
+                @foreach($course->levels as $level)
+                @foreach($level->lessons as $lesson)
+                @if($lesson->exam && $lesson->exam->code != null)
+                            <div id="exam{{$lesson->exam->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title">ادخل كود الامتحان</h4>
+                                                            </div>
+                                                            <form method="post" action="{{route('exam_check_code')}}" enctype="multipart/form-data">
+                                                            @csrf
+                                                                <input type="hidden" value="{{$lesson->exam->id}}" name="exam"/>
+                                                            <div class="modal-body">
+                                                                <div class="col-md-12">
+                                                                    <div class="col-md-12">
+                                                                        <div class="input-group">
+                                                                            <div class="custom-file">
+                                                                                <input type="text" name="code" class="form-control" placeholder="كود الاختبار"/>
+                                                                            </div>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                                                                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.submit')</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                            </div><!-- /.modal -->
+
+                @endif
+                @endforeach
+                @if($level->exam && $level->exam->code != null)
+                            <div id="exam{{$level->exam->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title">ادخل كود الامتحان</h4>
+                                                            </div>
+                                                            <form method="post" action="{{route('exam_check_code')}}" enctype="multipart/form-data">
+                                                            @csrf
+                                                                <input type="hidden" value="{{$level->exam->id}}" name="exam"/>
+                                                            <div class="modal-body">
+                                                                <div class="col-md-12">
+                                                                    <div class="col-md-12">
+                                                                        <div class="input-group">
+                                                                            <div class="custom-file">
+                                                                                <input type="text" name="code" class="form-control" placeholder="كود الاختبار"/>
+                                                                            </div>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                                                                <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                            </div><!-- /.modal -->
+
+                @endif
+        @endforeach
             </div>
             @foreach($course->apps as $j=>$app)
         <div id="add-app{{$j}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabelapp" aria-hidden="true" style="display: none;">
@@ -733,46 +809,50 @@
         </div>
         @foreach($course->activties as $i=>$activity)
         <div id="add-activity{{$i}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                                        <h4 class="modal-title">ارفع نشاطك</h4>
-                                                                    </div>
-                                                                    <form method="post" action="{{route('student_add_activity')}}" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    <?php $act=\App\StudentActivity::where('student_id',auth::user()->id)->where('activity_id',$activity->id)->first();?>
-                                                                    <input type="hidden" name="course_id" value="{{$course->id}}"/>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">ارفع نشاطك</h4>
+                        </div>
+                        <form method="post" action="{{route('student_add_activity')}}" enctype="multipart/form-data">
+                        @csrf
+                        <?php $act=\App\StudentActivity::where('student_id',auth::user()->id)->where('activity_id',$activity->id)->first();?>
+                        <input type="hidden" name="course_id" value="{{$course->id}}"/>
 
-                                                                    <input type="hidden" name="activity" value="{{$activity->id}}"/>
-                                                                    <div class="modal-body">
-                                                                        <div class="col-md-12">
-                                                                        <div class="col-md-12">
-                                                                        <input type="text" name="notes" class="form-control" value="{{isset($act)?$act->notes:''}}" placeholder="ملاحظات"/>  
-                                                                        </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="input-group">
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
-                                                                                        <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
-                                                                        <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
-                                                                    </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                    </div><!-- /.modal -->
+                        <input type="hidden" name="activity" value="{{$activity->id}}"/>
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                            <div class="col-md-12">
+                            <input type="text" name="notes" class="form-control" value="{{isset($act)?$act->notes:''}}" placeholder="ملاحظات"/>  
+                            </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="file" class="custom-file-input @error('file') {{  'is-invalid'  }} @enderror" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">@lang('site.choose file')</label>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">@lang('site.close')</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">@lang('site.add')</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+        </div><!-- /.modal -->
         @endforeach
-      
+        
+    
     </section>
     <!--==================== End library =======================-->
 
+
 @endsection
+
+
 @section('script')
 
 

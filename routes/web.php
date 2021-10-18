@@ -139,6 +139,8 @@ Route::group(
     Route::delete('apps/delete','Admin\ApplicationsForCourseController@destroy2')->name('del_app');
 
 Auth::routes();
+Route::post('post/Exam/Student','examCourseController@postExamStudent')->name('postExamStudent')->middleware('auth');
+Route::post('exam/check/code','examCourseController@exam_check_code')->name('exam_check_code')->middleware('auth');
 Route::get('get/course/exam/{id}','examCourseController@get_student_exam')->name('get_student_exam')->middleware('auth');
 Route::get('attending/course/{subscripe_id}','CourseSubscriptionController@attending_course');
 Route::post('student/add/activities','CourseSubscriptionController@student_upload_activity')->name('student_add_activity')->middleware('auth');
